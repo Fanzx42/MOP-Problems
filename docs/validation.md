@@ -5,6 +5,18 @@
 - Analytical anchors for every implemented problem family, including classic
   objective values and both feasible/infeasible constrained points.
 - DTLZ distance-minimum identities across 2, 3 and 5 objectives.
+- WFG1–9 reference checks across 2, 3, 5 and 8 objectives, different partitions,
+  bounds and transformation breakpoints; analytical anchors and invalid partitions.
+- UF1–10 explicit scalar-oracle checks at n=5,7,30, plus n=3 for UF1–7,
+  analytical linkage minima, boundary values and uneven index groups.
+- Five C-DTLZ variants against pymoo at 2, 3, 5 and 13 objectives, k=1 and k=10;
+  raw constraint signs, radius defaults and parameter validation.
+- Omni-test and simple/rotated SYM-PART reference values and all nine known
+  equivalent decision subsets at default dimensions.
+- Welded-Beam objectives, raw residuals, feasible/infeasible anchors and the
+  explicitly selected pymoo 0.6.2 variant.
+- Exported experiment CSV reproducibility and feasibility, with nondominance
+  checked against the exhaustive definition including ties and empty sets.
 - ZDT3 nondominance/gap checks and the nonzero minimum of ZDT6's first objective.
 - Optional cross-library comparisons with **pymoo 0.6.2** for all five continuous
   ZDT problems, DTLZ1–7 and BNH/TNK/OSY/SRN. ZDT dimensions include 2, 10 and 30;
@@ -22,6 +34,8 @@ Reference comparisons account for declared differences:
 | TNK | Multiply columns by `(1, 0.5)` |
 | OSY | Multiply columns by `(2, 6, 2, 2, 4, 4)` |
 | SRN | No rescaling |
+| C-DTLZ | No rescaling |
+| Welded-Beam | Multiply columns by `(13600, 30000, 4.875, 6000)` |
 
 TNK uses `atan2(x1, x2)` to define the box axes without division by zero; at the
 infeasible origin the angle is set to zero. Random reference points avoid this
@@ -30,7 +44,8 @@ source-specific boundary convention. No other residual normalization is implicit
 SCH, FON and POL use analytical anchors and the documented MOEA Framework variant
 cross-checks rather than a pymoo comparison, since that reference does not expose
 these three problems. Numerical tests are evidence for implementation correctness,
-not formal proofs of all analytical or Pareto properties.
+not formal proofs of all analytical or Pareto properties. UF's scalar oracle
+is an independent transcription, not a claim that PlatEMO was executed locally.
 
 ## Repository and distribution evidence
 
@@ -43,15 +58,17 @@ and installs the wheel in a separate environment before smoke testing.
 CI is configured for Linux on Python 3.10–3.14, and Windows/macOS on Python 3.12.
 Those are configured checks, not a claim that the hosted matrix has already run.
 The local verification environment and results for initial preparation are recorded
-in [initial verification](initial-verification.md).
+in [initial verification](initial-verification.md); current experiment reproduction
+is documented in [the experiment guide](experiments.md).
 
 ## Limitations
 
-The initial release contains 19 executable problems and 34 planned entries.
+Version 0.2.0 contains 47 executable problems and 28 planned catalogue entries.
 There are no implemented dynamic or equality-constrained benchmark suites yet,
 no gradient/Hessian API, no optimizer, and no bundled reference-front datasets.
 Higher-dimensional front samplers are finite seeded samples rather than exact
-uniform meshes. ZDT3 segment limits are numerical approximations.
+uniform meshes. ZDT3 segment limits are numerical approximations. DTLZ5/6 front
+sampling is restricted to M<=3; higher-dimensional g=0 curves can omit tradeoffs.
 
 Planned real-world subsets require variable-type and source-version audits.
 Do not treat a linked source, a directory name or a planned member name as proof

@@ -2,11 +2,11 @@
 
 # UF
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/linkage`
 
-CEC 2009 UF1-10; preserve index parity and variable bounds.
+CEC 2009 UF1-10. Defaults n=30; UF1-7 have 2 objectives and n>=3, UF8-10 have 3 objectives and n>=5. UF5: N=10, epsilon=0.1; UF6: N=2, epsilon=0.1; UF9: epsilon=0.1.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
@@ -18,11 +18,17 @@ Zhang et al. (2009). Multiobjective optimization test instances for the CEC 2009
 
 ## Members / 成员
 
-Target members: `UF1`, `UF2`, `UF3`, `UF4`, `UF5`, `UF6`, `UF7`, `UF8`, `UF9`, `UF10`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [UF1](UF1/README.md) | 30 | 2 | 0 | 0 | yes |
+| [UF2](UF2/README.md) | 30 | 2 | 0 | 0 | yes |
+| [UF3](UF3/README.md) | 30 | 2 | 0 | 0 | yes |
+| [UF4](UF4/README.md) | 30 | 2 | 0 | 0 | yes |
+| [UF5](UF5/README.md) | 30 | 2 | 0 | 0 | no |
+| [UF6](UF6/README.md) | 30 | 2 | 0 | 0 | no |
+| [UF7](UF7/README.md) | 30 | 2 | 0 | 0 | yes |
+| [UF8](UF8/README.md) | 30 | 3 | 0 | 0 | yes |
+| [UF9](UF9/README.md) | 30 | 3 | 0 | 0 | no |
+| [UF10](UF10/README.md) | 30 | 3 | 0 | 0 | yes |
 
 [Full catalogue](../../../README.md)

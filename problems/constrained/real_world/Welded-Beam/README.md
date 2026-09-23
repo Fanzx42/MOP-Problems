@@ -2,11 +2,11 @@
 
 # Welded-Beam
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/real_world`
 
-Select the two-objective formulation and document all engineering constants, units and constraint scaling.
+Two objectives and four raw constraints, matching pymoo 0.6.2. J uses sqrt(2)*h*l*(l^2/12+(h+t)^2/4), which differs from variants using twice this J. Variables (h,l,t,b) in inches. See formula constants and raw residual scaling.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
@@ -18,11 +18,27 @@ Reference implementation: pymoo welded-beam problem.
 
 ## Members / 成员
 
-Target members: `Welded-Beam`
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Welded-Beam | 4 | 2 | 4 | 0 | no |
 
-These are target catalogue entries, **not callable problems**.
+## Welded-Beam: implementation details
 
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
+[Python formula](../../../../src/mop_problems/problems/constrained/engineering.py) · [Mathematical definition](../../../../docs/formulas.md#welded-beam)
+
+- Decision bounds: `[0.125, 0.1, 0.1, 0.125]` to `[5.0, 10.0, 10.0, 5.0]` (scalar bounds broadcast to all variables).
+- Default parameters: `{}`.
+- Properties: static, real-world, constraints.
+- All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Notes: Four-variable, two-objective, four-constraint pymoo 0.6.2 variant.
+
+```python
+from mop_problems import get_problem
+
+problem = get_problem("Welded-Beam")
+result = problem.evaluate(problem.sample(4, seed=42))
+print(result.F)
+```
 
 
 [Full catalogue](../../../README.md)

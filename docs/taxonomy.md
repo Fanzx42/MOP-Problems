@@ -25,7 +25,11 @@ catalogue entry but contain five and one implemented instances respectively.
 | POL | Positive minimization values, not negated maximization values |
 | IDTLZ, SDTLZ | Named inversion/scaling variants and their parameters |
 | MMF | Initial original MMF1–8 target; later extensions require version metadata |
-| SYM-PART | Simple/rotated/distorted variants require distinct identifiers |
+| SYM-PART | `SYM-PART` is simple; `SYM-PART-Rotated` rotates by pi/4 by default; distortion is excluded |
+| WFG | All nine, with an explicit position/distance partition and even distance count in WFG2/3 |
+| UF | CEC 2009 UF1–10, fixed competition constants and one-based parity/remainder sets |
+| C-DTLZ | Exactly C1-DTLZ1/3, C2-DTLZ2 and C3-DTLZ1/4; all default to n=M+9 |
+| Welded-Beam | The four-constraint pymoo 0.6.2 variant; J coefficient differs from some engineering versions |
 | Eq-IDTLZ | Original dataset's 1–2; later extensions need separate references |
 | LSCMOP | Source uses `LSCM`; verify mapping before registering members |
 | CF, ZXH_CF | Distinct benchmark families |
@@ -52,4 +56,5 @@ finding a paper or implementation does not certify its formulas or numerical res
 
 No runtime entry is generated just because a name appears in a directory.
 No derivatives, Hessians, optimization algorithms, dynamic-time interface or external
-reference-front datasets are claimed by version 0.1.0.
+reference-front datasets are claimed by version 0.2.0. The reproducible examples
+generate their analytical reference points locally from documented formulas.

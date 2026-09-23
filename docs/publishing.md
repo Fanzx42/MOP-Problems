@@ -1,66 +1,66 @@
-# Uploading to GitHub / 上传说明
+# GitHub 同步与发布
 
-The local project is prepared for GitHub. No remote repository is created by
-these files, and nothing is automatically pushed or published to PyPI.
+实际仓库：[Fanzx42/MOP-Problems](https://github.com/Fanzx42/MOP-Problems)。
+代码已托管到 GitHub；PyPI 发布和 GitHub Release 标签是另外的步骤。
 
-## Before the first upload
-
-From the repository root, run:
+## 获取代码
 
 ```sh
-python -m pip install -e ".[dev,reference]"
+git clone https://github.com/Fanzx42/MOP-Problems.git
+cd MOP-Problems
+python -m pip install -e ".[dev,reference,plot]"
+```
+
+## 修改后的检查
+
+```sh
 python -m pytest
 python -m ruff check .
 python -m ruff format --check .
 python scripts/build_catalog.py --check
+python examples/representative_suite.py --samples 2000 --seed 42
 python -m build
-python -m twine check dist/*
-python scripts/check_wheel.py dist/mop_problems-0.1.0-py3-none-any.whl
+python -m twine check dist/mop_problems-0.2.0-py3-none-any.whl dist/mop_problems-0.2.0.tar.gz
+python scripts/check_wheel.py dist/mop_problems-0.2.0-py3-none-any.whl
 ```
 
-PowerShell users can pass the two generated files explicitly to `twine check`:
+## 同步到已有仓库
 
-```powershell
-python -m twine check dist/mop_problems-0.1.0-py3-none-any.whl dist/mop_problems-0.1.0.tar.gz
-```
-
-The default license for the original repository code is MIT. Confirm the maintainer
-name you want displayed in `LICENSE`, `CITATION.cff` and `pyproject.toml`.
-These currently use the neutral `MOP-Problems contributors` label.
-
-## Create and push the remote
-
-1. Create an **empty** GitHub repository named `MOP-Problems` (or your preferred name).
-   Do not initialize another README/license in that remote.
-2. If this folder has not already been initialized, run `git init -b main` once.
-3. Review `git status --short`; `.venv`, IDE files, build outputs and local results
-   are ignored. Configure your Git identity if Git requests it.
-4. Replace `YOUR_USERNAME` and use the actual repository URL below:
+先检查当前分支和文件；下列命令适用于本仓库的 main 分支：
 
 ```sh
+git status
+git remote -v
 git add .
-git commit -m "Initialize MOP benchmark library and catalogue"
-git remote add origin https://github.com/YOUR_USERNAME/MOP-Problems.git
-git push -u origin main
+git commit -m "Expand representative benchmarks and reproducible examples"
+git push origin main
 ```
 
-If `origin` already exists, inspect `git remote -v` and reuse or correct it rather
-than adding a second origin. Credentials are managed by Git/GitHub; never put a
-token into source files or the remote URL.
+当前 origin 应为真实地址。如果仍显示旧占位符，可修正：
 
-## Repository settings and first release
+```sh
+git remote set-url origin https://github.com/Fanzx42/MOP-Problems.git
+```
 
-- Enable Actions and inspect the first CI run. Local success does not prove that
-  the hosted Linux/macOS/Python matrix has already run.
-- Add a description and relevant topics, such as `multi-objective-optimization`,
-  `benchmark-functions`, `python` and `scientific-computing`.
-- Enable private vulnerability reporting if desired. Set branch protection to
-  require the CI checks before merging pull requests.
-- Add the real repository URL to `CITATION.cff` and `[project.urls]` in
-  `pyproject.toml`. No owner, homepage badge, DOI or remote URL is fabricated.
-- After CI passes and the release scope is accepted, update the changelog from
-  `Unreleased`, tag a release, and include the documented 19-problem coverage.
-  PyPI publication is a separate future step; this repository has no upload workflow.
+如远程新增提交，先获取并合并或 rebase，处理冲突后再推送，不使用强制推送。
+Git/GitHub 管理登录凭据，token 不写入源代码或远程 URL。
 
-首版有完整分类，但只有 19 个已实现问题。发布说明应保留这一事实，
-不能把目录数量写成已实现函数数量。其余问题按来源核验、实现、测试的顺序逐步加入。
+## Windows 目录所有权提示
+
+如果在这个可信的本地项目中遇到 dubious ownership，只为该目录添加例外：
+
+```sh
+git config --global --add safe.directory C:/Users/89526/PycharmProjects/MOP-Problems
+```
+
+不需要将所有目录加入 safe.directory。
+
+## 发布范围
+
+0.2.0 有 43 个目录条目、47 个可运行问题，剩余 28 个目录条目待实现。
+版本信息、CITATION.cff 和项目元数据已经包含实际 GitHub 地址。
+正式创建 Release 时应说明具体问题和变体，并检查
+[GitHub Actions](https://github.com/Fanzx42/MOP-Problems/actions) 的结果。
+
+本仓库没有自动上传 PyPI 的流程。原始代码采用 MIT 许可证；
+问题原论文和外部参考实现保持各自许可证。

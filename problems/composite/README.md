@@ -4,18 +4,18 @@
 
 [Full catalogue](../README.md)
 
-- [WFG](transformed/WFG/README.md) — **planned**
+- [WFG](transformed/WFG/README.md) — **implemented**
 - [IDTLZ](transformed/IDTLZ/README.md) — **planned**
 - [SDTLZ](transformed/SDTLZ/README.md) — **planned**
-- [UF](linkage/UF/README.md) — **planned**
+- [UF](linkage/UF/README.md) — **implemented**
 - [LZ09](linkage/LZ09/README.md) — **planned**
 - [IMOP](irregular/IMOP/README.md) — **planned**
 - [MaF](irregular/MaF/README.md) — **planned**
 - [ZCAT](irregular/ZCAT/README.md) — **planned**
 - [LSMOP](large_scale/LSMOP/README.md) — **planned**
 - [MMF](multimodal/MMF/README.md) — **planned**
-- [Omni-test](multimodal/Omni-test/README.md) — **planned**
-- [SYM-PART](multimodal/SYM-PART/README.md) — **planned**
+- [Omni-test](multimodal/Omni-test/README.md) — **implemented**
+- [SYM-PART](multimodal/SYM-PART/README.md) — **implemented**
 - [FDA](dynamic/FDA/README.md) — **planned**
 - [JY](dynamic/JY/README.md) — **planned**
 - [RE_continuous](real_world/RE_continuous/README.md) — **planned**

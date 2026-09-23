@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 from numpy.testing import assert_allclose, assert_array_equal
 
-from mop_problems import get_problem, list_problems
+from mop_problems import get_problem, get_problem_info, list_problems
 
 
 @pytest.mark.parametrize(
@@ -47,6 +47,21 @@ def test_dtlz_dimension_dependent_defaults():
     assert get_problem("DTLZ7", n_obj=5).n_var == 24
 
 
+@pytest.mark.parametrize("name", ["DTLZ5", "DTLZ6"])
+def test_high_dimensional_dtlz_degenerate_curve_is_not_claimed_as_complete_front(name):
+    p = get_problem(name, n_obj=5)
+    with pytest.raises(NotImplementedError):
+        p.pareto_front()
+    # A g>0 tradeoff outside the g=0 curve: f_M=0 fixes the curve's first angle,
+    # yet f_1 is smaller than that endpoint. The curve alone cannot dominate it.
+    X = np.ones(p.n_var)
+    X[0] = 0
+    X[4:] = 0.501 if name == "DTLZ5" else 1e-60
+    F = p.evaluate(X).F[0]
+    assert F[-1] == 0
+    assert F[0] < np.cos(np.pi / 4) ** 3
+
+
 @pytest.mark.parametrize(
     "name,x,F,G",
     [
@@ -87,7 +102,7 @@ def test_constraint_signs_distinguish_feasible_and_infeasible():
     assert not get_problem("SRN").evaluate([0, 0]).feasible[0]
 
 
-FRONTS = ["ZDT1", "ZDT2", "ZDT3", "ZDT4", "ZDT6", *[f"DTLZ{i}" for i in range(1, 7)], "SCH", "FON"]
+FRONTS = [name for name in list_problems() if get_problem_info(name)["pareto_front"]]
 
 
 @pytest.mark.parametrize("name", FRONTS)

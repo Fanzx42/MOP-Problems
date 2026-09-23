@@ -21,6 +21,34 @@ its own NumPy code; no external source files are bundled.
 - BNH, TNK, OSY and SRN: [pymoo test problems](https://pymoo.org/problems/test_problems.html)
   and its [versioned source](https://github.com/anyoptimization/pymoo/tree/0.6.2/pymoo/problems/multi).
   Raw constraint scales in this repository are documented in [formulas](formulas.md).
+- WFG1–9: Huband, Hingston, Barone and While (2006),
+  [A Review of Multiobjective Test Problems and a Scalable Test Problem Toolkit](https://doi.org/10.1109/TEVC.2005.861417).
+  Transformation stages are compared against
+  [pymoo 0.6.2 WFG](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/many/wfg.py).
+- UF1–10: Zhang, Zhou, Zhao, Suganthan, Liu and Tiwari (2009),
+  [CEC 2009 multiobjective test instances, report CES-487](https://al-roomi.org/multimedia/CEC_Database/CEC2009/MultiObjectiveEA/CEC2009_MultiObjectiveEA_TechnicalReport.pdf).
+  One-based groups and constants were checked against
+  [pinned PlatEMO UF definitions](https://github.com/BIMK/PlatEMO/tree/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/UF).
+  The UF numerical oracle is a separate scalar transcription of the report,
+  plus analytical linkage minima; it is not an executed MATLAB comparison.
+- C-DTLZ: Jain and Deb (2014),
+  [NSGA-III Part II: Handling Constraints and Extending to an Adaptive Approach](https://doi.org/10.1109/TEVC.2013.2281534).
+  Named C1/C2/C3 formulas and radius conventions are compared with
+  [pymoo 0.6.2 constrained DTLZ](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/many/cdtlz.py).
+  This repository explicitly sets default n=M+9 for all five variants.
+- Omni-test: Deb and Tiwari (2008),
+  [Omni-optimizer](https://doi.org/10.1016/j.ejor.2006.06.042), using the
+  [pymoo 0.6.2 OmniTest convention](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/omnitest.py).
+- SYM-PART: Rudolph, Naujoks and Preuss (2007),
+  [Capabilities of EMOA to Detect and Preserve Equivalent Pareto Subsets](https://doi.org/10.1007/978-3-540-70928-2_7).
+  The simple and rotated variants use the fixed parameters and decision box in
+  [pymoo 0.6.2](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/sympart.py).
+  No rotated-distorted variant is included.
+- Welded-Beam: the exact version is the
+  [pymoo 0.6.2 two-objective formulation](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/welded_beam.py).
+  Its J coefficient, engineering constants, decision bounds and four residual
+  scales are specified in [the formula card](formulas.md#welded-beam).
+  Other welded-beam formulations can have different stresses and feasible regions.
 
 ## Planned suites and source policy
 
@@ -50,7 +78,7 @@ link is not permission to copy and relicense code. Future ports must identify
 their provenance and satisfy the source license; independent formula implementations
 should cite the defining publication and any cross-check implementation.
 
-Use [references.bib](references.bib) for the central ZDT/DTLZ and validation-library
+Use [references.bib](references.bib) for the central benchmark and validation-library
 citations; use each problem card's original paper for other suites. Cite this
-software using [CITATION.cff](../CITATION.cff) after adding the actual repository
-URL during publication. This file does not claim a software DOI or published paper.
+software using [CITATION.cff](../CITATION.cff), which links the actual repository.
+This file does not claim a software DOI or published paper.

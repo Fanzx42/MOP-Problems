@@ -5,5 +5,5 @@
 [Full catalogue](../../README.md)
 
 - [CRE](CRE/README.md) — **planned**
-- [Welded-Beam](Welded-Beam/README.md) — **planned**
+- [Welded-Beam](Welded-Beam/README.md) — **implemented**
 - [RCM_continuous](RCM_continuous/README.md) — **planned**

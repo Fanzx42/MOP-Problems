@@ -1,6 +1,6 @@
 """Build-independent wheel smoke check in a fresh, disposable virtual environment.
 
-Usage: python scripts/check_wheel.py dist/mop_problems-0.1.0-py3-none-any.whl
+Usage: python scripts/check_wheel.py dist/mop_problems-0.2.0-py3-none-any.whl
 The wheel's declared runtime dependencies are installed; no editable checkout is used.
 """
 
@@ -22,7 +22,7 @@ from mop_problems import get_problem, list_problems, list_suites
 
 location = pathlib.Path(mop_problems.__file__).resolve()
 assert location.is_relative_to(pathlib.Path(sys.prefix).resolve()), location
-assert len(list_problems()) == 19
+assert len(list_problems()) == 47
 assert len(list_suites()) == 43
 for name in list_problems():
     problem = get_problem(name)
@@ -31,7 +31,7 @@ for name in list_problems():
     assert np.isfinite(result.F).all()
 assert get_problem('BNH').evaluate([1, 1]).feasible[0]
 assert 'pymoo' not in sys.modules
-print('Installed wheel passed: 19 problems, 43 catalogue entries, NumPy-only runtime.')
+print('Installed wheel passed: 47 problems, 43 catalogue entries, NumPy-only runtime.')
 print('Imported from:', location)
 """
 

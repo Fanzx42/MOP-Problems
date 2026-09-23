@@ -1,6 +1,6 @@
 include README.md README.zh-CN.md CONTRIBUTING.md CHANGELOG.md CITATION.cff
 include CODE_OF_CONDUCT.md SECURITY.md .editorconfig .gitattributes .gitignore
-recursive-include docs *.md *.bib *.png
+recursive-include docs *.md *.bib *.png *.csv *.json
 recursive-include problems *.md
 recursive-include tests *.py
 recursive-include scripts *.py

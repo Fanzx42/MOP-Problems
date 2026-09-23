@@ -70,7 +70,7 @@ class _DTLZ(Problem):
         returning points from the dominated part of its g-minimal surface.
         """
         n_points = integer(n_points, "n_points", 2)
-        if self.number == 7:
+        if self.number == 7 or (self.number in (5, 6) and self.n_obj > 3):
             return super().pareto_front(n_points, seed=seed)
         if self.number in (5, 6):
             angles = np.full((n_points, self.n_obj - 1), np.pi / 4)

@@ -2,11 +2,11 @@
 
 # WFG
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/transformed`
 
-Validate position/distance partition sizes and all transformation stages before implementation.
+Scalable objectives; k divisible by M-1, n_var>k, even distance count for WFG2/3. Defaults M=3, k=4, n_var=24. No analytical front sampler yet.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
@@ -18,11 +18,16 @@ Huband et al. (2006). A review of multiobjective test problems and a scalable te
 
 ## Members / 成员
 
-Target members: `WFG1`, `WFG2`, `WFG3`, `WFG4`, `WFG5`, `WFG6`, `WFG7`, `WFG8`, `WFG9`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [WFG1](WFG1/README.md) | 24 | 3 | 0 | 0 | no |
+| [WFG2](WFG2/README.md) | 24 | 3 | 0 | 0 | no |
+| [WFG3](WFG3/README.md) | 24 | 3 | 0 | 0 | no |
+| [WFG4](WFG4/README.md) | 24 | 3 | 0 | 0 | no |
+| [WFG5](WFG5/README.md) | 24 | 3 | 0 | 0 | no |
+| [WFG6](WFG6/README.md) | 24 | 3 | 0 | 0 | no |
+| [WFG7](WFG7/README.md) | 24 | 3 | 0 | 0 | no |
+| [WFG8](WFG8/README.md) | 24 | 3 | 0 | 0 | no |
+| [WFG9](WFG9/README.md) | 24 | 3 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

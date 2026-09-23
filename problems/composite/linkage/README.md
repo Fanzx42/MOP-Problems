@@ -4,5 +4,5 @@
 
 [Full catalogue](../../README.md)
 
-- [UF](UF/README.md) — **planned**
+- [UF](UF/README.md) — **implemented**
 - [LZ09](LZ09/README.md) — **planned**

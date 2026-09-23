@@ -2,11 +2,11 @@
 
 # C-DTLZ
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/dtlz_based`
 
-Target named C1/C2/C3 variants; record objective-dependent radius and constraint signs.
+Five named C1/C2/C3 variants; all default to M=3, n=M+9. Raw G<=0. Objective-dependent radii follow pymoo 0.6.2. Unconstrained DTLZ fronts are not returned as constrained fronts.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
@@ -14,15 +14,16 @@ Source status: `identified`. Identifying a source is separate from validating an
 
 Jain and Deb (2014). NSGA-III, Part II: Handling constraints and extending to an adaptive approach.
 
-[Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DTLZ/C1_DTLZ1.m)
+[Source / 参考来源](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/many/cdtlz.py)
 
 ## Members / 成员
 
-Target members: `C1-DTLZ1`, `C1-DTLZ3`, `C2-DTLZ2`, `C3-DTLZ1`, `C3-DTLZ4`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [C1-DTLZ1](C1-DTLZ1/README.md) | 12 | 3 | 1 | 0 | no |
+| [C1-DTLZ3](C1-DTLZ3/README.md) | 12 | 3 | 1 | 0 | no |
+| [C2-DTLZ2](C2-DTLZ2/README.md) | 12 | 3 | 1 | 0 | no |
+| [C3-DTLZ1](C3-DTLZ1/README.md) | 12 | 3 | 3 | 0 | no |
+| [C3-DTLZ4](C3-DTLZ4/README.md) | 12 | 3 | 3 | 0 | no |
 
 [Full catalogue](../../../README.md)

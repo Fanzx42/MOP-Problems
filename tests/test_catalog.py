@@ -74,7 +74,7 @@ def test_complete_user_taxonomy_and_no_placeholder_registrations():
     assert {s["name"] for s in suites} == EXPECTED_FAMILIES
     assert len({s["id"] for s in suites}) == len(suites)
     assert len({s["path"].lower() for s in suites}) == len(suites)
-    assert len(set(list_problems())) == len(list_problems()) == 19
+    assert len(set(list_problems())) == len(list_problems()) == 47
     for s in suites:
         assert s["status"] in {"implemented", "planned"}
         assert s["source_status"] in {"identified", "pending", "membership-pending"}
@@ -94,10 +94,10 @@ def test_complete_user_taxonomy_and_no_placeholder_registrations():
 def test_lookup_filtering_and_detached_metadata():
     assert get_problem(" zdt-1 ").name == "ZDT1"
     assert get_problem("dtlz_2").name == "DTLZ2"
-    assert list_problems(category="constrained") == ["BNH", "TNK", "OSY", "SRN"]
-    assert list_problems(suite="WFG") == []
-    assert len(list_suites(status="implemented")) == 9
-    assert len(list_suites(status="planned")) == 34
+    assert list_problems(category="constrained/classic") == ["BNH", "TNK", "OSY", "SRN"]
+    assert list_problems(suite="WFG") == [f"WFG{i}" for i in range(1, 10)]
+    assert len(list_suites(status="implemented")) == 15
+    assert len(list_suites(status="planned")) == 28
     info = get_problem_info("ZDT1")
     info["name"] = "changed"
     assert get_problem_info("ZDT1")["name"] == "ZDT1"
@@ -107,7 +107,7 @@ def test_lookup_filtering_and_detached_metadata():
     assert get_suite("re-continuous")["name"] == "RE_continuous"
 
 
-@pytest.mark.parametrize("name", ["WFG1", "Eq-IDTLZ2", "LSMOP9"])
+@pytest.mark.parametrize("name", ["IDTLZ1", "Eq-IDTLZ2", "LSMOP9"])
 def test_known_pending_members_have_useful_errors(name):
     with pytest.raises(PlannedProblemError, match="not implemented"):
         get_problem(name)
@@ -156,18 +156,18 @@ def test_cli(capsys):
     assert main(["list", "--suite", "ZDT", "--json"]) == 0
     assert len(json.loads(capsys.readouterr().out)) == 5
     main(["suites", "--status", "planned", "--json"])
-    assert len(json.loads(capsys.readouterr().out)) == 34
+    assert len(json.loads(capsys.readouterr().out)) == 28
     main(["info", "BNH"])
     assert json.loads(capsys.readouterr().out)["n_ieq_constr"] == 2
     main(["sample", "DTLZ2", "--n", "2", "--n-obj", "5", "--seed", "1"])
     out = json.loads(capsys.readouterr().out)
     assert len(out["X"][0]) == 14 and len(out["F"][0]) == 5
-    main(["list", "--category", "constrained"])
+    main(["list", "--category", "constrained/classic"])
     assert capsys.readouterr().out.splitlines() == ["BNH", "TNK", "OSY", "SRN"]
     main(["suites", "--status", "implemented"])
     assert "implemented" in capsys.readouterr().out
     with pytest.raises(SystemExit) as e:
-        main(["sample", "WFG1"])
+        main(["sample", "IDTLZ1"])
     assert e.value.code == 2
 
 
@@ -179,4 +179,4 @@ def test_module_cli_from_another_working_directory(tmp_path):
         text=True,
         check=True,
     )
-    assert len(json.loads(result.stdout)) == 19
+    assert len(json.loads(result.stdout)) == 47

@@ -46,6 +46,23 @@ DTLZ1, `k=20` for DTLZ7, and `k=10` otherwise. DTLZ4 also accepts finite
 `alpha > 0`, default 100. Other implemented classics have fixed dimensions.
 Non-integer dimensions and unknown keyword parameters are rejected.
 
+| Additional family | Parameters and restrictions |
+| --- | --- |
+| WFG1–9 | `n_obj>=2`, positive `k` divisible by `n_obj-1`, `n_var>k`; WFG2/3 require even `n_var-k`. Default `n_obj=3`, `k=4`, `n_var=24`. With changed objectives, default `k=4` for 2 objectives, otherwise `2*(n_obj-1)`; default distance count stays 20. |
+| UF1–7 | `n_var>=3`, default 30; fixed 2 objectives |
+| UF8–10 | `n_var>=5`, default 30; fixed 3 objectives |
+| Omni-test | `n_var>=2`, default 2; fixed 2 objectives |
+| SYM-PART | Fixed 2 variables and 2 objectives |
+| SYM-PART-Rotated | Fixed dimensions; finite `angle` in radians, default `pi/4` |
+| C-DTLZ | `n_obj>=2`, `n_var>=n_obj`; default `n_var=n_obj+9`. C1-DTLZ3/C2-DTLZ2 accept positive `r`; C3-DTLZ4 accepts positive `alpha`. |
+| Welded-Beam | Fixed 4 variables, 2 objectives and 4 inequalities |
+
+```python
+problem = get_problem("WFG9", n_var=34, n_obj=8, k=14)
+result = problem.evaluate(problem.sample(100, seed=42))
+constrained = get_problem("C2-DTLZ2", n_obj=5, r=0.5)
+```
+
 ## Evaluation
 
 `problem.evaluate(X, *, check_bounds=True, equality_tol=1e-6)` accepts `(n_var,)`
@@ -95,11 +112,21 @@ points (`n_points >= 2`). ZDT3 uses numerically known segment endpoints; small
 sample sizes need not cover all five segments. It must be plotted as separate
 segments or scatter points. For higher-dimensional DTLZ1–4, the sampler uses
 seeded simplex/sphere sampling and includes coordinate extremes when space permits;
-it is not an evenly spaced grid. DTLZ5/6 sample the degenerate curve.
+it is not an evenly spaced grid. DTLZ5/6 sample the degenerate curve only for
+2 or 3 objectives. For more objectives the g=0 curve can omit tradeoffs, so
+front sampling raises `NotImplementedError` while objective evaluation remains supported.
 
-DTLZ7, POL and the four constrained classics raise `NotImplementedError` for
-reference-front sampling. The existence of an evaluation formula does not imply
-the existence of a verified reference front.
+UF1/2/3/4/7 provide two-dimensional front curves; UF8/10 provide seeded
+nonnegative unit-sphere samples. Omni-test and both SYM-PART variants return
+objective-space fronts, not all of their decision-space Pareto subsets.
+See [the experiment example](../examples/representative_suite.py) for explicit
+construction of all nine subsets at default dimensions.
+
+DTLZ7, POL, WFG1–9, UF5/6/9 and all constrained problems raise
+`NotImplementedError` for reference-front sampling. Inspect the `pareto_front`
+flag from `get_problem_info()` (which describes default parameters) and the
+parameter-dependent restrictions above before requesting one. The existence of an
+evaluation formula does not imply the existence of a verified reference sampler.
 
 ## Extending the library
 
@@ -109,6 +136,6 @@ when its count is zero. The base class checks all result shapes and finite value
 See [contribution requirements](../CONTRIBUTING.md) before registration.
 
 Equality result handling is present in the base API and tested with an analytical
-test fixture. **No real equality-constrained benchmark is implemented in 0.1.0.**
+test fixture. **No real equality-constrained benchmark is implemented in 0.2.0.**
 Dynamic suites are also planned: a future dynamic API needs explicit benchmark
 time and reproducible environment parameters; it is not currently provided.

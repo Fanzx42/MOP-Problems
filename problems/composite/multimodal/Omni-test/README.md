@@ -2,27 +2,43 @@
 
 # Omni-test
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/multimodal`
 
-Multiple decision-space Pareto sets must be represented when adding reference data.
+OmniTest convention in pymoo 0.6.2: box [0,6]^n and 3^n equivalent Pareto subsets. The front sampler returns objective points, not decision-space subsets.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Reference implementation: pymoo OmniTest; original article metadata pending.
+Deb and Tiwari (2008). Omni-optimizer: A generic evolutionary algorithm for single and multi-objective optimization. Variant: pymoo 0.6.2 OmniTest.
 
 [Source / 参考来源](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/omnitest.py)
 
 ## Members / 成员
 
-Target members: `Omni-test`
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Omni-test | 2 | 2 | 0 | 0 | yes |
 
-These are target catalogue entries, **not callable problems**.
+## Omni-test: implementation details
 
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
+[Python formula](../../../../src/mop_problems/problems/composite/multimodal.py) · [Mathematical definition](../../../../docs/formulas.md#omni-test)
+
+- Decision bounds: `0.0` to `6.0` (scalar bounds broadcast to all variables).
+- Default parameters: `{"n_var": 2}`.
+- Properties: static, multimodal, equivalent-pareto-sets.
+- All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Notes: Periodic objectives on [0,6]^n, with 3^n equivalent Pareto subsets.
+
+```python
+from mop_problems import get_problem
+
+problem = get_problem("Omni-test")
+result = problem.evaluate(problem.sample(4, seed=42))
+print(result.F)
+```
 
 
 [Full catalogue](../../../README.md)

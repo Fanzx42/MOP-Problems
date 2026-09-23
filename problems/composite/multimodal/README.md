@@ -5,5 +5,5 @@
 [Full catalogue](../../README.md)
 
 - [MMF](MMF/README.md) — **planned**
-- [Omni-test](Omni-test/README.md) — **planned**
-- [SYM-PART](SYM-PART/README.md) — **planned**
+- [Omni-test](Omni-test/README.md) — **implemented**
+- [SYM-PART](SYM-PART/README.md) — **implemented**

@@ -4,9 +4,10 @@ A Python catalogue of **multi-objective optimization benchmark problems**, organ
 by problem family, difficulty and constraint type.
 
 [中文说明](README.zh-CN.md) · [Problem catalogue](problems/README.md) ·
-[API](docs/api.md) · [Formulas](docs/formulas.md) · [Contributing](CONTRIBUTING.md)
+[API](docs/api.md) · [Formulas](docs/formulas.md) ·
+[Reproducible experiments](docs/experiments.md) · [Contributing](CONTRIBUTING.md)
 
-**Initial release scope: 43 catalogue entries, 19 implemented problems.**
+**Version 0.2.0: 43 catalogue entries, 47 implemented problems across 15 entries.**
 The complete requested taxonomy is present. Entries marked **planned** have source
 notes and contribution requirements but no callable implementation. They never
 return placeholder objective values. This is an alpha problem library, not an
@@ -60,8 +61,14 @@ dimension, finite values and bounds. No clipping or objective penalties are appl
 | DTLZ | DTLZ1–DTLZ7 | 3 objectives; scalable variables and objectives |
 | Unconstrained classics | SCH, FON, POL | 2 objectives |
 | Constrained classics | BNH, TNK, OSY, SRN | 2 objectives; raw inequality residuals |
+| WFG | WFG1–WFG9 | 3 objectives, 24 variables; scalable partition |
+| UF | UF1–UF10 | 2 or 3 objectives, 30 variables |
+| Multimodal decision sets | Omni-test, SYM-PART, SYM-PART-Rotated | 2 objectives; nine subsets at default dimensions |
+| C-DTLZ | C1-DTLZ1/3, C2-DTLZ2, C3-DTLZ1/4 | 3 objectives, 12 variables; scalable |
+| Engineering | Welded-Beam | 2 objectives, 4 variables, 4 constraints |
 
-Analytical front sampling is available for ZDT1/2/3/4/6, DTLZ1–6, SCH and FON.
+Analytical front sampling is available for ZDT1/2/3/4/6, DTLZ1–6, SCH, FON,
+UF1/2/3/4/7/8/10, Omni-test and both implemented SYM-PART variants.
 It is explicitly unsupported for other problems; it never downloads reference data
 or labels arbitrary objective samples as a true Pareto front.
 
@@ -69,6 +76,25 @@ or labels arbitrary objective samples as a true Pareto front.
 
 Generate this figure with `python examples/plot_fronts.py` after installing
 `python -m pip install -e ".[plot]"`.
+
+## Representative experiments
+
+Run 14 fixed-seed sampling cases, including 5- and 8-objective examples, plus
+analytical decision-set and constrained-surface constructions:
+
+```sh
+python -m pip install -e ".[plot]"
+python examples/representative_suite.py --samples 2000 --seed 42
+```
+
+This writes raw decision/objective/constraint CSV files, a summary, an environment
+and parameter manifest, and three figures to `outputs/representative/`.
+Use `--no-plots` for NumPy-only execution. See the
+[experiment guide and recorded results](docs/experiments.md) for reproduction.
+Sample nondominated points are explicitly distinguished from analytical fronts;
+these are sampling demonstrations, not optimizer performance comparisons.
+
+![Equivalent decision-space Pareto subsets](docs/assets/multimodal_sets.png)
 
 ## Repository layout
 
@@ -125,7 +151,7 @@ describe numerical evidence and its limits.
 Formula definitions and implementation conventions are linked in the problem cards,
 [references](docs/references.md) and [BibTeX](docs/references.bib).
 Please cite the **original benchmark paper** when using a problem in research.
-`CITATION.cff` describes this software; no DOI or repository owner is invented.
+`CITATION.cff` describes this software and links the actual GitHub repository.
 
 Original repository code is under the [MIT license](LICENSE). External papers and
 implementations retain their own terms; linking to them does not relicense them.

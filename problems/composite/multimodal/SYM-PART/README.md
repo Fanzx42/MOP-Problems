@@ -2,27 +2,25 @@
 
 # SYM-PART
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/multimodal`
 
-Select and identify the simple, rotated or rotated-distorted variant before fixing the member list.
+Simple and rotated variants only; a=1, b=c=10, box [-100,100]^2, default rotation pi/4. Nine equivalent Pareto subsets. Rotated-distorted SYM-PART is excluded.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Reference implementation: pymoo SYM-PART variants.
+Rudolph, Naujoks and Preuss (2007). Capabilities of EMOA to Detect and Preserve Equivalent Pareto Subsets. Simple/rotated variants: pymoo 0.6.2.
 
 [Source / 参考来源](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/sympart.py)
 
 ## Members / 成员
 
-Member list pending source/version verification.
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [SYM-PART](SYM-PART/README.md) | 2 | 2 | 0 | 0 | yes |
+| [SYM-PART-Rotated](SYM-PART-Rotated/README.md) | 2 | 2 | 0 | 0 | yes |
 
 [Full catalogue](../../../README.md)
