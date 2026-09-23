@@ -1,0 +1,30 @@
+name: Formula or software bug
+description: Report a reproducible benchmark or API error.
+title: "[Bug] "
+body:
+  - type: input
+    id: problem
+    attributes:
+      label: Problem and parameters
+      description: Include the exact problem identifier, dimensions and other parameters.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Include X, observed F/G/H and expected values.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Defining source or reference result
+      description: Link the paper, equation or versioned reference implementation.
+  - type: input
+    id: environment
+    attributes:
+      label: Python, NumPy, package version and OS
+    validations:
+      required: true

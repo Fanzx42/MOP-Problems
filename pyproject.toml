@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mop-problems"
+version = "0.1.0"
+description = "A documented, reproducible catalogue of multi-objective optimization benchmarks"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "MOP-Problems contributors"}]
+keywords = ["multi-objective", "optimization", "benchmark", "pareto"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.11", "build>=1.2", "twine>=6"]
+reference = ["pymoo==0.6.2"]
+plot = ["matplotlib>=3.8"]
+
+[project.scripts]
+mop-problems = "mop_problems.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mop_problems = ["data/*.json", "py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = ["reference: numerical comparisons against an optional reference library"]
+
+[tool.coverage.run]
+source = ["mop_problems"]
+branch = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E741"]

@@ -1,0 +1,29 @@
+name: Add or verify a benchmark
+description: Propose a documented problem family or implementation.
+title: "[Problem] "
+body:
+  - type: input
+    id: identifier
+    attributes:
+      label: Canonical problem name and family
+    validations:
+      required: true
+  - type: textarea
+    id: reference
+    attributes:
+      label: Original publication and source implementation
+      description: Include the DOI or author URL, version and code license if applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: definition
+    attributes:
+      label: Definition and conventions
+      description: Variables, bounds, objective directions, constraints, time and difficulty parameters.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Independent numerical evidence
+      description: Analytical points, feasibility cases, and reference outputs.

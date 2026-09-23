@@ -1,0 +1,1350 @@
+{
+  "schema_version": 1,
+  "scope": "continuous multi-objective minimization; catalogued families are not necessarily implemented",
+  "reference_date": "2026-09-23",
+  "suites": [
+    {
+      "id": "zdt",
+      "name": "ZDT",
+      "category": "unconstrained_smooth",
+      "path": "problems/unconstrained_smooth/zdt",
+      "status": "implemented",
+      "members": [
+        "ZDT1",
+        "ZDT2",
+        "ZDT3",
+        "ZDT4",
+        "ZDT6"
+      ],
+      "tags": [
+        "continuous",
+        "static"
+      ],
+      "reference": "Zitzler, Deb and Thiele (2000). Comparison of multiobjective evolutionary algorithms: Empirical results. DOI: 10.1162/106365600568202.",
+      "source_url": "https://sop.tik.ee.ethz.ch/download/supplementary/testProblemSuite/",
+      "source_status": "identified",
+      "notes": "Real-valued ZDT1/2/3/4/6 only. Binary ZDT5 is excluded. Fractional powers require care at the decision-box boundary."
+    },
+    {
+      "id": "dtlz",
+      "name": "DTLZ",
+      "category": "unconstrained_smooth",
+      "path": "problems/unconstrained_smooth/dtlz",
+      "status": "implemented",
+      "members": [
+        "DTLZ1",
+        "DTLZ2",
+        "DTLZ3",
+        "DTLZ4",
+        "DTLZ5",
+        "DTLZ6",
+        "DTLZ7"
+      ],
+      "tags": [
+        "continuous",
+        "many-objective",
+        "scalable-objectives"
+      ],
+      "reference": "Deb, Thiele, Laumanns and Zitzler (2002/2005). Scalable multiobjective optimization test problems; expanded chapter DOI: 10.1007/1-84628-137-7_6.",
+      "source_url": "https://sop.tik.ee.ethz.ch/pisa/variators/dtlz/index.html",
+      "source_status": "identified",
+      "notes": "DTLZ1-7 only. DTLZ8 and DTLZ9 have explicit constraints and must not be added to this unconstrained branch."
+    },
+    {
+      "id": "sch",
+      "name": "SCH",
+      "category": "unconstrained_smooth/classic",
+      "path": "problems/unconstrained_smooth/classic/SCH",
+      "status": "implemented",
+      "members": [
+        "SCH"
+      ],
+      "tags": [
+        "continuous",
+        "bi-objective"
+      ],
+      "reference": "Schaffer (1985). Multiple objective optimization with vector evaluated genetic algorithms.",
+      "source_url": "https://github.com/MOEAFramework/MOEAFramework/blob/9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5/src/org/moeaframework/problem/misc/Schaffer.java",
+      "source_status": "identified",
+      "notes": "Schaffer N.1; this repository fixes the conventional [-1000, 1000] box. Other libraries sometimes use [-10, 10]."
+    },
+    {
+      "id": "fon",
+      "name": "FON",
+      "category": "unconstrained_smooth/classic",
+      "path": "problems/unconstrained_smooth/classic/FON",
+      "status": "implemented",
+      "members": [
+        "FON"
+      ],
+      "tags": [
+        "continuous",
+        "bi-objective"
+      ],
+      "reference": "Fonseca and Fleming (1993). Genetic algorithms for multiobjective optimization: Formulation, discussion and generalization.",
+      "source_url": "https://github.com/MOEAFramework/MOEAFramework/blob/9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5/src/org/moeaframework/problem/misc/Fonseca2.java",
+      "source_status": "identified",
+      "notes": "Scalable Fonseca-Fleming variant with 3 variables by default (called Fonseca2 in MOEA Framework)."
+    },
+    {
+      "id": "pol",
+      "name": "POL",
+      "category": "unconstrained_smooth/classic",
+      "path": "problems/unconstrained_smooth/classic/POL",
+      "status": "implemented",
+      "members": [
+        "POL"
+      ],
+      "tags": [
+        "continuous",
+        "bi-objective"
+      ],
+      "reference": "Poloni et al. benchmark; formula cross-check: MOEA Framework Poloni. Original publication details remain to be completed.",
+      "source_url": "https://github.com/MOEAFramework/MOEAFramework/blob/9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5/src/org/moeaframework/problem/misc/Poloni.java",
+      "source_status": "identified",
+      "notes": "Both objectives use their positive minimization form. MOEA Framework represents the equivalent problem with negated objectives and maximization."
+    },
+    {
+      "id": "wfg",
+      "name": "WFG",
+      "category": "composite/transformed",
+      "path": "problems/composite/transformed/WFG",
+      "status": "planned",
+      "members": [
+        "WFG1",
+        "WFG2",
+        "WFG3",
+        "WFG4",
+        "WFG5",
+        "WFG6",
+        "WFG7",
+        "WFG8",
+        "WFG9"
+      ],
+      "tags": [],
+      "reference": "Huband et al. (2006). A review of multiobjective test problems and a scalable test problem toolkit.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/WFG/WFG1.m",
+      "source_status": "identified",
+      "notes": "Validate position/distance partition sizes and all transformation stages before implementation."
+    },
+    {
+      "id": "idtlz",
+      "name": "IDTLZ",
+      "category": "composite/transformed",
+      "path": "problems/composite/transformed/IDTLZ",
+      "status": "planned",
+      "members": [
+        "IDTLZ1",
+        "IDTLZ2"
+      ],
+      "tags": [],
+      "reference": "Jain and Deb (2014). NSGA-III, Part II: Handling constraints and extending to an adaptive approach.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DTLZ/IDTLZ1.m",
+      "source_status": "identified",
+      "notes": "Selected inverted DTLZ1/2 definitions; do not conflate inversion with arbitrary sign changes."
+    },
+    {
+      "id": "sdtlz",
+      "name": "SDTLZ",
+      "category": "composite/transformed",
+      "path": "problems/composite/transformed/SDTLZ",
+      "status": "planned",
+      "members": [
+        "SDTLZ1",
+        "SDTLZ2"
+      ],
+      "tags": [],
+      "reference": "Deb and Jain (2014). NSGA-III, Part I: Solving problems with box constraints.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DTLZ/SDTLZ1.m",
+      "source_status": "identified",
+      "notes": "Selected scaled DTLZ1/2 definitions; record the scaling factor as an instance parameter."
+    },
+    {
+      "id": "uf",
+      "name": "UF",
+      "category": "composite/linkage",
+      "path": "problems/composite/linkage/UF",
+      "status": "planned",
+      "members": [
+        "UF1",
+        "UF2",
+        "UF3",
+        "UF4",
+        "UF5",
+        "UF6",
+        "UF7",
+        "UF8",
+        "UF9",
+        "UF10"
+      ],
+      "tags": [],
+      "reference": "Zhang et al. (2009). Multiobjective optimization test instances for the CEC 2009 special session and competition.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/UF/UF1.m",
+      "source_status": "identified",
+      "notes": "CEC 2009 UF1-10; preserve index parity and variable bounds."
+    },
+    {
+      "id": "lz09",
+      "name": "LZ09",
+      "category": "composite/linkage",
+      "path": "problems/composite/linkage/LZ09",
+      "status": "planned",
+      "members": [
+        "LZ09_F1",
+        "LZ09_F2",
+        "LZ09_F3",
+        "LZ09_F4",
+        "LZ09_F5",
+        "LZ09_F6",
+        "LZ09_F7",
+        "LZ09_F8",
+        "LZ09_F9"
+      ],
+      "tags": [],
+      "reference": "Li and Zhang (2009). Multiobjective optimization problems with complicated Pareto sets, MOEA/D and NSGA-II.",
+      "source_url": "https://jmetalcpp.sourceforge.net/problems.html",
+      "source_status": "identified",
+      "notes": "Specify each linkage and shape setting; identifiers are LZ09_F1 through LZ09_F9."
+    },
+    {
+      "id": "imop",
+      "name": "IMOP",
+      "category": "composite/irregular",
+      "path": "problems/composite/irregular/IMOP",
+      "status": "planned",
+      "members": [
+        "IMOP1",
+        "IMOP2",
+        "IMOP3",
+        "IMOP4",
+        "IMOP5",
+        "IMOP6",
+        "IMOP7",
+        "IMOP8"
+      ],
+      "tags": [],
+      "reference": "Tian et al. (2019). Diversity assessment of multi-objective evolutionary algorithms: Performance metric and benchmark problems.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/IMOP/IMOP1.m",
+      "source_status": "identified",
+      "notes": "Irregular fronts; verify each front's dimension and disconnected regions."
+    },
+    {
+      "id": "maf",
+      "name": "MaF",
+      "category": "composite/irregular",
+      "path": "problems/composite/irregular/MaF",
+      "status": "planned",
+      "members": [
+        "MaF1",
+        "MaF2",
+        "MaF3",
+        "MaF4",
+        "MaF5",
+        "MaF6",
+        "MaF7",
+        "MaF8",
+        "MaF9",
+        "MaF10",
+        "MaF11",
+        "MaF12",
+        "MaF13",
+        "MaF14",
+        "MaF15"
+      ],
+      "tags": [],
+      "reference": "Cheng et al. (2017). A benchmark test suite for evolutionary many-objective optimization.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/MaF/MaF1.m",
+      "source_status": "identified",
+      "notes": "CEC 2017 MaF1-15; this is a broad many-objective suite, not a claim that every member has an irregular front."
+    },
+    {
+      "id": "zcat",
+      "name": "ZCAT",
+      "category": "composite/irregular",
+      "path": "problems/composite/irregular/ZCAT",
+      "status": "planned",
+      "members": [
+        "ZCAT1",
+        "ZCAT2",
+        "ZCAT3",
+        "ZCAT4",
+        "ZCAT5",
+        "ZCAT6",
+        "ZCAT7",
+        "ZCAT8",
+        "ZCAT9",
+        "ZCAT10",
+        "ZCAT11",
+        "ZCAT12",
+        "ZCAT13",
+        "ZCAT14",
+        "ZCAT15",
+        "ZCAT16",
+        "ZCAT17",
+        "ZCAT18",
+        "ZCAT19",
+        "ZCAT20"
+      ],
+      "tags": [],
+      "reference": "Zapotecas-Martinez et al. (2023). Challenging test problems for multi- and many-objective optimization. DOI: 10.1016/j.swevo.2023.101350.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/ZCAT/ZCAT1.m",
+      "source_status": "identified",
+      "notes": "Record difficulty, bias and imbalance settings for reproducibility."
+    },
+    {
+      "id": "lsmop",
+      "name": "LSMOP",
+      "category": "composite/large_scale",
+      "path": "problems/composite/large_scale/LSMOP",
+      "status": "planned",
+      "members": [
+        "LSMOP1",
+        "LSMOP2",
+        "LSMOP3",
+        "LSMOP4",
+        "LSMOP5",
+        "LSMOP6",
+        "LSMOP7",
+        "LSMOP8",
+        "LSMOP9"
+      ],
+      "tags": [],
+      "reference": "Cheng, Jin and Olhofer (2017). Test problems for large-scale multiobjective and many-objective optimization.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/LSMOP/LSMOP1.m",
+      "source_status": "identified",
+      "notes": "Group sizes, linkage, and subcomponent counts are part of the instance definition."
+    },
+    {
+      "id": "mmf",
+      "name": "MMF",
+      "category": "composite/multimodal",
+      "path": "problems/composite/multimodal/MMF",
+      "status": "planned",
+      "members": [
+        "MMF1",
+        "MMF2",
+        "MMF3",
+        "MMF4",
+        "MMF5",
+        "MMF6",
+        "MMF7",
+        "MMF8"
+      ],
+      "tags": [],
+      "reference": "Yue, Qu and Liang (2018). A multi-objective particle swarm optimizer using ring topology for solving multimodal multiobjective problems.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/MMF/MMF1.m",
+      "source_status": "identified",
+      "notes": "Initial target: original MMF1-8. Later CEC extensions and suffixed variants require a separate versioned member list."
+    },
+    {
+      "id": "omni_test",
+      "name": "Omni-test",
+      "category": "composite/multimodal",
+      "path": "problems/composite/multimodal/Omni-test",
+      "status": "planned",
+      "members": [
+        "Omni-test"
+      ],
+      "tags": [],
+      "reference": "Reference implementation: pymoo OmniTest; original article metadata pending.",
+      "source_url": "https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/omnitest.py",
+      "source_status": "identified",
+      "notes": "Multiple decision-space Pareto sets must be represented when adding reference data."
+    },
+    {
+      "id": "sym_part",
+      "name": "SYM-PART",
+      "category": "composite/multimodal",
+      "path": "problems/composite/multimodal/SYM-PART",
+      "status": "planned",
+      "members": [],
+      "tags": [],
+      "reference": "Reference implementation: pymoo SYM-PART variants.",
+      "source_url": "https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/sympart.py",
+      "source_status": "identified",
+      "notes": "Select and identify the simple, rotated or rotated-distorted variant before fixing the member list."
+    },
+    {
+      "id": "fda",
+      "name": "FDA",
+      "category": "composite/dynamic",
+      "path": "problems/composite/dynamic/FDA",
+      "status": "planned",
+      "members": [
+        "FDA1",
+        "FDA2",
+        "FDA3",
+        "FDA4",
+        "FDA5"
+      ],
+      "tags": [
+        "dynamic"
+      ],
+      "reference": "Farina, Deb and Amato (2004). Dynamic multiobjective optimization problems: Test cases, approximations, and applications.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/FDA/FDA1.m",
+      "source_status": "identified",
+      "notes": "Future API must accept explicit benchmark time and document severity/frequency; never use wall-clock time."
+    },
+    {
+      "id": "jy",
+      "name": "JY",
+      "category": "composite/dynamic",
+      "path": "problems/composite/dynamic/JY",
+      "status": "planned",
+      "members": [
+        "JY1",
+        "JY2",
+        "JY3",
+        "JY4",
+        "JY5",
+        "JY6",
+        "JY7",
+        "JY8"
+      ],
+      "tags": [
+        "dynamic"
+      ],
+      "reference": "Jiang and Yang (2017). Evolutionary dynamic multi-objective optimization: Benchmarks and algorithm comparisons.",
+      "source_url": "https://www.tech.dmu.ac.uk/~syang/TF-ECiDUE/Yang-CEC2020-Tutorial-ECDMOP.pdf",
+      "source_status": "identified",
+      "notes": "Select the original JY1-8 version; specify benchmark time and reproducible random dynamics."
+    },
+    {
+      "id": "re_continuous",
+      "name": "RE_continuous",
+      "category": "composite/real_world",
+      "path": "problems/composite/real_world/RE_continuous",
+      "status": "planned",
+      "members": [],
+      "tags": [
+        "real-world"
+      ],
+      "reference": "Tanabe and Ishibuchi (2020). An easy-to-use real-world multi-objective optimization problem suite.",
+      "source_url": "https://github.com/ryojitanabe/reproblems",
+      "source_status": "membership-pending",
+      "notes": "Membership is pending a variable-type audit. Exclude integer/discrete variables and document any stochastic members; do not silently relax or round variables."
+    },
+    {
+      "id": "rwa",
+      "name": "RWA",
+      "category": "composite/real_world",
+      "path": "problems/composite/real_world/RWA",
+      "status": "planned",
+      "members": [
+        "RWA1",
+        "RWA2",
+        "RWA3",
+        "RWA4",
+        "RWA5",
+        "RWA6",
+        "RWA7",
+        "RWA8",
+        "RWA9",
+        "RWA10"
+      ],
+      "tags": [
+        "real-world"
+      ],
+      "reference": "Zapotecas-Martinez et al. (2023). Engineering applications of multi-objective evolutionary algorithms: A test suite of box-constrained real-world problems. DOI: 10.1016/j.engappai.2023.106192.",
+      "source_url": "https://jmetal.github.io/jMetalPy/api/problems/",
+      "source_status": "identified",
+      "notes": "Map RWA numbers to named engineering models and convert maximization objectives explicitly."
+    },
+    {
+      "id": "bnh",
+      "name": "BNH",
+      "category": "constrained/classic",
+      "path": "problems/constrained/classic/BNH",
+      "status": "implemented",
+      "members": [
+        "BNH"
+      ],
+      "tags": [
+        "continuous",
+        "inequality"
+      ],
+      "reference": "Binh and Korn (1997). MOBES: A multiobjective evolution strategy for constrained optimization problems.",
+      "source_url": "https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/bnh.py",
+      "source_status": "identified",
+      "notes": "Raw constraints; pymoo divides their residuals by 25 and 7.7."
+    },
+    {
+      "id": "tnk",
+      "name": "TNK",
+      "category": "constrained/classic",
+      "path": "problems/constrained/classic/TNK",
+      "status": "implemented",
+      "members": [
+        "TNK"
+      ],
+      "tags": [
+        "continuous",
+        "inequality"
+      ],
+      "reference": "Tanaka et al. (1995). GA-based decision support system for multicriteria optimization.",
+      "source_url": "https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/tnk.py",
+      "source_status": "identified",
+      "notes": "Uses atan2(x1, x2); at the infeasible origin the angle is defined as zero. Raw second constraint has half the scale of pymoo."
+    },
+    {
+      "id": "osy",
+      "name": "OSY",
+      "category": "constrained/classic",
+      "path": "problems/constrained/classic/OSY",
+      "status": "implemented",
+      "members": [
+        "OSY"
+      ],
+      "tags": [
+        "continuous",
+        "inequality"
+      ],
+      "reference": "Osyczka and Kundu (1995). A new method to solve generalized multicriteria optimization problems using the simple genetic algorithm.",
+      "source_url": "https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/osy.py",
+      "source_status": "identified",
+      "notes": "Raw residuals, with the first objective negative. See the explicit sign and scaling cross-checks."
+    },
+    {
+      "id": "srn",
+      "name": "SRN",
+      "category": "constrained/classic",
+      "path": "problems/constrained/classic/SRN",
+      "status": "implemented",
+      "members": [
+        "SRN"
+      ],
+      "tags": [
+        "continuous",
+        "inequality"
+      ],
+      "reference": "Srinivas and Deb (1994). Multiobjective optimization using nondominated sorting in genetic algorithms.",
+      "source_url": "https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/srn.py",
+      "source_status": "identified",
+      "notes": "Two decision variables and two raw inequality constraints."
+    },
+    {
+      "id": "ctp",
+      "name": "CTP",
+      "category": "constrained/classic",
+      "path": "problems/constrained/classic/CTP",
+      "status": "planned",
+      "members": [
+        "CTP1",
+        "CTP2",
+        "CTP3",
+        "CTP4",
+        "CTP5",
+        "CTP6",
+        "CTP7",
+        "CTP8"
+      ],
+      "tags": [],
+      "reference": "Deb et al. (2001). Constrained test problems for multi-objective evolutionary optimization.",
+      "source_url": "https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/ctp.py",
+      "source_status": "identified",
+      "notes": "Validate version-specific distance functions and rotated constraints; record constraint normalization."
+    },
+    {
+      "id": "cf",
+      "name": "CF",
+      "category": "constrained/classic",
+      "path": "problems/constrained/classic/CF",
+      "status": "planned",
+      "members": [
+        "CF1",
+        "CF2",
+        "CF3",
+        "CF4",
+        "CF5",
+        "CF6",
+        "CF7",
+        "CF8",
+        "CF9",
+        "CF10"
+      ],
+      "tags": [],
+      "reference": "Zhang et al. (2009). Multiobjective optimization test instances for the CEC 2009 special session and competition.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/CF/CF1.m",
+      "source_status": "identified",
+      "notes": "CEC 2009 CF1-10; do not confuse with the ZXH-CF suite."
+    },
+    {
+      "id": "c_dtlz",
+      "name": "C-DTLZ",
+      "category": "constrained/dtlz_based",
+      "path": "problems/constrained/dtlz_based/C-DTLZ",
+      "status": "planned",
+      "members": [
+        "C1-DTLZ1",
+        "C1-DTLZ3",
+        "C2-DTLZ2",
+        "C3-DTLZ1",
+        "C3-DTLZ4"
+      ],
+      "tags": [],
+      "reference": "Jain and Deb (2014). NSGA-III, Part II: Handling constraints and extending to an adaptive approach.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DTLZ/C1_DTLZ1.m",
+      "source_status": "identified",
+      "notes": "Target named C1/C2/C3 variants; record objective-dependent radius and constraint signs."
+    },
+    {
+      "id": "dc_dtlz",
+      "name": "DC-DTLZ",
+      "category": "constrained/dtlz_based",
+      "path": "problems/constrained/dtlz_based/DC-DTLZ",
+      "status": "planned",
+      "members": [
+        "DC1-DTLZ1",
+        "DC1-DTLZ3",
+        "DC2-DTLZ1",
+        "DC2-DTLZ3",
+        "DC3-DTLZ1",
+        "DC3-DTLZ3"
+      ],
+      "tags": [],
+      "reference": "Li et al. (2019). Two-archive evolutionary algorithm for constrained multi-objective optimization.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DTLZ/DC1_DTLZ1.m",
+      "source_status": "identified",
+      "notes": "Six variants; preserve decision- and objective-space constraint definitions."
+    },
+    {
+      "id": "eq_dtlz",
+      "name": "Eq-DTLZ",
+      "category": "constrained/dtlz_based",
+      "path": "problems/constrained/dtlz_based/Eq-DTLZ",
+      "status": "planned",
+      "members": [
+        "Eq-DTLZ1",
+        "Eq-DTLZ2",
+        "Eq-DTLZ3",
+        "Eq-DTLZ4"
+      ],
+      "tags": [
+        "equality"
+      ],
+      "reference": "Cuate et al. (2020). Dataset on a Benchmark for Equality Constrained Multi-objective Optimization.",
+      "source_url": "https://doi.org/10.1016/j.dib.2020.105130",
+      "source_status": "identified",
+      "notes": "Use the original equality benchmark, including the number of equalities as a parameter."
+    },
+    {
+      "id": "eq_idtlz",
+      "name": "Eq-IDTLZ",
+      "category": "constrained/dtlz_based",
+      "path": "problems/constrained/dtlz_based/Eq-IDTLZ",
+      "status": "planned",
+      "members": [
+        "Eq-IDTLZ1",
+        "Eq-IDTLZ2"
+      ],
+      "tags": [
+        "equality"
+      ],
+      "reference": "Cuate et al. (2020). Dataset on a Benchmark for Equality Constrained Multi-objective Optimization.",
+      "source_url": "https://doi.org/10.1016/j.dib.2020.105130",
+      "source_status": "identified",
+      "notes": "The original dataset contains Eq-IDTLZ1-2; extensions 3/4 need separate provenance."
+    },
+    {
+      "id": "mw",
+      "name": "MW",
+      "category": "constrained/difficult",
+      "path": "problems/constrained/difficult/MW",
+      "status": "planned",
+      "members": [
+        "MW1",
+        "MW2",
+        "MW3",
+        "MW4",
+        "MW5",
+        "MW6",
+        "MW7",
+        "MW8",
+        "MW9",
+        "MW10",
+        "MW11",
+        "MW12",
+        "MW13",
+        "MW14"
+      ],
+      "tags": [],
+      "reference": "Ma and Wang (2019). Evolutionary constrained multiobjective optimization: Test suite construction and performance comparisons.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/MW/MW1.m",
+      "source_status": "identified",
+      "notes": "Implement and validate all shape, distance and constraint components."
+    },
+    {
+      "id": "lir_cmop",
+      "name": "LIR-CMOP",
+      "category": "constrained/difficult",
+      "path": "problems/constrained/difficult/LIR-CMOP",
+      "status": "planned",
+      "members": [
+        "LIRCMOP1",
+        "LIRCMOP2",
+        "LIRCMOP3",
+        "LIRCMOP4",
+        "LIRCMOP5",
+        "LIRCMOP6",
+        "LIRCMOP7",
+        "LIRCMOP8",
+        "LIRCMOP9",
+        "LIRCMOP10",
+        "LIRCMOP11",
+        "LIRCMOP12",
+        "LIRCMOP13",
+        "LIRCMOP14"
+      ],
+      "tags": [],
+      "reference": "Fan et al. (2019). An improved epsilon constraint-handling method in MOEA/D for CMOPs with large infeasible regions.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/LIR-CMOP/LIRCMOP1.m",
+      "source_status": "identified",
+      "notes": "Large infeasible regions; maintain raw inequality residuals."
+    },
+    {
+      "id": "das_cmop",
+      "name": "DAS-CMOP",
+      "category": "constrained/difficult",
+      "path": "problems/constrained/difficult/DAS-CMOP",
+      "status": "planned",
+      "members": [
+        "DASCMOP1",
+        "DASCMOP2",
+        "DASCMOP3",
+        "DASCMOP4",
+        "DASCMOP5",
+        "DASCMOP6",
+        "DASCMOP7",
+        "DASCMOP8",
+        "DASCMOP9"
+      ],
+      "tags": [],
+      "reference": "Fan et al. (2020). Difficulty adjustable and scalable constrained multi-objective test problem toolkit.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DAS-CMOP/DASCMOP1.m",
+      "source_status": "identified",
+      "notes": "Record the diversity, feasibility and convergence difficulty triplet."
+    },
+    {
+      "id": "das_cmaop",
+      "name": "DAS-CMaOP",
+      "category": "constrained/difficult",
+      "path": "problems/constrained/difficult/DAS-CMaOP",
+      "status": "planned",
+      "members": [
+        "DASCMaOP1",
+        "DASCMaOP2",
+        "DASCMaOP3",
+        "DASCMaOP4",
+        "DASCMaOP5",
+        "DASCMaOP6",
+        "DASCMaOP7",
+        "DASCMaOP8",
+        "DASCMaOP9"
+      ],
+      "tags": [
+        "many-objective"
+      ],
+      "reference": "Fan et al. (2020). Difficulty adjustable and scalable constrained multi-objective test problem toolkit.",
+      "source_url": "https://imagelab.stu.edu.cn/upload/files/5.das-cmop.pdf",
+      "source_status": "identified",
+      "notes": "Keep many-objective variants separate from DAS-CMOP; verify the paper's scalable definition."
+    },
+    {
+      "id": "doc",
+      "name": "DOC",
+      "category": "constrained/difficult",
+      "path": "problems/constrained/difficult/DOC",
+      "status": "planned",
+      "members": [
+        "DOC1",
+        "DOC2",
+        "DOC3",
+        "DOC4",
+        "DOC5",
+        "DOC6",
+        "DOC7",
+        "DOC8",
+        "DOC9"
+      ],
+      "tags": [],
+      "reference": "Liu and Wang (2019). Handling constrained multiobjective optimization problems with constraints in both the decision and objective spaces.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DOC/DOC1.m",
+      "source_status": "identified",
+      "notes": "Constraints occur in both decision and objective spaces."
+    },
+    {
+      "id": "nctp",
+      "name": "NCTP",
+      "category": "constrained/difficult",
+      "path": "problems/constrained/difficult/NCTP",
+      "status": "planned",
+      "members": [],
+      "tags": [],
+      "reference": "Original NCTP publication and source implementation pending.",
+      "source_url": null,
+      "source_status": "pending",
+      "notes": "Original source and exact member/version mapping still need verification before Python implementation."
+    },
+    {
+      "id": "zxh_cf",
+      "name": "ZXH_CF",
+      "category": "constrained/difficult",
+      "path": "problems/constrained/difficult/ZXH_CF",
+      "status": "planned",
+      "members": [
+        "ZXH_CF1",
+        "ZXH_CF2",
+        "ZXH_CF3",
+        "ZXH_CF4",
+        "ZXH_CF5",
+        "ZXH_CF6",
+        "ZXH_CF7",
+        "ZXH_CF8",
+        "ZXH_CF9",
+        "ZXH_CF10",
+        "ZXH_CF11",
+        "ZXH_CF12",
+        "ZXH_CF13",
+        "ZXH_CF14",
+        "ZXH_CF15",
+        "ZXH_CF16"
+      ],
+      "tags": [],
+      "reference": "Zhou, Xiang and He (2021). Constrained multiobjective optimization: Test problem construction and performance evaluations.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/ZXH_CF/ZXH_CF1.m",
+      "source_status": "identified",
+      "notes": "Distinct from CEC 2009 CF. Keep the user's underscore spelling as the display name."
+    },
+    {
+      "id": "lscmop",
+      "name": "LSCMOP",
+      "category": "constrained/large_scale",
+      "path": "problems/constrained/large_scale/LSCMOP",
+      "status": "planned",
+      "members": [],
+      "tags": [
+        "large-scale"
+      ],
+      "reference": "Qiao et al. (2024). Benchmark problems for large-scale constrained multi-objective optimization with baseline results. DOI: 10.1016/j.swevo.2024.101504.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/LSCM/LSCM1.m",
+      "source_status": "membership-pending",
+      "notes": "The linked source uses LSCM names. Verify the LSCMOP-to-LSCM mapping and scalable group settings before listing members."
+    },
+    {
+      "id": "cmmop",
+      "name": "CMMOP",
+      "category": "constrained/multimodal",
+      "path": "problems/constrained/multimodal/CMMOP",
+      "status": "planned",
+      "members": [],
+      "tags": [
+        "multimodal"
+      ],
+      "reference": "Original suite publication and source implementation pending.",
+      "source_url": null,
+      "source_status": "pending",
+      "notes": "Verify the original CMMOP suite and distinguish it from CMMF and the generic CMMOP problem class."
+    },
+    {
+      "id": "cre",
+      "name": "CRE",
+      "category": "constrained/real_world",
+      "path": "problems/constrained/real_world/CRE",
+      "status": "planned",
+      "members": [
+        "CRE21",
+        "CRE22",
+        "CRE23",
+        "CRE24",
+        "CRE25",
+        "CRE31",
+        "CRE32",
+        "CRE51"
+      ],
+      "tags": [
+        "real-world"
+      ],
+      "reference": "Tanabe and Ishibuchi (2020). An easy-to-use real-world multi-objective optimization problem suite.",
+      "source_url": "https://github.com/ryojitanabe/reproblems",
+      "source_status": "identified",
+      "notes": "The full CRE suite contains non-continuous designs; variable types must be audited before adding a problem to the continuous Python API."
+    },
+    {
+      "id": "welded_beam",
+      "name": "Welded-Beam",
+      "category": "constrained/real_world",
+      "path": "problems/constrained/real_world/Welded-Beam",
+      "status": "planned",
+      "members": [
+        "Welded-Beam"
+      ],
+      "tags": [
+        "real-world"
+      ],
+      "reference": "Reference implementation: pymoo welded-beam problem.",
+      "source_url": "https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/welded_beam.py",
+      "source_status": "identified",
+      "notes": "Select the two-objective formulation and document all engineering constants, units and constraint scaling."
+    },
+    {
+      "id": "rcm_continuous",
+      "name": "RCM_continuous",
+      "category": "constrained/real_world",
+      "path": "problems/constrained/real_world/RCM_continuous",
+      "status": "planned",
+      "members": [],
+      "tags": [
+        "real-world"
+      ],
+      "reference": "CEC 2021 real-world constrained multiobjective benchmark; source: PlatEMO RWMOPs.",
+      "source_url": "https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/RWMOPs/RWMOP1.m",
+      "source_status": "membership-pending",
+      "notes": "Membership is pending a variable-type audit of the original CEC 2021 real-world constrained suite. Do not treat all RCM problems as continuous."
+    }
+  ],
+  "problems": [
+    {
+      "name": "ZDT1",
+      "suite": "zdt",
+      "implementation": "mop_problems.problems.unconstrained_smooth.zdt:ZDT1",
+      "n_var": 30,
+      "n_obj": 2,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": 30
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "convex",
+        "static"
+      ],
+      "notes": "Square-root terms may not be differentiable at the box boundary."
+    },
+    {
+      "name": "ZDT2",
+      "suite": "zdt",
+      "implementation": "mop_problems.problems.unconstrained_smooth.zdt:ZDT2",
+      "n_var": 30,
+      "n_obj": 2,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": 30
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "concave",
+        "static"
+      ],
+      "notes": "Square-root terms may not be differentiable at the box boundary."
+    },
+    {
+      "name": "ZDT3",
+      "suite": "zdt",
+      "implementation": "mop_problems.problems.unconstrained_smooth.zdt:ZDT3",
+      "n_var": 30,
+      "n_obj": 2,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": 30
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "disconnected",
+        "static"
+      ],
+      "notes": "Front endpoints are numerical; disconnected regions must not be joined by a line."
+    },
+    {
+      "name": "ZDT4",
+      "suite": "zdt",
+      "implementation": "mop_problems.problems.unconstrained_smooth.zdt:ZDT4",
+      "n_var": 10,
+      "n_obj": 2,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": [
+        0,
+        -5,
+        -5,
+        -5,
+        -5,
+        -5,
+        -5,
+        -5,
+        -5,
+        -5
+      ],
+      "upper_bounds": [
+        1,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "parameters": {
+        "n_var": 10
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "convex",
+        "multimodal-distance"
+      ],
+      "notes": "Square-root terms may not be differentiable at the box boundary."
+    },
+    {
+      "name": "ZDT6",
+      "suite": "zdt",
+      "implementation": "mop_problems.problems.unconstrained_smooth.zdt:ZDT6",
+      "n_var": 10,
+      "n_obj": 2,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": 10
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "concave",
+        "static"
+      ],
+      "notes": "Fractional power in the distance function is not differentiable at zero."
+    },
+    {
+      "name": "DTLZ1",
+      "suite": "dtlz",
+      "implementation": "mop_problems.problems.unconstrained_smooth.dtlz:DTLZ1",
+      "n_var": 7,
+      "n_obj": 3,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": null,
+        "n_obj": 3
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "linear"
+      ],
+      "notes": "Default n_var is derived from n_obj and k; see formulas and dimension restrictions."
+    },
+    {
+      "name": "DTLZ2",
+      "suite": "dtlz",
+      "implementation": "mop_problems.problems.unconstrained_smooth.dtlz:DTLZ2",
+      "n_var": 12,
+      "n_obj": 3,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": null,
+        "n_obj": 3
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "spherical"
+      ],
+      "notes": "Default n_var is derived from n_obj and k; see formulas and dimension restrictions."
+    },
+    {
+      "name": "DTLZ3",
+      "suite": "dtlz",
+      "implementation": "mop_problems.problems.unconstrained_smooth.dtlz:DTLZ3",
+      "n_var": 12,
+      "n_obj": 3,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": null,
+        "n_obj": 3
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "spherical"
+      ],
+      "notes": "Default n_var is derived from n_obj and k; see formulas and dimension restrictions."
+    },
+    {
+      "name": "DTLZ4",
+      "suite": "dtlz",
+      "implementation": "mop_problems.problems.unconstrained_smooth.dtlz:DTLZ4",
+      "n_var": 12,
+      "n_obj": 3,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": null,
+        "n_obj": 3,
+        "alpha": 100
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "spherical"
+      ],
+      "notes": "Default n_var is derived from n_obj and k; see formulas and dimension restrictions."
+    },
+    {
+      "name": "DTLZ5",
+      "suite": "dtlz",
+      "implementation": "mop_problems.problems.unconstrained_smooth.dtlz:DTLZ5",
+      "n_var": 12,
+      "n_obj": 3,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": null,
+        "n_obj": 3
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "degenerate"
+      ],
+      "notes": "Default n_var is derived from n_obj and k; see formulas and dimension restrictions."
+    },
+    {
+      "name": "DTLZ6",
+      "suite": "dtlz",
+      "implementation": "mop_problems.problems.unconstrained_smooth.dtlz:DTLZ6",
+      "n_var": 12,
+      "n_obj": 3,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": null,
+        "n_obj": 3
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "degenerate"
+      ],
+      "notes": "Default n_var is derived from n_obj and k; see formulas and dimension restrictions."
+    },
+    {
+      "name": "DTLZ7",
+      "suite": "dtlz",
+      "implementation": "mop_problems.problems.unconstrained_smooth.dtlz:DTLZ7",
+      "n_var": 22,
+      "n_obj": 3,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 1,
+      "parameters": {
+        "n_var": null,
+        "n_obj": 3
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": false,
+      "properties": [
+        "disconnected"
+      ],
+      "notes": "Default n_var is derived from n_obj and k; see formulas and dimension restrictions."
+    },
+    {
+      "name": "SCH",
+      "suite": "sch",
+      "implementation": "mop_problems.problems.unconstrained_smooth.classic:SCH",
+      "n_var": 1,
+      "n_obj": 2,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": -1000,
+      "upper_bounds": 1000,
+      "parameters": {},
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "convex"
+      ],
+      "notes": "Schaffer N.1."
+    },
+    {
+      "name": "FON",
+      "suite": "fon",
+      "implementation": "mop_problems.problems.unconstrained_smooth.classic:FON",
+      "n_var": 3,
+      "n_obj": 2,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": -4,
+      "upper_bounds": 4,
+      "parameters": {
+        "n_var": 3
+      },
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": true,
+      "properties": [
+        "concave"
+      ],
+      "notes": "Scalable Fonseca-Fleming / MOEA Framework Fonseca2."
+    },
+    {
+      "name": "POL",
+      "suite": "pol",
+      "implementation": "mop_problems.problems.unconstrained_smooth.classic:POL",
+      "n_var": 2,
+      "n_obj": 2,
+      "n_ieq_constr": 0,
+      "n_eq_constr": 0,
+      "lower_bounds": -3.141592653589793,
+      "upper_bounds": 3.141592653589793,
+      "parameters": {},
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": false,
+      "properties": [
+        "multimodal"
+      ],
+      "notes": "Positive minimization formulation."
+    },
+    {
+      "name": "BNH",
+      "suite": "bnh",
+      "implementation": "mop_problems.problems.constrained.classic:BNH",
+      "n_var": 2,
+      "n_obj": 2,
+      "n_ieq_constr": 2,
+      "n_eq_constr": 0,
+      "lower_bounds": [
+        0,
+        0
+      ],
+      "upper_bounds": [
+        5,
+        3
+      ],
+      "parameters": {},
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": false,
+      "properties": [
+        "inequality"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "TNK",
+      "suite": "tnk",
+      "implementation": "mop_problems.problems.constrained.classic:TNK",
+      "n_var": 2,
+      "n_obj": 2,
+      "n_ieq_constr": 2,
+      "n_eq_constr": 0,
+      "lower_bounds": 0,
+      "upper_bounds": 3.141592653589793,
+      "parameters": {},
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": false,
+      "properties": [
+        "inequality",
+        "disconnected"
+      ],
+      "notes": "Origin is infeasible; angle convention is atan2(0,0)=0."
+    },
+    {
+      "name": "OSY",
+      "suite": "osy",
+      "implementation": "mop_problems.problems.constrained.classic:OSY",
+      "n_var": 6,
+      "n_obj": 2,
+      "n_ieq_constr": 6,
+      "n_eq_constr": 0,
+      "lower_bounds": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "upper_bounds": [
+        10,
+        10,
+        5,
+        6,
+        5,
+        10
+      ],
+      "parameters": {},
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": false,
+      "properties": [
+        "inequality"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "SRN",
+      "suite": "srn",
+      "implementation": "mop_problems.problems.constrained.classic:SRN",
+      "n_var": 2,
+      "n_obj": 2,
+      "n_ieq_constr": 2,
+      "n_eq_constr": 0,
+      "lower_bounds": -20,
+      "upper_bounds": 20,
+      "parameters": {},
+      "objective_sense": "minimize",
+      "variable_type": "real",
+      "pareto_front": false,
+      "properties": [
+        "inequality"
+      ],
+      "notes": ""
+    }
+  ]
+}
