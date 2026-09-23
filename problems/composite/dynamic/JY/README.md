@@ -2,27 +2,31 @@
 
 # JY
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/dynamic`
 
-Select the original JY1-8 version; specify benchmark time and reproducible random dynamics.
+JY1-8, original October 2016 author JY.h with unit-box tail mapping 2*x-1. JY3 follows that file, not later RJY3 variants. JY8 restores its missing pow call (also confirmed by author-coauthored RJY8.m). Time is explicit.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Jiang and Yang (2017). Evolutionary dynamic multi-objective optimization: Benchmarks and algorithm comparisons.
+Jiang, S. and Yang, S. (2017). Evolutionary Dynamic Multiobjective Optimization: Benchmarks and Algorithm Comparisons. IEEE Transactions on Cybernetics 47(1), 198-211. DOI: 10.1109/TCYB.2015.2510698.
 
-[Source / 参考来源](https://www.tech.dmu.ac.uk/~syang/TF-ECiDUE/Yang-CEC2020-Tutorial-ECDMOP.pdf)
+[Source / 参考来源](https://www.tech.dmu.ac.uk/~syang/Codes/JY.h)
 
 ## Members / 成员
 
-Target members: `JY1`, `JY2`, `JY3`, `JY4`, `JY5`, `JY6`, `JY7`, `JY8`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [JY1](JY1/README.md) | 10 | 2 | 0 | 0 | no |
+| [JY2](JY2/README.md) | 10 | 2 | 0 | 0 | no |
+| [JY3](JY3/README.md) | 10 | 2 | 0 | 0 | no |
+| [JY4](JY4/README.md) | 10 | 2 | 0 | 0 | no |
+| [JY5](JY5/README.md) | 10 | 2 | 0 | 0 | no |
+| [JY6](JY6/README.md) | 10 | 2 | 0 | 0 | no |
+| [JY7](JY7/README.md) | 10 | 2 | 0 | 0 | no |
+| [JY8](JY8/README.md) | 10 | 2 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

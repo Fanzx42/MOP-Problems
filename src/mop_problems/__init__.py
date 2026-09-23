@@ -12,7 +12,7 @@ from mop_problems.catalog import (
 from mop_problems.core import Evaluation, Jacobian, NonDifferentiableError, Problem
 from mop_problems.differentiation import check_derivatives, finite_difference
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 __all__ = [
     "Evaluation",

@@ -4,10 +4,10 @@
 
 [Full catalogue](../../README.md)
 
-- [MW](MW/README.md) — **planned**
-- [LIR-CMOP](LIR-CMOP/README.md) — **planned**
-- [DAS-CMOP](DAS-CMOP/README.md) — **planned**
-- [DAS-CMaOP](DAS-CMaOP/README.md) — **planned**
-- [DOC](DOC/README.md) — **planned**
-- [NCTP](NCTP/README.md) — **planned**
-- [ZXH_CF](ZXH_CF/README.md) — **planned**
+- [MW](MW/README.md) — **implemented**
+- [LIR-CMOP](LIR-CMOP/README.md) — **implemented**
+- [DAS-CMOP](DAS-CMOP/README.md) — **implemented**
+- [DAS-CMaOP](DAS-CMaOP/README.md) — **implemented**
+- [DOC](DOC/README.md) — **implemented**
+- [NCTP](NCTP/README.md) — **implemented**
+- [ZXH_CF](ZXH_CF/README.md) — **implemented**

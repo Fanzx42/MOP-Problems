@@ -1,5 +1,14 @@
 # Validation and practical limits
 
+## Version 0.4.0 expansion
+
+All 43 requested families now contain callable implementations (343 problems).
+The 296 newly registered problems are covered by 482 independently evaluated
+reference cases, plus derivative, domain and parameter checks. See
+[the detailed expansion record](expanded-validation.md) for sources, execution
+methods, differences and limitations. The evidence below describes the earlier
+47-problem core and remains applicable to those definitions.
+
 ## Numerical evidence
 
 Version 0.3.0 adds [derivative and algorithm verification](gradient-validation.md):
@@ -8,7 +17,7 @@ exceptional-point checks, certified minimax/proximal subproblem comparisons,
 BB curvature cases, acceleration recurrence, explicit failure/budget semantics,
 and paired multistart experiments. See the linked record for executed checks.
 
-- Analytical anchors for every implemented problem family, including classic
+- Analytical anchors for the original implemented problem families, including classic
   objective values and both feasible/infeasible constrained points.
 - DTLZ distance-minimum identities across 2, 3 and 5 objectives.
 - WFG1–9 reference checks across 2, 3, 5 and 8 objectives, different partitions,
@@ -69,10 +78,9 @@ is documented in [the experiment guide](experiments.md).
 
 ## Limitations
 
-Version 0.3.0 contains 47 executable problems and 28 planned catalogue entries.
-There are no implemented dynamic or equality-constrained benchmark suites yet,
-no Hessian API, and no bundled reference-front datasets. Forward Jacobians and
-five first-order algorithm families are implemented. The algorithms handle boxes
+Version 0.4.0 contains 343 executable problems, including dynamic and equality
+benchmarks. No Hessian API or external reference-front datasets are bundled.
+Forward Jacobians and five first-order algorithm families are implemented. The algorithms handle boxes
 and explicit proximable convex terms, not general nonlinear G/H constraints;
 their derivative oracles remain available to external constrained methods.
 Piecewise/singular formulas do not acquire smoothness merely because derivatives
@@ -81,6 +89,7 @@ Higher-dimensional front samplers are finite seeded samples rather than exact
 uniform meshes. ZDT3 segment limits are numerical approximations. DTLZ5/6 front
 sampling is restricted to M<=3; higher-dimensional g=0 curves can omit tradeoffs.
 
-Planned real-world subsets require variable-type and source-version audits.
+Real-world subsets have explicit variable-type and source-version notes, including
+the RCM5/14 continuous relaxations; consult them before designing experiments.
 Do not treat a linked source, a directory name or a planned member name as proof
 that the problem is callable or numerically validated.

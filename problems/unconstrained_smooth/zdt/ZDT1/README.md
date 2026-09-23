@@ -16,6 +16,7 @@
 - Derivatives: `forward`; smoothness: `interior`. [Jacobian contract](../../../../docs/gradients.md).
 - Derivative notes: Fractional powers/square roots can have singular derivatives at x[0]=0.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Constraint representation: raw G <= 0, H = 0; box derivatives are not included.
 - Notes: Square-root terms may not be differentiable at the box boundary.
 
 ```python
@@ -27,3 +28,14 @@ print(result.F)
 jac = problem.jacobian(problem.sample(1, seed=238))
 print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
+
+### Paper / 论文出处
+
+- Zitzler, Deb and Thiele (2000). Comparison of multiobjective evolutionary algorithms: Empirical results. DOI: 10.1162/106365600568202.
+  [Source](https://doi.org/10.1162/106365600568202) · citation key: `zdt`.
+
+[Reference implementation / 对照实现](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/zdt.py)
+
+Version: `pymoo-0.6.2`.
+
+Implementation and variant notes above are part of the benchmark definition; cite the paper and record this version when reporting experiments.

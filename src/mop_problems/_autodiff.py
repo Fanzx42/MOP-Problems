@@ -191,6 +191,9 @@ class Jet(NDArrayOperatorsMixin):
             factor = -np.sin(v)
         elif ufunc in (np.exp, np.expm1):
             factor = np.exp(v)
+        elif ufunc is np.log:
+            factor = 1 / v
+            r = r & (v > 0)
         elif ufunc is np.sqrt:
             factor = 0.5 / np.sqrt(v)
             r = r & (v > 0)

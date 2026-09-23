@@ -2,27 +2,41 @@
 
 # NCTP
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/difficult`
 
-Original source and exact member/version mapping still need verification before Python implementation.
+NCTP1-6 map to type I, 7-12 to type II, 13-18 to type III, each local member 1-6 in the author archive. Original bounds are [0,5] for every variable. Raw G removes positive-part clipping and population-dependent normalization.
 
-Source status: `pending`. Identifying a source is separate from validating an implementation.
+Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Original NCTP publication and source implementation pending.
+Li, J.-P., Wang, Y., Yang, S. and Cai, Z. (2016). A comparative study of constraint-handling techniques in evolutionary constrained multiobjective optimization. IEEE CEC, 4175-4182. DOI: 10.1109/CEC.2016.7744320.
 
-Original source pending verification / 原始来源待核对。
+[Source / 参考来源](https://intleo.csu.edu.cn/codes/A-comparative-study-of-CHTs-in-CMOPs.zip)
 
 ## Members / 成员
 
-Member list pending source/version verification.
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [NCTP1](NCTP1/README.md) | 30 | 2 | 2 | 0 | no |
+| [NCTP2](NCTP2/README.md) | 30 | 2 | 2 | 0 | no |
+| [NCTP3](NCTP3/README.md) | 30 | 2 | 2 | 0 | no |
+| [NCTP4](NCTP4/README.md) | 30 | 2 | 1 | 0 | no |
+| [NCTP5](NCTP5/README.md) | 30 | 2 | 1 | 0 | no |
+| [NCTP6](NCTP6/README.md) | 30 | 2 | 1 | 0 | no |
+| [NCTP7](NCTP7/README.md) | 30 | 2 | 2 | 0 | no |
+| [NCTP8](NCTP8/README.md) | 30 | 2 | 2 | 0 | no |
+| [NCTP9](NCTP9/README.md) | 30 | 2 | 2 | 0 | no |
+| [NCTP10](NCTP10/README.md) | 30 | 2 | 1 | 0 | no |
+| [NCTP11](NCTP11/README.md) | 30 | 2 | 1 | 0 | no |
+| [NCTP12](NCTP12/README.md) | 30 | 2 | 1 | 0 | no |
+| [NCTP13](NCTP13/README.md) | 30 | 2 | 2 | 0 | no |
+| [NCTP14](NCTP14/README.md) | 30 | 2 | 2 | 0 | no |
+| [NCTP15](NCTP15/README.md) | 30 | 2 | 2 | 0 | no |
+| [NCTP16](NCTP16/README.md) | 30 | 2 | 1 | 0 | no |
+| [NCTP17](NCTP17/README.md) | 30 | 2 | 1 | 0 | no |
+| [NCTP18](NCTP18/README.md) | 30 | 2 | 1 | 0 | no |
 
 [Full catalogue](../../../README.md)

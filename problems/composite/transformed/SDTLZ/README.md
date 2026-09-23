@@ -2,27 +2,25 @@
 
 # SDTLZ
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/transformed`
 
-Selected scaled DTLZ1/2 definitions; record the scaling factor as an instance parameter.
+Scaled DTLZ1/2: multiply objective i by scale**i (zero-based); default scale=2.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Deb and Jain (2014). NSGA-III, Part I: Solving problems with box constraints.
+K. Deb and H. Jain. An evolutionary many-objective optimization algorithm using reference-point based non-dominated sorting approach, part I: Solving problems with box constraints. IEEE Transactions on Evolutionary Computation, 2014, 18(4): 577-601.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DTLZ/SDTLZ1.m)
 
 ## Members / 成员
 
-Target members: `SDTLZ1`, `SDTLZ2`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [SDTLZ1](SDTLZ1/README.md) | 7 | 3 | 0 | 0 | yes |
+| [SDTLZ2](SDTLZ2/README.md) | 12 | 3 | 0 | 0 | yes |
 
 [Full catalogue](../../../README.md)

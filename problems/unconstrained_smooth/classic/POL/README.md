@@ -6,13 +6,13 @@
 
 Category: `unconstrained_smooth/classic`
 
-Both objectives use their positive minimization form. MOEA Framework represents the equivalent problem with negated objectives and maximization.
+Corrected Van Veldhuizen / MOEA Framework variant; positive objectives minimized here equal maximizing their negatives in MOEA Framework.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Poloni et al. benchmark; formula cross-check: MOEA Framework Poloni. Original publication details remain to be completed.
+Poloni, C. et al. (1996). Multiobjective Optimization by GAs: Application to System and Component Design. Computational Methods in Applied Sciences 96, 258-264. Corrected definition: Van Veldhuizen, D. A. (1999), Multiobjective Evolutionary Algorithms: Classifications, Analyses, and New Innovations, PhD thesis, Appendix B.
 
 [Source / 参考来源](https://github.com/MOEAFramework/MOEAFramework/blob/9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5/src/org/moeaframework/problem/misc/Poloni.java)
 
@@ -32,7 +32,8 @@ Poloni et al. benchmark; formula cross-check: MOEA Framework Poloni. Original pu
 - Derivatives: `forward`; smoothness: `smooth`. [Jacobian contract](../../../../docs/gradients.md).
 - Derivative notes: Smooth formula on the decision box; this does not imply convexity.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
-- Notes: Positive minimization formulation.
+- Constraint representation: raw G <= 0, H = 0; box derivatives are not included.
+- Notes: Corrected Van Veldhuizen / MOEA Framework variant; positive objectives minimized here equal maximizing their negatives in MOEA Framework.
 
 ```python
 from mop_problems import get_problem
@@ -43,6 +44,17 @@ print(result.F)
 jac = problem.jacobian(problem.sample(1, seed=238))
 print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
+
+### Paper / 论文出处
+
+- Poloni, C. et al. (1996). Multiobjective Optimization by GAs: Application to System and Component Design. Computational Methods in Applied Sciences 96, 258-264. Corrected definition: Van Veldhuizen, D. A. (1999), Multiobjective Evolutionary Algorithms: Classifications, Analyses, and New Innovations, PhD thesis, Appendix B.
+  [Source](https://github.com/MOEAFramework/MOEAFramework/blob/9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5/src/org/moeaframework/problem/misc/Poloni.java) · citation key: `pol`.
+
+[Reference implementation / 对照实现](https://github.com/MOEAFramework/MOEAFramework/blob/9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5/src/org/moeaframework/problem/misc/Poloni.java)
+
+Version: `9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5`.
+
+Implementation and variant notes above are part of the benchmark definition; cite the paper and record this version when reporting experiments.
 
 
 [Full catalogue](../../../README.md)

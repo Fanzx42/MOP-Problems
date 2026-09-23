@@ -72,7 +72,7 @@ read-only copies:
 | Field | Shape | Interpretation |
 | --- | --- | --- |
 | `F` | `(N, n_obj)` | Objective values |
-| `G` | `(N, n_ieq_constr)` | Raw inequality residuals; feasible if all `<= 0` |
+| `G` | `(N, n_ieq_constr)` | Inequality residuals; feasible if all `<= 0`; LSCMOP uses author aggregate |
 | `H` | `(N, n_eq_constr)` | Raw equality residuals; feasible within tolerance |
 | `CV` | `(N,)` | Total constraint and bound violation |
 | `feasible` | `(N,)` | Boolean `CV == 0` |
@@ -104,7 +104,7 @@ fixed after construction.
 
 `problem.sample(n, seed=None)` samples uniformly from the decision box using
 NumPy's `default_rng`; pass an integer or an existing `Generator`. No global RNG
-state is changed. This is **not** a feasible-region sampler.
+state is changed. This is **not** a feasible-region sampler. MaF9 also excludes its invalid polygons.
 
 `problem.pareto_front(n_points=100, seed=0)` returns objective-space samples where
 an analytical sampler is supported. It returns exactly the requested number of
@@ -145,7 +145,26 @@ chain rules. A custom problem may override `evaluate_with_jacobian` with its own
 validated `(Evaluation, Jacobian)` implementation; unsupported AD operations fail
 explicitly. Unknown custom smoothness is reported as `unknown`.
 
-Equality result handling is present in the base API and tested with an analytical
-test fixture. **No real equality-constrained benchmark is implemented in 0.3.0.**
-Dynamic suites are also planned: a future dynamic API needs explicit benchmark
-time and reproducible environment parameters; it is not currently provided.
+## Expanded families, time and sources
+
+All 43 catalogue entries are implemented in 0.4.0; `planned` filtering remains
+available for future additions. `get_problem_info(name)["references"]` lists the
+original papers, and `["reference_implementation"]` identifies the comparison
+source and version. Metadata describes **default** parameters; record overrides
+alongside it in an experiment manifest.
+
+Eq-DTLZ1–4 and Eq-IDTLZ1/2 accept `n_equalities=1` or `2` and return signed `H`.
+RCM also contains genuine equality-constrained engineering models.
+DOC retains its published tolerance bands as inequalities. LSCMOP preserves the
+author's aggregate positive violation in its single `G` column, including cutoffs;
+it does not expose the underlying individual residuals.
+
+FDA1–5 and JY1–8 accept `time=0.0`. `p.at_time(t)` creates another fixed snapshot;
+evaluation does not advance time. `benchmark_time(step, frequency, severity)` in
+`mop_problems.problems.composite.fda` computes the standard discrete schedule.
+Jacobians differentiate decisions at fixed time. MaF9's `domain_mask(X)` reports
+excluded polygon regions (separately from box membership); `evaluate` rejects them
+even with `check_bounds=False`, and `sample` uses reproducible rejection sampling.
+
+See [parameters and examples](expanded-benchmarks.md) and
+[source-specific differences](expanded-validation.md) before combining implementations.

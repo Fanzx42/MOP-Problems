@@ -2,9 +2,11 @@
 
 # Problem catalogue / 问题目录
 
-43 catalogue entries; **47 callable problems**. `planned` means documentation only, with no Python implementation.
+43 catalogue entries; **343 callable problems**. See each problem card for its paper, code version, domain and derivatives.
 
-完整保留原始分类。`planned` 为待实现条目，不会返回替代函数或占位数值。
+完整保留原始分类；每个问题都可查看公式实现、论文出处、版本差异和梯度适用条件。
+
+[全部问题的文献索引](../docs/problem-references.md) · [新增问题使用示例](../docs/expanded-benchmarks.md)
 
 | Suite / 问题族 | Category | Status | Callable |
 | --- | --- | --- | ---: |
@@ -14,40 +16,40 @@
 | [FON](unconstrained_smooth/classic/FON/README.md) | `unconstrained_smooth/classic` | implemented | 1 |
 | [POL](unconstrained_smooth/classic/POL/README.md) | `unconstrained_smooth/classic` | implemented | 1 |
 | [WFG](composite/transformed/WFG/README.md) | `composite/transformed` | implemented | 9 |
-| [IDTLZ](composite/transformed/IDTLZ/README.md) | `composite/transformed` | planned | 0 |
-| [SDTLZ](composite/transformed/SDTLZ/README.md) | `composite/transformed` | planned | 0 |
+| [IDTLZ](composite/transformed/IDTLZ/README.md) | `composite/transformed` | implemented | 2 |
+| [SDTLZ](composite/transformed/SDTLZ/README.md) | `composite/transformed` | implemented | 2 |
 | [UF](composite/linkage/UF/README.md) | `composite/linkage` | implemented | 10 |
-| [LZ09](composite/linkage/LZ09/README.md) | `composite/linkage` | planned | 0 |
-| [IMOP](composite/irregular/IMOP/README.md) | `composite/irregular` | planned | 0 |
-| [MaF](composite/irregular/MaF/README.md) | `composite/irregular` | planned | 0 |
-| [ZCAT](composite/irregular/ZCAT/README.md) | `composite/irregular` | planned | 0 |
-| [LSMOP](composite/large_scale/LSMOP/README.md) | `composite/large_scale` | planned | 0 |
-| [MMF](composite/multimodal/MMF/README.md) | `composite/multimodal` | planned | 0 |
+| [LZ09](composite/linkage/LZ09/README.md) | `composite/linkage` | implemented | 9 |
+| [IMOP](composite/irregular/IMOP/README.md) | `composite/irregular` | implemented | 8 |
+| [MaF](composite/irregular/MaF/README.md) | `composite/irregular` | implemented | 15 |
+| [ZCAT](composite/irregular/ZCAT/README.md) | `composite/irregular` | implemented | 20 |
+| [LSMOP](composite/large_scale/LSMOP/README.md) | `composite/large_scale` | implemented | 9 |
+| [MMF](composite/multimodal/MMF/README.md) | `composite/multimodal` | implemented | 8 |
 | [Omni-test](composite/multimodal/Omni-test/README.md) | `composite/multimodal` | implemented | 1 |
 | [SYM-PART](composite/multimodal/SYM-PART/README.md) | `composite/multimodal` | implemented | 2 |
-| [FDA](composite/dynamic/FDA/README.md) | `composite/dynamic` | planned | 0 |
-| [JY](composite/dynamic/JY/README.md) | `composite/dynamic` | planned | 0 |
-| [RE_continuous](composite/real_world/RE_continuous/README.md) | `composite/real_world` | planned | 0 |
-| [RWA](composite/real_world/RWA/README.md) | `composite/real_world` | planned | 0 |
+| [FDA](composite/dynamic/FDA/README.md) | `composite/dynamic` | implemented | 5 |
+| [JY](composite/dynamic/JY/README.md) | `composite/dynamic` | implemented | 8 |
+| [RE_continuous](composite/real_world/RE_continuous/README.md) | `composite/real_world` | implemented | 10 |
+| [RWA](composite/real_world/RWA/README.md) | `composite/real_world` | implemented | 10 |
 | [BNH](constrained/classic/BNH/README.md) | `constrained/classic` | implemented | 1 |
 | [TNK](constrained/classic/TNK/README.md) | `constrained/classic` | implemented | 1 |
 | [OSY](constrained/classic/OSY/README.md) | `constrained/classic` | implemented | 1 |
 | [SRN](constrained/classic/SRN/README.md) | `constrained/classic` | implemented | 1 |
-| [CTP](constrained/classic/CTP/README.md) | `constrained/classic` | planned | 0 |
-| [CF](constrained/classic/CF/README.md) | `constrained/classic` | planned | 0 |
+| [CTP](constrained/classic/CTP/README.md) | `constrained/classic` | implemented | 8 |
+| [CF](constrained/classic/CF/README.md) | `constrained/classic` | implemented | 10 |
 | [C-DTLZ](constrained/dtlz_based/C-DTLZ/README.md) | `constrained/dtlz_based` | implemented | 5 |
-| [DC-DTLZ](constrained/dtlz_based/DC-DTLZ/README.md) | `constrained/dtlz_based` | planned | 0 |
-| [Eq-DTLZ](constrained/dtlz_based/Eq-DTLZ/README.md) | `constrained/dtlz_based` | planned | 0 |
-| [Eq-IDTLZ](constrained/dtlz_based/Eq-IDTLZ/README.md) | `constrained/dtlz_based` | planned | 0 |
-| [MW](constrained/difficult/MW/README.md) | `constrained/difficult` | planned | 0 |
-| [LIR-CMOP](constrained/difficult/LIR-CMOP/README.md) | `constrained/difficult` | planned | 0 |
-| [DAS-CMOP](constrained/difficult/DAS-CMOP/README.md) | `constrained/difficult` | planned | 0 |
-| [DAS-CMaOP](constrained/difficult/DAS-CMaOP/README.md) | `constrained/difficult` | planned | 0 |
-| [DOC](constrained/difficult/DOC/README.md) | `constrained/difficult` | planned | 0 |
-| [NCTP](constrained/difficult/NCTP/README.md) | `constrained/difficult` | planned | 0 |
-| [ZXH_CF](constrained/difficult/ZXH_CF/README.md) | `constrained/difficult` | planned | 0 |
-| [LSCMOP](constrained/large_scale/LSCMOP/README.md) | `constrained/large_scale` | planned | 0 |
-| [CMMOP](constrained/multimodal/CMMOP/README.md) | `constrained/multimodal` | planned | 0 |
-| [CRE](constrained/real_world/CRE/README.md) | `constrained/real_world` | planned | 0 |
+| [DC-DTLZ](constrained/dtlz_based/DC-DTLZ/README.md) | `constrained/dtlz_based` | implemented | 6 |
+| [Eq-DTLZ](constrained/dtlz_based/Eq-DTLZ/README.md) | `constrained/dtlz_based` | implemented | 4 |
+| [Eq-IDTLZ](constrained/dtlz_based/Eq-IDTLZ/README.md) | `constrained/dtlz_based` | implemented | 2 |
+| [MW](constrained/difficult/MW/README.md) | `constrained/difficult` | implemented | 14 |
+| [LIR-CMOP](constrained/difficult/LIR-CMOP/README.md) | `constrained/difficult` | implemented | 14 |
+| [DAS-CMOP](constrained/difficult/DAS-CMOP/README.md) | `constrained/difficult` | implemented | 9 |
+| [DAS-CMaOP](constrained/difficult/DAS-CMaOP/README.md) | `constrained/difficult` | implemented | 9 |
+| [DOC](constrained/difficult/DOC/README.md) | `constrained/difficult` | implemented | 9 |
+| [NCTP](constrained/difficult/NCTP/README.md) | `constrained/difficult` | implemented | 18 |
+| [ZXH_CF](constrained/difficult/ZXH_CF/README.md) | `constrained/difficult` | implemented | 16 |
+| [LSCMOP](constrained/large_scale/LSCMOP/README.md) | `constrained/large_scale` | implemented | 12 |
+| [CMMOP](constrained/multimodal/CMMOP/README.md) | `constrained/multimodal` | implemented | 14 |
+| [CRE](constrained/real_world/CRE/README.md) | `constrained/real_world` | implemented | 6 |
 | [Welded-Beam](constrained/real_world/Welded-Beam/README.md) | `constrained/real_world` | implemented | 1 |
-| [RCM_continuous](constrained/real_world/RCM_continuous/README.md) | `constrained/real_world` | planned | 0 |
+| [RCM_continuous](constrained/real_world/RCM_continuous/README.md) | `constrained/real_world` | implemented | 39 |

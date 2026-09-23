@@ -497,3 +497,233 @@ this repository returns the raw values. This selected software variant uses
 the $J$ coefficient $\sqrt2$: other engineering formulations use $2\sqrt2$,
 which changes shear stresses and the feasible set. They must not be compared as
 identical benchmarks. No extra cost or deflection constraint is added.
+
+## Expanded benchmark definitions
+
+The following family sections link the exact Python formulas and original papers.
+Per-problem cards specify bounds, dimensions and source-version differences.
+See [independent numerical validation](expanded-validation.md).
+
+### IDTLZ
+
+For DTLZ1, $f_i^{inv}=(1+g)/2-f_i$; for DTLZ2, $f_i^{inv}=1+g-f_i$. These are the specified inverted variants, not arbitrary objective negation.
+
+H. Jain and K. Deb. An evolutionary many-objective optimization algorithm using reference-point based non-dominated sorting approach, part II: Handling constraints and extending to an adaptive approach. IEEE Transactions on Evolutionary Computation, 2014, 18(4): 602-622.
+
+[Problem cards and sources](../problems/composite/transformed/IDTLZ/README.md) · [Python equations](../src/mop_problems/problems/composite/transformed.py)
+
+### SDTLZ
+
+With zero-based objective index $i$, $f_i^{scaled}=a^i f_i$, $a>0$ (`scale`, default 2). Both objectives and analytical front samples use this scaling.
+
+K. Deb and H. Jain. An evolutionary many-objective optimization algorithm using reference-point based non-dominated sorting approach, part I: Solving problems with box constraints. IEEE Transactions on Evolutionary Computation, 2014, 18(4): 577-601.
+
+[Problem cards and sources](../problems/composite/transformed/SDTLZ/README.md) · [Python equations](../src/mop_problems/problems/composite/transformed.py)
+
+### LZ09
+
+Unit-box decisions are transformed into linked residuals; parity/index groups determine the distance terms and prescribed front shape. The F1–F9 mapping follows jMetal rather than inferring it from similarly named LZ suites.
+
+Li and Zhang (2009). Multiobjective optimization problems with complicated Pareto sets, MOEA/D and NSGA-II.
+
+[Problem cards and sources](../problems/composite/linkage/LZ09/README.md) · [Python equations](../src/mop_problems/problems/composite/lz09.py)
+
+### IMOP
+
+Position aggregates use powers of means (default `a1=0.05`, `a2=10`); the distance is the squared tail deviation from 0.5. Eight shape maps include disconnected and piecewise branches. Constructor `k` separates the position and distance variables.
+
+Y. Tian, R. Cheng, X. Zhang, M. Li, and Y. Jin. Diversity assessment of multi-objective evolutionary algorithms: Performance metric and benchmark problems. IEEE Computational Intelligence Magazine, 2019, 14(3): 61-74.
+
+[Problem cards and sources](../problems/composite/irregular/IMOP/README.md) · [Python equations](../src/mop_problems/problems/composite/imop.py)
+
+### MAF
+
+Fifteen specified variants combine inverted/scaled DTLZ, polygon distances, WFG and large-scale grouping. MaF8 measures vertex distances; MaF9 measures edge-line distances and excludes designated polygon regions. MaF10 is continuous WFG1 with `k=M-1`, without four-decimal quantization.
+
+R. Cheng, M. Li, Y. Tian, X. Zhang, S. Yang, Y. Jin, and X. Yao. A benchmark test suite for evolutionary many-objective optimization. Complex & Intelligent Systems, 2017, 3(1): 67-81. DOI: 10.1007/s40747-017-0039-7.
+
+[Problem cards and sources](../problems/composite/irregular/MaF/README.md) · [Python equations](../src/mop_problems/problems/composite/maf.py)
+
+### ZCAT
+
+The normalized box is mapped to shape and distance components, scaled per objective. Pareto-set mapping, difficulty level 1–6, bias and imbalance are explicit options. The angle denominator in the set mapping is `n-p` in the adopted jMetalPy version.
+
+Zapotecas-Martinez, S., Coello Coello, C. A., Aguirre, H. and Tanaka, K. (2023). Challenging test problems for multi- and many-objective optimization. Swarm and Evolutionary Computation 81, 101350. DOI: 10.1016/j.swevo.2023.101350.
+
+[Problem cards and sources](../problems/composite/irregular/ZCAT/README.md) · [Python equations](../src/mop_problems/problems/composite/zcat.py)
+
+### LSMOP
+
+Logistic-map group sizes, variable linkage and alternating distance functions feed linear or spherical shapes. `nk` controls subgroups; empty or one-variable distance blocks are rejected rather than filled with artificial values.
+
+R. Cheng, Y. Jin, M. Olhofer, and B. Sendhoff. Test problems for large-scale multiobjective and many-objective optimization. IEEE Transactions on Cybernetics, 2017, 47(12): 4108-4121. DOI: 10.1109/TCYB.2016.2600577.
+
+[Problem cards and sources](../problems/composite/large_scale/LSMOP/README.md) · [Python equations](../src/mop_problems/problems/composite/lsmop.py)
+
+### MMF
+
+Eight fixed two-variable mappings produce multiple decision-space basins. Piecewise shifts, absolute values and fractional powers are retained. Their branch derivatives do not make the full benchmark smooth.
+
+C. Yue, B. Qu, and J. Liang. A multi-objective particle swarm optimizer using ring topology for solving multimodal multiobjective problems. IEEE Transactions on Evolutionary Computation, 2018, 22(5): 805-817.
+
+[Problem cards and sources](../problems/composite/multimodal/MMF/README.md) · [Python equations](../src/mop_problems/problems/composite/mmf.py)
+
+### FDA
+
+The snapshot parameter $t$ enters $G(t)=\sin(\pi t/2)$ and the corresponding distance/shape maps. FDA2 uses the corrected exponent in the pinned code and an odd variable count to split its tail evenly. No hidden generation counter changes $t$.
+
+M. Farina, K. Deb, and P. Amato. Dynamic multiobjective optimization problems: Test cases, approximations, and applications. IEEE Transactions on Evolutionary Computation, 2004, 8(5): 425-442.
+
+[Problem cards and sources](../problems/composite/dynamic/FDA/README.md) · [Python equations](../src/mop_problems/problems/composite/fda.py)
+
+### JY
+
+Original unit-box decisions map tail variables by $z_j=2x_j-1$. Sinusoidal time functions control linkage and front shape. JY3 follows the October 2016 header; JY8 restores its missing `pow` call. Jacobians hold time fixed.
+
+Jiang, S. and Yang, S. (2017). Evolutionary Dynamic Multiobjective Optimization: Benchmarks and Algorithm Comparisons. IEEE Transactions on Cybernetics 47(1), 198-211. DOI: 10.1109/TCYB.2015.2510698.
+
+[Problem cards and sources](../problems/composite/dynamic/JY/README.md) · [Python equations](../src/mop_problems/problems/composite/jy.py)
+
+### re-continuous
+
+Engineering response equations retain the original suite objective directions and positive-part violation objectives. There is no external constraint vector for these RE models. Deterministic continuous membership and excluded integer/stochastic cases are listed in the taxonomy.
+
+Tanabe, R. and Ishibuchi, H. (2020). An easy-to-use real-world multi-objective optimization problem suite. Applied Soft Computing 89, 106078. DOI: 10.1016/j.asoc.2020.106078.
+
+[Problem cards and sources](../problems/composite/real_world/RE_continuous/README.md) · [Python equations](../src/mop_problems/problems/composite/real_engineering.py)
+
+### RWA
+
+Ten application response models follow the pinned jMetalPy equations. Any maximized response is negated in the all-minimization vector; each card lists response names and sign changes. The model is box constrained.
+
+Zapotecas-Martinez, S., Garcia-Najera, A. and Menchaca-Mendez, A. (2023). Engineering applications of multi-objective evolutionary algorithms: A test suite of box-constrained real-world problems. Engineering Applications of Artificial Intelligence 123, 106192. DOI: 10.1016/j.engappai.2023.106192.
+
+[Problem cards and sources](../problems/composite/real_world/RWA/README.md) · [Python equations](../src/mop_problems/problems/composite/rwa.py)
+
+### CTP
+
+The default distance is $g=1+\sum_{j>1}x_j$; `multimodal` selects the Rastrigin alternative. CTP1 uses exponential constraint envelopes; CTP2–8 rotate objective coordinates and impose sinusoidal bands. Raw residuals are used, without division by a vanishing sine amplitude.
+
+Deb, K., Pratap, A. and Meyarivan, T. (2001). Constrained Test Problems for Multi-objective Evolutionary Optimization. EMO 2001, LNCS 1993, 284-298. DOI: 10.1007/3-540-44719-9_20.
+
+[Problem cards and sources](../problems/constrained/classic/CTP/README.md) · [Python equations](../src/mop_problems/problems/constrained/ctp.py)
+
+### CF
+
+CEC 2009 linkage residuals are partitioned by one-based parity or modulo-three groups. Objective-space inequalities use the declared signs. CF8–10 are undefined where $1-f_3^2=0$; the denominator is not replaced by epsilon.
+
+Zhang et al. (2009). Multiobjective optimization test instances for the CEC 2009 special session and competition.
+
+[Problem cards and sources](../problems/constrained/classic/CF/README.md) · [Python equations](../src/mop_problems/problems/constrained/cf.py)
+
+### DC-DTLZ
+
+Three constraint constructions (position, distance, or combined) are paired with DTLZ1/DTLZ3 objective maps. The pinned DC-DTLZ3 distance coefficient is 10, rather than the standalone DTLZ3 coefficient 100.
+
+K. Li, R. Chen, G. Fu, and X. Yao. Two-archive evolutionary algorithm for constrained multi-objective optimization. IEEE Transactions on Evolutionary Computation, 2019, 23(2): 303-315. DOI: 10.1109/TEVC.2018.2855411.
+
+[Problem cards and sources](../problems/constrained/dtlz_based/DC-DTLZ/README.md) · [Python equations](../src/mop_problems/problems/constrained/dc_dtlz.py)
+
+### EQ-DTLZ
+
+Let $z=(x_1,\ldots,x_{M-1})-0.5$. With one equality, $H_1=\|z\|^2-0.4^2$. With two, $r=0.5$, $H_1=\|z\|^2-r^2$, $H_2=H_1-2rz_{M-1}+r^2$. The paper supplement uses $|H|-10^{-4}$; here tolerance is an evaluation parameter, not part of $H$.
+
+Cuate, O., Uribe, L., Lara, A. and Schuetze, O. (2020). A benchmark for equality constrained multi-objective optimization. Swarm and Evolutionary Computation 52, 100619. DOI: 10.1016/j.swevo.2019.100619.
+
+[Problem cards and sources](../problems/constrained/dtlz_based/Eq-DTLZ/README.md) · [Python equations](../src/mop_problems/problems/constrained/eq_dtlz.py)
+
+### EQ-IDTLZ
+
+The same one/two sphere residuals as Eq-DTLZ are paired with IDTLZ1/2 objectives. `n_obj` must exceed the equality count. The equality Jacobian remains signed even when an equality tolerance is used for feasibility.
+
+Cuate, O., Uribe, L., Lara, A. and Schuetze, O. (2020). A benchmark for equality constrained multi-objective optimization. Swarm and Evolutionary Computation 52, 100619. DOI: 10.1016/j.swevo.2019.100619.
+
+[Problem cards and sources](../problems/constrained/dtlz_based/Eq-IDTLZ/README.md) · [Python equations](../src/mop_problems/problems/constrained/eq_dtlz.py)
+
+### MW
+
+Fourteen objective/constraint geometries follow pymoo 0.6.2, including its coordinate bounds, distance functions and three-or-more-objective variants. MW4/6/11/12/13/14 differ from the pinned PlatEMO formulas; reference fronts must match the selected version.
+
+Z. Ma and Y. Wang. Evolutionary constrained multiobjective optimization: Test suite construction and performance comparisons. IEEE Transactions on Evolutionary Computation, 2019, 23(6): 972-986.
+
+[Problem cards and sources](../problems/constrained/difficult/MW/README.md) · [Python equations](../src/mop_problems/problems/constrained/mw.py)
+
+### LIR-CMOP
+
+Objective-space ellipses, trigonometric bands and radial constraints create large infeasible regions. The adopted formulas include the PlatEMO LIRCMOP2–4 tail shift and LIRCMOP13/14 radial offset. Residuals are signed and unnormalized.
+
+Z. Fan, W. Li, X. Cai, H. Huang, Y. Fang, Y. You, J. Mo, C. Wei, and E. Goodman. An improved epsilon constraint-handling method in MOEA/D for CMOPs with large infeasible regions. Soft Computing, 2019, 23: 12491-12510.
+
+[Problem cards and sources](../problems/constrained/difficult/LIR-CMOP/README.md) · [Python equations](../src/mop_problems/problems/constrained/lir_cmop.py)
+
+### DAS-CMOP
+
+Difficulty factors $(\eta,\zeta,\gamma)$ control diversity, feasible volume and convergence barriers. Presets 1–16 follow pymoo. Problems 1–3 use its tail-only distance; for $\zeta=1$ the near-equality band is an inequality, not an exact equality.
+
+Z. Fan, W. Li, X. Cai, H. Li, C. Wei, Q. Zhang, K. Deb, and E. Goodman. Difficulty adjustable and scalable constrained multi-objective test problem toolkit. Evolutionary Computation, 2020, 28(3): 339-378.
+
+[Problem cards and sources](../problems/constrained/difficult/DAS-CMOP/README.md) · [Python equations](../src/mop_problems/problems/constrained/das_cmop.py)
+
+### DAS-CMAOP
+
+Fan et al. Eq. (8) combines WFG objectives with position bands, a distance interval and spherical objective-space obstacles. Type I residuals are $\eta-\sin(20\pi z_j)$ or $\eta-\cos(20\pi z_j)$. Type II is $(d-0.5)(d-0.5-10^{-2\zeta})$. Type III uses radius $\gamma/2$ after dividing objectives by $2i$. Disabled factors give zero residuals.
+
+Z. Fan, W. Li, X. Cai, H. Li, C. Wei, Q. Zhang, K. Deb, and E. Goodman. Difficulty adjustable and scalable constrained multi-objective test problem toolkit. Evolutionary Computation, 2020, 28(3): 339-378.
+
+[Problem cards and sources](../problems/constrained/difficult/DAS-CMaOP/README.md) · [Python equations](../src/mop_problems/problems/constrained/das_cmaop.py)
+
+### DOC
+
+Nine combinations of decision-space and objective-space constraints retain the published equality bands $|h|-10^{-4}\leq0$ as inequalities. Raw residuals precede the reference implementation\'s positive-part aggregation; logarithmic components require their stated positive domains.
+
+Z. Liu and Y. Wang. Handling constrained multiobjective optimization problems with constraints in both the decision and objective spaces. IEEE Transactions on Evolutionary Computation, 2019, 23(5): 870-884.
+
+[Problem cards and sources](../problems/constrained/difficult/DOC/README.md) · [Python equations](../src/mop_problems/problems/constrained/doc.py)
+
+### NCTP
+
+Types I/II/III each have six instances, registered consecutively as NCTP1–18. With $g=\sum_{j=2}^{n-1}[100(x_{j+1}-x_j^2)^2+(1-x_j)^2]$, the second objective is $g-\sqrt{x_1}$ plus the type-specific offset. Rotated CTP bands and optional linear constraints use raw signed residuals. All variables lie in $[0,5]$.
+
+Li, J.-P., Wang, Y., Yang, S. and Cai, Z. (2016). A comparative study of constraint-handling techniques in evolutionary constrained multiobjective optimization. IEEE CEC, 4175-4182. DOI: 10.1109/CEC.2016.7744320.
+
+[Problem cards and sources](../problems/constrained/difficult/NCTP/README.md) · [Python equations](../src/mop_problems/problems/constrained/nctp.py)
+
+### ZXH-CF
+
+Sixteen multi-objective shape/distance and feasible-region constructions use the pinned PlatEMO definitions. The decision box is $[10^{-10},1-10^{-10}]^n$, preserving the source\'s exclusion of singular endpoints.
+
+Y. Zhou, Y. Xiang, and X. He. Constrained multiobjective optimization: Test problem construction and performance evaluations. IEEE Transactions on Evolutionary Computation, 2021, 25(1): 172-186.
+
+[Problem cards and sources](../problems/constrained/difficult/ZXH_CF/README.md) · [Python equations](../src/mop_problems/problems/constrained/zxh_cf.py)
+
+### LSCMOP
+
+Logistic grouping combines linked CEC 2006 components, distance terms and front shapes. The single constraint is the author\'s aggregate positive violation with numerical cutoffs. Modulo linkage and cutoffs can be discontinuous. The API does not substitute smooth original-component constraints.
+
+Qiao, K., Liang, J., Yu, K., Guo, W., Yue, C., Qu, B. and Suganthan, P. N. (2024). Benchmark problems for large-scale constrained multi-objective optimization with baseline results. Swarm and Evolutionary Computation 86, 101504. DOI: 10.1016/j.swevo.2024.101504.
+
+[Problem cards and sources](../problems/constrained/large_scale/LSCMOP/README.md) · [Python equations](../src/mop_problems/problems/constrained/lscmop.py)
+
+### CMMOP
+
+Fourteen fixed-dimension multimodal objectives use the author\'s feasible-region constructions, including conditional unions. CMMOP8 intentionally retains its identically zero second constraint column. Branch boundaries remain part of the benchmark.
+
+Ming, F., Gong, W., Yang, Y. and Liao, Z. (2023). Constrained multimodal multi-objective optimization: Test problem construction and algorithm design. Swarm and Evolutionary Computation 76, 101209. DOI: 10.1016/j.swevo.2022.101209.
+
+[Problem cards and sources](../problems/constrained/multimodal/CMMOP/README.md) · [Python equations](../src/mop_problems/problems/constrained/cmmop.py)
+
+### CRE
+
+CRE returns engineering objectives plus raw signed constraints. The reference code\'s clipped positive violations equal `maximum(G, 0)` here. This exposes useful constraint gradients inside feasible regions without changing feasibility.
+
+Tanabe, R. and Ishibuchi, H. (2020). An easy-to-use real-world multi-objective optimization problem suite. Applied Soft Computing 89, 106078. DOI: 10.1016/j.asoc.2020.106078.
+
+[Problem cards and sources](../problems/constrained/real_world/CRE/README.md) · [Python equations](../src/mop_problems/problems/composite/real_engineering.py)
+
+### rcm-continuous
+
+The continuous CEC 2021 RCM equations include engineering, harmonic-control, power-flow and dispatch models. Network complex arithmetic is split into real and imaginary parts to propagate decision derivatives. Signed balance equations use $H=0$. RCM5/14 retain explicitly labelled source-code relaxations; RCM50 uses the rowwise quadratic transmission loss.
+
+Kumar, A., Wu, G., Ali, M. Z., Luo, Q., Mallipeddi, R., Suganthan, P. N. and Das, S. (2021). A Benchmark-Suite of real-World constrained multi-objective optimization problems and some baseline results. Swarm and Evolutionary Computation 67, 100961. DOI: 10.1016/j.swevo.2021.100961.
+
+[Problem cards and sources](../problems/constrained/real_world/RCM_continuous/README.md) · [Python equations](../src/mop_problems/problems/constrained/rcm.py)

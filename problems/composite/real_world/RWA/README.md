@@ -2,27 +2,33 @@
 
 # RWA
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/real_world`
 
-Map RWA numbers to named engineering models and convert maximization objectives explicitly.
+RWA1-10, pinned jMetalPy application mappings. Maximization objectives are negated, with application labels and signs recorded per problem.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Zapotecas-Martinez et al. (2023). Engineering applications of multi-objective evolutionary algorithms: A test suite of box-constrained real-world problems. DOI: 10.1016/j.engappai.2023.106192.
+Zapotecas-Martinez, S., Garcia-Najera, A. and Menchaca-Mendez, A. (2023). Engineering applications of multi-objective evolutionary algorithms: A test suite of box-constrained real-world problems. Engineering Applications of Artificial Intelligence 123, 106192. DOI: 10.1016/j.engappai.2023.106192.
 
-[Source / 参考来源](https://jmetal.github.io/jMetalPy/api/problems/)
+[Source / 参考来源](https://github.com/jMetal/jMetalPy/blob/fe3cd718748bea9ae59404fb70bf0e0bfe4167c9/src/jmetal/problem/multiobjective/rwa.py)
 
 ## Members / 成员
 
-Target members: `RWA1`, `RWA2`, `RWA3`, `RWA4`, `RWA5`, `RWA6`, `RWA7`, `RWA8`, `RWA9`, `RWA10`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [RWA1](RWA1/README.md) | 5 | 2 | 0 | 0 | no |
+| [RWA2](RWA2/README.md) | 5 | 3 | 0 | 0 | no |
+| [RWA3](RWA3/README.md) | 3 | 3 | 0 | 0 | no |
+| [RWA4](RWA4/README.md) | 5 | 3 | 0 | 0 | no |
+| [RWA5](RWA5/README.md) | 9 | 3 | 0 | 0 | no |
+| [RWA6](RWA6/README.md) | 4 | 3 | 0 | 0 | no |
+| [RWA7](RWA7/README.md) | 4 | 3 | 0 | 0 | no |
+| [RWA8](RWA8/README.md) | 4 | 4 | 0 | 0 | no |
+| [RWA9](RWA9/README.md) | 6 | 5 | 0 | 0 | no |
+| [RWA10](RWA10/README.md) | 3 | 7 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

@@ -2,27 +2,31 @@
 
 # IMOP
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/irregular`
 
-Irregular fronts; verify each front's dimension and disconnected regions.
+IMOP1-8, including irregular and disconnected fronts; alpha1=0.05, alpha2=10, k=5 by default.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Tian et al. (2019). Diversity assessment of multi-objective evolutionary algorithms: Performance metric and benchmark problems.
+Y. Tian, R. Cheng, X. Zhang, M. Li, and Y. Jin. Diversity assessment of multi-objective evolutionary algorithms: Performance metric and benchmark problems. IEEE Computational Intelligence Magazine, 2019, 14(3): 61-74.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/IMOP/IMOP1.m)
 
 ## Members / 成员
 
-Target members: `IMOP1`, `IMOP2`, `IMOP3`, `IMOP4`, `IMOP5`, `IMOP6`, `IMOP7`, `IMOP8`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [IMOP1](IMOP1/README.md) | 10 | 2 | 0 | 0 | no |
+| [IMOP2](IMOP2/README.md) | 10 | 2 | 0 | 0 | no |
+| [IMOP3](IMOP3/README.md) | 10 | 2 | 0 | 0 | no |
+| [IMOP4](IMOP4/README.md) | 10 | 3 | 0 | 0 | no |
+| [IMOP5](IMOP5/README.md) | 10 | 3 | 0 | 0 | no |
+| [IMOP6](IMOP6/README.md) | 10 | 3 | 0 | 0 | no |
+| [IMOP7](IMOP7/README.md) | 10 | 3 | 0 | 0 | no |
+| [IMOP8](IMOP8/README.md) | 10 | 3 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

@@ -6,9 +6,13 @@
 [梯度与光滑性](docs/gradients.md) · [内置算法与对比指南](docs/algorithms.md)
 
 这个仓库采用 Python + NumPy，统一管理问题定义、变量边界、约束、参考文献和测试。
-0.3.0 版保留清单中的 **43 个问题族或独立问题条目**，其中 **15 个条目下的 47 个具体问题已经实现**。
-其余条目明确标为 `planned`，有来源和待核验说明，不代表已经可以运行。
-全部 47 个问题已提供一阶导数接口，并内置五类梯度/近端算法作为研究基线。
+0.4.0 版覆盖清单中全部 **43 个问题族或独立问题条目，共 343 个可调用问题**。
+原先 28 个 `planned` 问题族新增了 296 个实现，当前 `planned` 列表为空。
+每个问题都有目标/约束 Jacobian、光滑性说明、原始论文和参考实现版本。
+新增问题全部具有独立参考数值测试；库仍处于研究用 alpha 阶段。
+
+[问题及论文目录](problems/README.md) · [文献索引](docs/problem-references.md) ·
+[新增问题调用示例](docs/expanded-benchmarks.md) · [核验与版本差异](docs/expanded-validation.md)
 
 ## 安装与调用
 
@@ -36,22 +40,25 @@ print(result.G)  # [[-8.0, -57.3]]，全部 <= 0，所以可行
 problem = get_problem("DTLZ2", n_obj=5)
 print(problem.n_var)  # 14；按 n_obj + k - 1 确定默认维度
 print(list_problems())  # 仅返回可运行问题
-print(list_suites(status="planned"))  # 查询待实现的问题族
+print(list_suites(status="planned"))  # 当前返回 []
 ```
 
 ## 当前实现范围
 
-| 分类 | 已实现问题 |
+| Family | Callable members |
 | --- | --- |
-| ZDT | ZDT1、ZDT2、ZDT3、ZDT4、ZDT6 |
-| DTLZ | DTLZ1–DTLZ7 |
-| 无约束经典问题 | SCH、FON、POL |
-| 约束经典问题 | BNH、TNK、OSY、SRN |
-| 变换与非可分问题 | WFG1–WFG9 |
-| 变量耦合问题 | UF1–UF10 |
-| 多个等价最优解集 | Omni-test、SYM-PART、SYM-PART-Rotated |
-| 基于 DTLZ 的约束问题 | C1-DTLZ1、C1-DTLZ3、C2-DTLZ2、C3-DTLZ1、C3-DTLZ4 |
-| 工程设计问题 | Welded-Beam（明确采用 pymoo 0.6.2 的双目标、四约束版本） |
+| ZDT / DTLZ | ZDT1/2/3/4/6; DTLZ1–7 |
+| Classics | SCH, FON, POL; BNH, TNK, OSY, SRN |
+| Transformations | WFG1–9; IDTLZ1/2; SDTLZ1/2 |
+| Linkage | UF1–10; LZ09_F1–9 |
+| Irregular / many-objective | IMOP1–8; MaF1–15; ZCAT1–20 |
+| Large-scale | LSMOP1–9; LSCMOP1–12 (author names LSCM1–12) |
+| Multimodal | MMF1–8; Omni-test; SYM-PART / SYM-PART-Rotated; CMMOP1–14 |
+| Dynamic | FDA1–5; JY1–8, explicit fixed-time snapshots |
+| Classical constraints | CTP1–8; CF1–10 |
+| DTLZ constraints | Five C-DTLZ variants; six DC-DTLZ variants; Eq-DTLZ1–4; Eq-IDTLZ1/2 |
+| Difficult constraints | MW1–14; LIRCMOP1–14; DASCMOP1–9; DASCMaOP1–9; DOC1–9; NCTP1–18; ZXH_CF1–16 |
+| Engineering | 10 RE; 10 RWA; 6 CRE; Welded-Beam; 39 RCM continuous definitions, including two explicitly labelled disk-count relaxations |
 
 ## 梯度算法与统一对比
 
@@ -94,7 +101,8 @@ GD 支持固定步长、Armijo、最大值非单调和平均值非单调线搜�
 
 所有目标默认最小化；不等式返回 `G ≤ 0`，等式返回 `H = 0`。
 单个解也返回二维目标矩阵，无约束时 `G`、`H` 的形状为 `(N, 0)`。
-接口校验维度、非有限数值和变量边界，不会自动裁剪输入或把约束混入目标值。
+接口校验维度、非有限数值和变量边界。RE 保留文献定义的违反量目标；
+LSCMOP 保留作者聚合违反量约束。MaF9 采样还会排除原定义中的无效多边形。
 `CV` 是原始约束违反量的和，因此不能直接比较不同问题的 `CV` 大小。
 随机采样只保证满足变量边界，不保证满足一般约束。
 
@@ -116,17 +124,27 @@ python examples/representative_suite.py --samples 2000 --seed 42
 
 ![多个等价 Pareto 解集及其共同前沿](docs/assets/multimodal_sets.png)
 
+新增问题的计算、梯度、动态快照和等式可行点示例：
+
+```sh
+python examples/expanded_benchmarks.py --samples 1000 --seed 42
+```
+
+生成 CSV、含论文/版本的 JSON 清单以及三张图。使用 `--no-plots` 可仅依赖 NumPy。
+完整说明见[新增基准实验](docs/expanded-benchmarks.md)。
+
 ## 分类和来源约定
 
 - `problems/` 完整保留你给的三级分类，可以直接在 GitHub 中浏览。
 - 实际代码位于 `src/mop_problems/`；目录卡片由同一份 JSON 元数据生成，避免状态不一致。
 - `unconstrained_smooth` 是分类名称，不保证每个问题处处可微。
 - ZDT5 是二进制问题，本仓库没有把它混入连续 ZDT；DTLZ8/9 也没有混入无约束 DTLZ。
-- `RE_continuous`、`RCM_continuous` 的连续成员要逐个核验，不会静默做连续松弛或取整。
-- SYM-PART 已实现普通版和旋转版；扭曲版没有混入同一名称。MMF 仍待实现。
-- 等式和动态问题的目录已经建立；当前尚未提供这些问题的公式实现。
+- `RE_continuous` 包含 10 个确定性连续问题；`RCM_continuous` 包含 39 个来源代码定义，RCM5/14 的盘片数量连续松弛已明确标注。
+- SYM-PART 已实现普通版和旋转版；扭曲版没有混入同一名称。MMF1–8 已实现。
+- Eq-DTLZ/IDTLZ 使用真正的等式残差 `H`；FDA/JY 使用显式时间，不随求值次数变化。
 
-来源包括原论文、作者提供的材料及参考实现。发现来源不等于完成数值验证。
+来源包括原论文、作者提供的材料及参考实现，均列在每个问题的卡片中。
+可通过 `get_problem_info("NCTP1")["references"]` 直接导出论文信息。
 每个问题从 `planned` 变为 `implemented` 前，都需要公式、边界、约束和独立测试。
 
 ## 开发与检查

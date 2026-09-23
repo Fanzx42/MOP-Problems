@@ -2,27 +2,25 @@
 
 # IDTLZ
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/transformed`
 
-Selected inverted DTLZ1/2 definitions; do not conflate inversion with arbitrary sign changes.
+Inverted DTLZ1/2: subtract each base objective from its common radial factor.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Jain and Deb (2014). NSGA-III, Part II: Handling constraints and extending to an adaptive approach.
+H. Jain and K. Deb. An evolutionary many-objective optimization algorithm using reference-point based non-dominated sorting approach, part II: Handling constraints and extending to an adaptive approach. IEEE Transactions on Evolutionary Computation, 2014, 18(4): 602-622.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DTLZ/IDTLZ1.m)
 
 ## Members / 成员
 
-Target members: `IDTLZ1`, `IDTLZ2`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [IDTLZ1](IDTLZ1/README.md) | 7 | 3 | 0 | 0 | yes |
+| [IDTLZ2](IDTLZ2/README.md) | 12 | 3 | 0 | 0 | yes |
 
 [Full catalogue](../../../README.md)

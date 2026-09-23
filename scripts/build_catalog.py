@@ -31,9 +31,12 @@ def render() -> dict[Path, str]:
         "# Problem catalogue / 问题目录",
         "",
         f"{len(suites)} catalogue entries; **{len(problems)} callable problems**. "
-        "`planned` means documentation only, with no Python implementation.",
+        "See each problem card for its paper, code version, domain and derivatives.",
         "",
-        "完整保留原始分类。`planned` 为待实现条目，不会返回替代函数或占位数值。",
+        "完整保留原始分类；每个问题都可查看公式实现、论文出处、版本差异和梯度适用条件。",
+        "",
+        "[全部问题的文献索引](../docs/problem-references.md) · "
+        "[新增问题使用示例](../docs/expanded-benchmarks.md)",
         "",
         "| Suite / 问题族 | Category | Status | Callable |",
         "| --- | --- | --- | ---: |",
@@ -88,7 +91,7 @@ def render() -> dict[Path, str]:
                     "",
                     f"[Python formula]({link(details, ROOT / 'src' / implementation)}) · "
                     f"[Mathematical definition]({link(details, ROOT / 'docs/formulas.md')}"
-                    f"#{name.lower()})",
+                    f"#{p.get('formula_anchor', name.lower())})",
                     "",
                     f"- Decision bounds: `{p['lower_bounds']}` to `{p['upper_bounds']}` "
                     "(scalar bounds broadcast to all variables).",
@@ -99,6 +102,7 @@ def render() -> dict[Path, str]:
                     f"[Jacobian contract]({link(details, ROOT / 'docs/gradients.md')}).",
                     f"- Derivative notes: {p['derivatives']['notes']}",
                     "- All objectives are minimized; constraints use `G <= 0`, `H = 0`.",
+                    f"- Constraint representation: {p['derivatives']['constraint_convention']}.",
                     f"- Notes: {p['notes'] or 'See the common API contract.'}",
                     "",
                     "```python",
@@ -110,6 +114,23 @@ def render() -> dict[Path, str]:
                     "jac = problem.jacobian(problem.sample(1, seed=238))",
                     "print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above",
                     "```",
+                    "",
+                ]
+                detail_lines += ["### Paper / 论文出处", ""]
+                for ref in p["references"]:
+                    detail_lines += [
+                        f"- {ref['citation']}",
+                        f"  [Source]({ref['url']}) · citation key: `{ref['key']}`.",
+                    ]
+                reference = p["reference_implementation"]
+                detail_lines += [
+                    "",
+                    f"[Reference implementation / 对照实现]({reference['url']})",
+                    "",
+                    f"Version: `{reference['version']}`.",
+                    "",
+                    "Implementation and variant notes above are part of the benchmark definition; "
+                    "cite the paper and record this version when reporting experiments.",
                     "",
                 ]
                 if details != target:
@@ -143,6 +164,31 @@ def render() -> dict[Path, str]:
         content += ["", f"[Full catalogue]({link(target, index)})", ""]
         documents[target] = "\n".join(content)
     documents[index] = "\n".join([*lines, ""])
+    refs_page = ROOT / "docs/problem-references.md"
+    refs_lines = [
+        NOTICE,
+        "# Problem references / 问题文献索引",
+        "",
+        "每个可调用问题的卡片和 `get_problem_info(name)['references']` 都包含论文出处。"
+        "DOI 仅在已核实的情况下列出；技术报告、学位论文和部分早期会议文章使用来源链接。"
+        "工程问题同时记录基准套件论文与采用的代码版本；它们不等同于原始工程模型的所有历史版本。",
+        "",
+    ]
+    for suite in suites:
+        members = [p for p in problems if p["suite"] == suite["id"]]
+        if not members:
+            continue
+        refs_lines += [f"## {suite['name']}", ""]
+        for ref in members[0]["references"]:
+            refs_lines += [ref["citation"], "", f"[Source]({ref['url']})", ""]
+        refs_lines += [
+            "Problems: " + ", ".join(f"`{p['name']}`" for p in members),
+            "",
+            "[Definitions and version notes]"
+            f"({link(refs_page, ROOT / suite['path'] / 'README.md')})",
+            "",
+        ]
+    documents[refs_page] = "\n".join(refs_lines)
     # Every directory level can be browsed on GitHub without an empty placeholder.
     for category in sorted(
         {s["category"] for s in suites} | {s["category"].split("/")[0] for s in suites}

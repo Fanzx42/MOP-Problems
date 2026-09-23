@@ -2,27 +2,37 @@
 
 # MW
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/difficult`
 
-Implement and validate all shape, distance and constraint components.
+MW1-14 follow pymoo 0.6.2. Published implementations differ in MW4/6/11/12/13/14; do not mix reference fronts or boxes from other versions.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Ma and Wang (2019). Evolutionary constrained multiobjective optimization: Test suite construction and performance comparisons.
+Z. Ma and Y. Wang. Evolutionary constrained multiobjective optimization: Test suite construction and performance comparisons. IEEE Transactions on Evolutionary Computation, 2019, 23(6): 972-986.
 
-[Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/MW/MW1.m)
+[Source / 参考来源](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/mw.py)
 
 ## Members / 成员
 
-Target members: `MW1`, `MW2`, `MW3`, `MW4`, `MW5`, `MW6`, `MW7`, `MW8`, `MW9`, `MW10`, `MW11`, `MW12`, `MW13`, `MW14`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [MW1](MW1/README.md) | 15 | 2 | 1 | 0 | no |
+| [MW2](MW2/README.md) | 15 | 2 | 1 | 0 | no |
+| [MW3](MW3/README.md) | 15 | 2 | 2 | 0 | no |
+| [MW4](MW4/README.md) | 15 | 3 | 1 | 0 | no |
+| [MW5](MW5/README.md) | 15 | 2 | 3 | 0 | no |
+| [MW6](MW6/README.md) | 15 | 2 | 1 | 0 | no |
+| [MW7](MW7/README.md) | 15 | 2 | 2 | 0 | no |
+| [MW8](MW8/README.md) | 15 | 3 | 1 | 0 | no |
+| [MW9](MW9/README.md) | 15 | 2 | 1 | 0 | no |
+| [MW10](MW10/README.md) | 15 | 2 | 3 | 0 | no |
+| [MW11](MW11/README.md) | 15 | 2 | 4 | 0 | no |
+| [MW12](MW12/README.md) | 15 | 2 | 2 | 0 | no |
+| [MW13](MW13/README.md) | 15 | 2 | 2 | 0 | no |
+| [MW14](MW14/README.md) | 15 | 3 | 1 | 0 | no |
 
 [Full catalogue](../../../README.md)

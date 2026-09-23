@@ -2,27 +2,39 @@
 
 # ZXH_CF
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/difficult`
 
-Distinct from CEC 2009 CF. Keep the user's underscore spelling as the display name.
+ZXH_CF1-16, pinned PlatEMO definitions, box [1e-10,1-1e-10].
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Zhou, Xiang and He (2021). Constrained multiobjective optimization: Test problem construction and performance evaluations.
+Y. Zhou, Y. Xiang, and X. He. Constrained multiobjective optimization: Test problem construction and performance evaluations. IEEE Transactions on Evolutionary Computation, 2021, 25(1): 172-186.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/ZXH_CF/ZXH_CF1.m)
 
 ## Members / 成员
 
-Target members: `ZXH_CF1`, `ZXH_CF2`, `ZXH_CF3`, `ZXH_CF4`, `ZXH_CF5`, `ZXH_CF6`, `ZXH_CF7`, `ZXH_CF8`, `ZXH_CF9`, `ZXH_CF10`, `ZXH_CF11`, `ZXH_CF12`, `ZXH_CF13`, `ZXH_CF14`, `ZXH_CF15`, `ZXH_CF16`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [ZXH_CF1](ZXH_CF1/README.md) | 13 | 3 | 1 | 0 | no |
+| [ZXH_CF2](ZXH_CF2/README.md) | 13 | 3 | 2 | 0 | no |
+| [ZXH_CF3](ZXH_CF3/README.md) | 13 | 3 | 2 | 0 | no |
+| [ZXH_CF4](ZXH_CF4/README.md) | 13 | 3 | 2 | 0 | no |
+| [ZXH_CF5](ZXH_CF5/README.md) | 13 | 3 | 3 | 0 | no |
+| [ZXH_CF6](ZXH_CF6/README.md) | 13 | 3 | 4 | 0 | no |
+| [ZXH_CF7](ZXH_CF7/README.md) | 13 | 3 | 4 | 0 | no |
+| [ZXH_CF8](ZXH_CF8/README.md) | 13 | 3 | 4 | 0 | no |
+| [ZXH_CF9](ZXH_CF9/README.md) | 13 | 3 | 3 | 0 | no |
+| [ZXH_CF10](ZXH_CF10/README.md) | 13 | 3 | 4 | 0 | no |
+| [ZXH_CF11](ZXH_CF11/README.md) | 13 | 3 | 4 | 0 | no |
+| [ZXH_CF12](ZXH_CF12/README.md) | 13 | 3 | 4 | 0 | no |
+| [ZXH_CF13](ZXH_CF13/README.md) | 13 | 3 | 3 | 0 | no |
+| [ZXH_CF14](ZXH_CF14/README.md) | 13 | 3 | 4 | 0 | no |
+| [ZXH_CF15](ZXH_CF15/README.md) | 13 | 3 | 4 | 0 | no |
+| [ZXH_CF16](ZXH_CF16/README.md) | 13 | 3 | 4 | 0 | no |
 
 [Full catalogue](../../../README.md)

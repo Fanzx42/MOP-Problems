@@ -2,27 +2,32 @@
 
 # DAS-CMOP
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/difficult`
 
-Record the diversity, feasibility and convergence difficulty triplet.
+DASCMOP1-9, difficulty presets 1-16 or explicit (eta,zeta,gamma). Uses pymoo 0.6.2 tail-only g for 1-3, which differs from the PlatEMO all-variable sum. Disabled constraints stay nonpositive.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Fan et al. (2020). Difficulty adjustable and scalable constrained multi-objective test problem toolkit.
+Z. Fan, W. Li, X. Cai, H. Li, C. Wei, Q. Zhang, K. Deb, and E. Goodman. Difficulty adjustable and scalable constrained multi-objective test problem toolkit. Evolutionary Computation, 2020, 28(3): 339-378.
 
-[Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DAS-CMOP/DASCMOP1.m)
+[Source / 参考来源](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/dascmop.py)
 
 ## Members / 成员
 
-Target members: `DASCMOP1`, `DASCMOP2`, `DASCMOP3`, `DASCMOP4`, `DASCMOP5`, `DASCMOP6`, `DASCMOP7`, `DASCMOP8`, `DASCMOP9`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [DASCMOP1](DASCMOP1/README.md) | 30 | 2 | 11 | 0 | no |
+| [DASCMOP2](DASCMOP2/README.md) | 30 | 2 | 11 | 0 | no |
+| [DASCMOP3](DASCMOP3/README.md) | 30 | 2 | 11 | 0 | no |
+| [DASCMOP4](DASCMOP4/README.md) | 30 | 2 | 11 | 0 | no |
+| [DASCMOP5](DASCMOP5/README.md) | 30 | 2 | 11 | 0 | no |
+| [DASCMOP6](DASCMOP6/README.md) | 30 | 2 | 11 | 0 | no |
+| [DASCMOP7](DASCMOP7/README.md) | 30 | 3 | 7 | 0 | no |
+| [DASCMOP8](DASCMOP8/README.md) | 30 | 3 | 7 | 0 | no |
+| [DASCMOP9](DASCMOP9/README.md) | 30 | 3 | 7 | 0 | no |
 
 [Full catalogue](../../../README.md)

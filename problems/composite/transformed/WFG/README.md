@@ -12,7 +12,7 @@ Source status: `identified`. Identifying a source is separate from validating an
 
 ## Reference / 来源
 
-Huband et al. (2006). A review of multiobjective test problems and a scalable test problem toolkit.
+Huband, S., Hingston, P., Barone, L. and While, L. (2006). A review of multiobjective test problems and a scalable test problem toolkit. IEEE Transactions on Evolutionary Computation 10(5), 477-506. DOI: 10.1109/TEVC.2005.861417.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/WFG/WFG1.m)
 

@@ -2,27 +2,32 @@
 
 # DOC
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/difficult`
 
-Constraints occur in both decision and objective spaces.
+DOC1-9 retain original equality bands abs(h)-1e-4 as G inequalities, but remove positive-part clipping and batch normalization from raw constraint residuals.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Liu and Wang (2019). Handling constrained multiobjective optimization problems with constraints in both the decision and objective spaces.
+Z. Liu and Y. Wang. Handling constrained multiobjective optimization problems with constraints in both the decision and objective spaces. IEEE Transactions on Evolutionary Computation, 2019, 23(5): 870-884.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DOC/DOC1.m)
 
 ## Members / 成员
 
-Target members: `DOC1`, `DOC2`, `DOC3`, `DOC4`, `DOC5`, `DOC6`, `DOC7`, `DOC8`, `DOC9`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [DOC1](DOC1/README.md) | 6 | 2 | 7 | 0 | no |
+| [DOC2](DOC2/README.md) | 16 | 2 | 7 | 0 | no |
+| [DOC3](DOC3/README.md) | 10 | 2 | 10 | 0 | no |
+| [DOC4](DOC4/README.md) | 8 | 2 | 6 | 0 | no |
+| [DOC5](DOC5/README.md) | 8 | 2 | 9 | 0 | no |
+| [DOC6](DOC6/README.md) | 11 | 2 | 10 | 0 | no |
+| [DOC7](DOC7/README.md) | 11 | 2 | 6 | 0 | no |
+| [DOC8](DOC8/README.md) | 10 | 3 | 7 | 0 | no |
+| [DOC9](DOC9/README.md) | 11 | 3 | 14 | 0 | no |
 
 [Full catalogue](../../../README.md)

@@ -37,7 +37,13 @@ def test_batch_contract_and_metadata(name):
 @pytest.mark.parametrize("name", list_problems())
 def test_boundaries_sampling_and_immutability(name):
     p = get_problem(name)
-    out = p.evaluate(np.vstack((p.xl, p.xu, (p.xl + p.xu) / 2)))
+    boundary_points = np.vstack((p.xl, p.xu, (p.xl + p.xu) / 2))
+    if name in ("RCM20", "RCM47", "RCM48", "RCM49"):
+        # R=Ro (bearing) / zero voltage (droop) are genuine formula singularities.
+        with np.errstate(all="ignore"), pytest.raises(FloatingPointError):
+            p.evaluate(boundary_points)
+        boundary_points = p.sample(3, seed=41)
+    out = p.evaluate(boundary_points)
     assert np.isfinite(out.F).all()
     assert np.isfinite(out.G).all()
     assert_array_equal(p.sample(5, seed=18), p.sample(5, seed=18))

@@ -2,11 +2,11 @@
 
 # LZ09
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/linkage`
 
-Specify each linkage and shape setting; identifiers are LZ09_F1 through LZ09_F9.
+jMetal LZ09_F1-9 numbering and unit decision box; internal transformations define the linked Pareto set.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
@@ -14,15 +14,20 @@ Source status: `identified`. Identifying a source is separate from validating an
 
 Li and Zhang (2009). Multiobjective optimization problems with complicated Pareto sets, MOEA/D and NSGA-II.
 
-[Source / 参考来源](https://jmetalcpp.sourceforge.net/problems.html)
+[Source / 参考来源](https://github.com/jMetal/jMetalPy/blob/fe3cd718748bea9ae59404fb70bf0e0bfe4167c9/src/jmetal/problem/multiobjective/lz09.py)
 
 ## Members / 成员
 
-Target members: `LZ09_F1`, `LZ09_F2`, `LZ09_F3`, `LZ09_F4`, `LZ09_F5`, `LZ09_F6`, `LZ09_F7`, `LZ09_F8`, `LZ09_F9`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [LZ09_F1](LZ09_F1/README.md) | 10 | 2 | 0 | 0 | no |
+| [LZ09_F2](LZ09_F2/README.md) | 30 | 2 | 0 | 0 | no |
+| [LZ09_F3](LZ09_F3/README.md) | 30 | 2 | 0 | 0 | no |
+| [LZ09_F4](LZ09_F4/README.md) | 30 | 2 | 0 | 0 | no |
+| [LZ09_F5](LZ09_F5/README.md) | 30 | 2 | 0 | 0 | no |
+| [LZ09_F6](LZ09_F6/README.md) | 10 | 3 | 0 | 0 | no |
+| [LZ09_F7](LZ09_F7/README.md) | 10 | 2 | 0 | 0 | no |
+| [LZ09_F8](LZ09_F8/README.md) | 10 | 2 | 0 | 0 | no |
+| [LZ09_F9](LZ09_F9/README.md) | 30 | 2 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

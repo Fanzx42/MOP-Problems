@@ -4,4 +4,4 @@
 
 [Full catalogue](../../README.md)
 
-- [LSMOP](LSMOP/README.md) — **planned**
+- [LSMOP](LSMOP/README.md) — **implemented**

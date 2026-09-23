@@ -33,6 +33,61 @@ def derivative_info(problem):
         notes = (
             "Constraint angle is undefined at the origin; its assigned value is not differentiable."
         )
+    elif name.startswith(("LSCMOP", "MMF", "CMMOP", "ZCAT")):
+        smoothness = (
+            "piecewise_discontinuous" if name.startswith(("LSCMOP", "ZCAT")) else "piecewise"
+        )
+        notes = (
+            "Piecewise formulas, absolute values, branch switches or numerical cutoffs; "
+            "classical derivatives apply only within regular branches. Check the problem card."
+        )
+    elif name in ("IMOP5", "IMOP6"):
+        smoothness = "piecewise_discontinuous"
+        notes = "Shape step functions can jump; derivatives apply only within regular branches."
+    elif name.startswith(("MaF", "LSMOP", "IMOP", "CF", "MW", "DOC", "CTP", "NCTP", "DASCMaOP")):
+        smoothness = "piecewise"
+        notes = (
+            "This family includes fractional powers, abs/min/max or piecewise reductions; "
+            "use regular interior points and check derivatives before a gradient experiment."
+        )
+        if name.startswith("CF") and int(name[2:]) >= 8:
+            notes += (
+                " Constraints are undefined when 1-f3**2=0; no denominator clipping is applied."
+            )
+        if name.startswith(("NCTP", "DOC")):
+            notes += (
+                " Oscillatory constraints can require small difference steps "
+                "at large objective values."
+            )
+    elif name.startswith(("LZ09", "FDA", "JY", "DASCMOP")):
+        smoothness = "interior"
+        notes = "Fractional powers or square roots may be singular at boundary points."
+        if name.startswith(("FDA", "JY")):
+            notes += (
+                " Jacobians are with respect to x at fixed, explicit time; not time derivatives."
+            )
+        if name == "JY3":
+            smoothness = "piecewise"
+            notes += " The distance linkage includes an absolute value."
+    elif name.startswith("RE") and not name.startswith("RCM"):
+        smoothness = "piecewise" if name not in ("RE21", "RE34", "RE37") else "smooth"
+        notes = "RE penalty objectives include positive-part constraint violations (kinks at zero)."
+        if name in ("RE21", "RE34", "RE37"):
+            notes = "Smooth engineering formula on the declared box."
+        if name == "RE42":
+            notes += " Ship-design fractional powers require positive displacement and deadweight."
+    elif name.startswith("RCM"):
+        smoothness = "interior"
+        notes = (
+            "Engineering formulas contain divisions, square roots or fractional powers; "
+            "some points inside the box can be singular. Nonfinite evaluations raise an error."
+        )
+        if name in ("RCM2", "RCM24"):
+            smoothness = "piecewise"
+            notes += " Absolute-value branches are present."
+    elif name.startswith("CRE"):
+        smoothness = "interior"
+        notes = "Raw engineering constraints; divisions/fractional powers require a regular domain."
     alpha = getattr(problem, "alpha", getattr(getattr(problem, "_base", None), "alpha", None))
     if alpha is not None and alpha < 1:
         smoothness = "interior"
@@ -51,12 +106,19 @@ def derivative_info(problem):
         else "none",
         "notes": notes,
         "hessian": False,
-        "constraint_convention": "raw G <= 0, H = 0; box derivatives are not included",
+        "constraint_convention": (
+            "author aggregate violation G <= 0, H = 0; zero on feasible branches"
+            if name.startswith("LSCMOP")
+            else "raw G <= 0, H = 0; box derivatives are not included"
+        ),
     }
 
 
 def finite_difference(problem, X, *, relative_step=None) -> Jacobian:
     """Three-point differences: central inside, second-order one-sided at bounds.
+
+    Coordinate scales are min(max(1, abs(x)), box width), so micro-unit engineering
+    variables receive micro-unit perturbations rather than a large fraction of their box.
 
     This is an explicitly approximate oracle. It cannot diagnose differentiability.
     Costs (1 + 2*n_var) vector evaluations per point, including the shared centre.
@@ -68,7 +130,9 @@ def finite_difference(problem, X, *, relative_step=None) -> Jacobian:
     centre = problem.evaluate(x)
     jac = [np.empty((len(x), a.shape[1], problem.n_var)) for a in (centre.F, centre.G, centre.H)]
     for j in range(problem.n_var):
-        h = np.minimum(step * np.maximum(1, np.abs(x[:, j])), (problem.xu[j] - problem.xl[j]) / 4)
+        width = problem.xu[j] - problem.xl[j]
+        scale = np.minimum(np.maximum(1, np.abs(x[:, j])), width)
+        h = np.minimum(step * scale, width / 4)
         forward = x[:, j] - h < problem.xl[j]
         backward = x[:, j] + h > problem.xu[j]
         a, b = x.copy(), x.copy()

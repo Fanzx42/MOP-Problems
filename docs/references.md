@@ -2,73 +2,32 @@
 
 The problem cards contain per-family sources and outstanding version questions.
 Sources were consulted on 2026-09-23. This repository implements the formulas in
-its own NumPy code; no external source files are bundled.
+NumPy code, with declared MIT engineering adaptations and source attributions.
 
-## Implemented definitions
+## Problem papers and exact implementation versions
 
-- Zitzler, Deb and Thiele (2000), [Comparison of multiobjective evolutionary
-  algorithms: Empirical results](https://doi.org/10.1162/106365600568202).
-  [Authors' test-problem materials](https://sop.tik.ee.ethz.ch/download/supplementary/testProblemSuite/).
-- Deb, Thiele, Laumanns and Zitzler, [Scalable Test Problems for Evolutionary
-  Multiobjective Optimization](https://doi.org/10.1007/1-84628-137-7_6).
-  [Authors' PISA DTLZ material](https://sop.tik.ee.ethz.ch/pisa/variators/dtlz/index.html)
-  links the CEC 2002 paper and the expanded chapter.
-- SCH, FON and POL: [MOEA Framework problem sources](https://github.com/MOEAFramework/MOEAFramework/tree/9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5/src/org/moeaframework/problem/misc).
-  FON corresponds to `Fonseca2`. The SCH decision interval differs between
-  implementations; we use `[-1000,1000]`. POL's positive minimization form is
-  equivalent to maximizing the negatives in MOEA Framework. Original POL article
-  details are still to be completed; they are not invented in the bibliography.
-- BNH, TNK, OSY and SRN: [pymoo test problems](https://pymoo.org/problems/test_problems.html)
-  and its [versioned source](https://github.com/anyoptimization/pymoo/tree/0.6.2/pymoo/problems/multi).
-  Raw constraint scales in this repository are documented in [formulas](formulas.md).
-- WFG1–9: Huband, Hingston, Barone and While (2006),
-  [A Review of Multiobjective Test Problems and a Scalable Test Problem Toolkit](https://doi.org/10.1109/TEVC.2005.861417).
-  Transformation stages are compared against
-  [pymoo 0.6.2 WFG](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/many/wfg.py).
-- UF1–10: Zhang, Zhou, Zhao, Suganthan, Liu and Tiwari (2009),
-  [CEC 2009 multiobjective test instances, report CES-487](https://al-roomi.org/multimedia/CEC_Database/CEC2009/MultiObjectiveEA/CEC2009_MultiObjectiveEA_TechnicalReport.pdf).
-  One-based groups and constants were checked against
-  [pinned PlatEMO UF definitions](https://github.com/BIMK/PlatEMO/tree/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/UF).
-  The UF numerical oracle is a separate scalar transcription of the report,
-  plus analytical linkage minima; it is not an executed MATLAB comparison.
-- C-DTLZ: Jain and Deb (2014),
-  [NSGA-III Part II: Handling Constraints and Extending to an Adaptive Approach](https://doi.org/10.1109/TEVC.2013.2281534).
-  Named C1/C2/C3 formulas and radius conventions are compared with
-  [pymoo 0.6.2 constrained DTLZ](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/many/cdtlz.py).
-  This repository explicitly sets default n=M+9 for all five variants.
-- Omni-test: Deb and Tiwari (2008),
-  [Omni-optimizer](https://doi.org/10.1016/j.ejor.2006.06.042), using the
-  [pymoo 0.6.2 OmniTest convention](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/omnitest.py).
-- SYM-PART: Rudolph, Naujoks and Preuss (2007),
-  [Capabilities of EMOA to Detect and Preserve Equivalent Pareto Subsets](https://doi.org/10.1007/978-3-540-70928-2_7).
-  The simple and rotated variants use the fixed parameters and decision box in
-  [pymoo 0.6.2](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/sympart.py).
-  No rotated-distorted variant is included.
-- Welded-Beam: the exact version is the
-  [pymoo 0.6.2 two-objective formulation](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/welded_beam.py).
-  Its J coefficient, engineering constants, decision bounds and four residual
-  scales are specified in [the formula card](formulas.md#welded-beam).
-  Other welded-beam formulations can have different stresses and feasible regions.
+The [complete paper index](problem-references.md) covers all 343 callable problems.
+Every [problem card](../problems/README.md) records its paper, formula implementation,
+reference implementation URL/version, dimensions, derivative notes and variants.
+Use `get_problem_info(name)["references"]` to export citations programmatically.
+Where a DOI has not been verified, a reference-code bibliography or author material
+is linked instead; the article title and authors are still recorded.
 
-## Planned suites and source policy
+The [expanded validation record](expanded-validation.md) specifies independent
+reference cases and differences between paper and code conventions. Numerical
+agreement with a pinned version does not imply agreement with every later revision.
 
-[PlatEMO](https://github.com/BIMK/PlatEMO) provides reference definitions for many
-listed families. The catalogue pins consulted links to commit
-`d25e65d1ffba58dbf4d7e1b5259786187d12968a`; paper references are recorded from its
-reference sections. This is provenance, not a redistribution of PlatEMO code.
+Original sources include pinned PlatEMO, jMetalPy and pymoo definitions; Tanabe and
+Ishibuchi's RE/CRE code; Cuate et al.'s equality dataset; Jiang and Yang's JY header;
+Li et al.'s NCTP archive; Gong's CMMOP archive; Qiao et al.'s LSCM archive; and
+Suganthan's CEC 2021 real-world suite. URLs and immutable revisions or archive hashes
+are retained per problem. POL uses the corrected Van Veldhuizen definition cited
+in MOEA Framework, with the original Poloni publication also acknowledged.
 
-[Tanabe and Ishibuchi's original RE/CRE repository](https://github.com/ryojitanabe/reproblems)
-documents corrections to engineering formulas. Continuous membership and the
-specific corrected version must be established before implementation.
-[jMetalPy's problem documentation](https://jmetal.github.io/jMetalPy/api/problems/)
-identifies the RWA engineering models and original objective directions.
-
-The [equality benchmark dataset](https://doi.org/10.1016/j.dib.2020.105130)
-identifies Eq-DTLZ1–4 and Eq-IDTLZ1–2. It must not be expanded with unverified
-variants under the same version label.
-
-NCTP and CMMOP still need original-source verification. Their folders are present
-and explicitly marked pending, with no guessed formulas or source attribution.
+RE/CRE and RWA code adaptations retain their MIT notices in
+[THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md), included in distributions.
+Other benchmark implementations use vectorized mathematical formulations;
+the downloaded reference archives are not redistributed.
 
 ## First-order algorithms
 

@@ -16,6 +16,7 @@
 - Derivatives: `forward`; smoothness: `piecewise`. [Jacobian contract](../../../../../docs/gradients.md).
 - Derivative notes: Bias, shift and reduction stages include abs/floor/min/max and fractional powers.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Constraint representation: raw G <= 0, H = 0; box derivatives are not included.
 - Notes: Nonseparable reductions and a concave front.
 
 ```python
@@ -27,3 +28,14 @@ print(result.F)
 jac = problem.jacobian(problem.sample(1, seed=238))
 print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
+
+### Paper / 论文出处
+
+- Huband, S., Hingston, P., Barone, L. and While, L. (2006). A review of multiobjective test problems and a scalable test problem toolkit. IEEE Transactions on Evolutionary Computation 10(5), 477-506. DOI: 10.1109/TEVC.2005.861417.
+  [Source](https://doi.org/10.1109/TEVC.2005.861417) · citation key: `wfg`.
+
+[Reference implementation / 对照实现](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/WFG/WFG1.m)
+
+Version: `d25e65d1ffba58dbf4d7e1b5259786187d12968a`.
+
+Implementation and variant notes above are part of the benchmark definition; cite the paper and record this version when reporting experiments.

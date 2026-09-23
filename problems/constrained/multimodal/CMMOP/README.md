@@ -2,27 +2,37 @@
 
 # CMMOP
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/multimodal`
 
-Verify the original CMMOP suite and distinguish it from CMMF and the generic CMMOP problem class.
+CMMOP1-14 follow the author archive. Preserves conditional feasible-region constraints, including the zero second column in CMMOP8.
 
-Source status: `pending`. Identifying a source is separate from validating an implementation.
+Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Original suite publication and source implementation pending.
+Ming, F., Gong, W., Yang, Y. and Liao, Z. (2023). Constrained multimodal multi-objective optimization: Test problem construction and algorithm design. Swarm and Evolutionary Computation 76, 101209. DOI: 10.1016/j.swevo.2022.101209.
 
-Original source pending verification / 原始来源待核对。
+[Source / 参考来源](https://github.com/wewnyin/wenyingong/blob/606817b091ef0ba62d1b499930fc9c4d3b4ed754/Software/CMMOP-code.zip)
 
 ## Members / 成员
 
-Member list pending source/version verification.
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [CMMOP1](CMMOP1/README.md) | 2 | 2 | 1 | 0 | no |
+| [CMMOP2](CMMOP2/README.md) | 2 | 2 | 1 | 0 | no |
+| [CMMOP3](CMMOP3/README.md) | 2 | 2 | 1 | 0 | no |
+| [CMMOP4](CMMOP4/README.md) | 2 | 2 | 1 | 0 | no |
+| [CMMOP5](CMMOP5/README.md) | 2 | 2 | 2 | 0 | no |
+| [CMMOP6](CMMOP6/README.md) | 2 | 2 | 1 | 0 | no |
+| [CMMOP7](CMMOP7/README.md) | 2 | 2 | 1 | 0 | no |
+| [CMMOP8](CMMOP8/README.md) | 2 | 2 | 3 | 0 | no |
+| [CMMOP9](CMMOP9/README.md) | 2 | 2 | 4 | 0 | no |
+| [CMMOP10](CMMOP10/README.md) | 2 | 2 | 2 | 0 | no |
+| [CMMOP11](CMMOP11/README.md) | 3 | 2 | 1 | 0 | no |
+| [CMMOP12](CMMOP12/README.md) | 3 | 2 | 1 | 0 | no |
+| [CMMOP13](CMMOP13/README.md) | 2 | 2 | 1 | 0 | no |
+| [CMMOP14](CMMOP14/README.md) | 2 | 2 | 1 | 0 | no |
 
 [Full catalogue](../../../README.md)

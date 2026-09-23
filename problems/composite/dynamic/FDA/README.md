@@ -2,27 +2,28 @@
 
 # FDA
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/dynamic`
 
-Future API must accept explicit benchmark time and document severity/frequency; never use wall-clock time.
+FDA1-5 at explicit time=0 by default; at_time(t) creates a new fixed-time problem. FDA2 uses the corrected PlatEMO exponent. Time is not advanced by evaluations.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Farina, Deb and Amato (2004). Dynamic multiobjective optimization problems: Test cases, approximations, and applications.
+M. Farina, K. Deb, and P. Amato. Dynamic multiobjective optimization problems: Test cases, approximations, and applications. IEEE Transactions on Evolutionary Computation, 2004, 8(5): 425-442.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/FDA/FDA1.m)
 
 ## Members / 成员
 
-Target members: `FDA1`, `FDA2`, `FDA3`, `FDA4`, `FDA5`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [FDA1](FDA1/README.md) | 10 | 2 | 0 | 0 | no |
+| [FDA2](FDA2/README.md) | 11 | 2 | 0 | 0 | no |
+| [FDA3](FDA3/README.md) | 10 | 2 | 0 | 0 | no |
+| [FDA4](FDA4/README.md) | 12 | 3 | 0 | 0 | no |
+| [FDA5](FDA5/README.md) | 12 | 3 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

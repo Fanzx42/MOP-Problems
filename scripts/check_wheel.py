@@ -1,6 +1,6 @@
 """Build-independent wheel smoke check in a fresh, disposable virtual environment.
 
-Usage: python scripts/check_wheel.py dist/mop_problems-0.3.0-py3-none-any.whl
+Usage: python scripts/check_wheel.py dist/mop_problems-0.4.0-py3-none-any.whl
 The wheel's declared runtime dependencies are installed; no editable checkout is used.
 """
 
@@ -22,7 +22,7 @@ from mop_problems import get_problem, list_problems, list_suites
 
 location = pathlib.Path(mop_problems.__file__).resolve()
 assert location.is_relative_to(pathlib.Path(sys.prefix).resolve()), location
-assert len(list_problems()) == 47
+assert len(list_problems()) == 343
 assert len(list_suites()) == 43
 for name in list_problems():
     problem = get_problem(name)
@@ -38,7 +38,7 @@ from mop_problems.algorithms import MGDA
 assert MGDA().solve(get_problem('SCH'), [5]).success
 assert 'pymoo' not in sys.modules
 assert 'scipy' not in sys.modules
-print('Installed wheel passed: 47 value/Jacobian oracles and two-objective MGDA, NumPy-only.')
+print('Installed wheel passed: 343 value/Jacobian checks and two-objective MGDA, NumPy-only.')
 print('Imported from:', location)
 """
 

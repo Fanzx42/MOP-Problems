@@ -5,6 +5,6 @@
 [Full catalogue](../../README.md)
 
 - [C-DTLZ](C-DTLZ/README.md) — **implemented**
-- [DC-DTLZ](DC-DTLZ/README.md) — **planned**
-- [Eq-DTLZ](Eq-DTLZ/README.md) — **planned**
-- [Eq-IDTLZ](Eq-IDTLZ/README.md) — **planned**
+- [DC-DTLZ](DC-DTLZ/README.md) — **implemented**
+- [Eq-DTLZ](Eq-DTLZ/README.md) — **implemented**
+- [Eq-IDTLZ](Eq-IDTLZ/README.md) — **implemented**

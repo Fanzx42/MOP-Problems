@@ -2,27 +2,29 @@
 
 # CRE
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/real_world`
 
-The full CRE suite contains non-continuous designs; variable types must be audited before adding a problem to the continuous Python API.
+CRE21/22/23/31/32/51. Returns raw signed G (feasible <=0), while the original code returns clipped violations. Discrete CRE24/25 are excluded.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Tanabe and Ishibuchi (2020). An easy-to-use real-world multi-objective optimization problem suite.
+Tanabe, R. and Ishibuchi, H. (2020). An easy-to-use real-world multi-objective optimization problem suite. Applied Soft Computing 89, 106078. DOI: 10.1016/j.asoc.2020.106078.
 
-[Source / 参考来源](https://github.com/ryojitanabe/reproblems)
+[Source / 参考来源](https://github.com/ryojitanabe/reproblems/blob/7876b4e465eac381a256e461d1310b8bb2b92846/reproblem_python_ver/reproblem.py)
 
 ## Members / 成员
 
-Target members: `CRE21`, `CRE22`, `CRE23`, `CRE24`, `CRE25`, `CRE31`, `CRE32`, `CRE51`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [CRE21](CRE21/README.md) | 3 | 2 | 3 | 0 | no |
+| [CRE22](CRE22/README.md) | 4 | 2 | 4 | 0 | no |
+| [CRE23](CRE23/README.md) | 4 | 2 | 4 | 0 | no |
+| [CRE31](CRE31/README.md) | 7 | 3 | 10 | 0 | no |
+| [CRE32](CRE32/README.md) | 6 | 3 | 9 | 0 | no |
+| [CRE51](CRE51/README.md) | 3 | 5 | 7 | 0 | no |
 
 [Full catalogue](../../../README.md)

@@ -2,27 +2,32 @@
 
 # LSMOP
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/large_scale`
 
-Group sizes, linkage, and subcomponent counts are part of the instance definition.
+LSMOP1-9 with logistic grouping and scalable objectives/variables. Rejects dimensions yielding blocks shorter than two variables.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Cheng, Jin and Olhofer (2017). Test problems for large-scale multiobjective and many-objective optimization.
+R. Cheng, Y. Jin, M. Olhofer, and B. Sendhoff. Test problems for large-scale multiobjective and many-objective optimization. IEEE Transactions on Cybernetics, 2017, 47(12): 4108-4121. DOI: 10.1109/TCYB.2016.2600577.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/LSMOP/LSMOP1.m)
 
 ## Members / 成员
 
-Target members: `LSMOP1`, `LSMOP2`, `LSMOP3`, `LSMOP4`, `LSMOP5`, `LSMOP6`, `LSMOP7`, `LSMOP8`, `LSMOP9`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [LSMOP1](LSMOP1/README.md) | 300 | 3 | 0 | 0 | no |
+| [LSMOP2](LSMOP2/README.md) | 300 | 3 | 0 | 0 | no |
+| [LSMOP3](LSMOP3/README.md) | 300 | 3 | 0 | 0 | no |
+| [LSMOP4](LSMOP4/README.md) | 300 | 3 | 0 | 0 | no |
+| [LSMOP5](LSMOP5/README.md) | 300 | 3 | 0 | 0 | no |
+| [LSMOP6](LSMOP6/README.md) | 300 | 3 | 0 | 0 | no |
+| [LSMOP7](LSMOP7/README.md) | 300 | 3 | 0 | 0 | no |
+| [LSMOP8](LSMOP8/README.md) | 300 | 3 | 0 | 0 | no |
+| [LSMOP9](LSMOP9/README.md) | 300 | 3 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

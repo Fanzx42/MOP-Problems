@@ -16,6 +16,7 @@
 - Derivatives: `forward`; smoothness: `smooth`. [Jacobian contract](../../../../../docs/gradients.md).
 - Derivative notes: Smooth formula on the decision box; this does not imply convexity.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Constraint representation: raw G <= 0, H = 0; box derivatives are not included.
 - Notes: DTLZ1 with one linear constraint per objective.
 
 ```python
@@ -27,3 +28,14 @@ print(result.F)
 jac = problem.jacobian(problem.sample(1, seed=238))
 print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
+
+### Paper / 论文出处
+
+- Jain and Deb (2014). NSGA-III, Part II: Handling constraints and extending to an adaptive approach.
+  [Source](https://doi.org/10.1109/TEVC.2013.2281534) · citation key: `c_dtlz`.
+
+[Reference implementation / 对照实现](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/many/cdtlz.py)
+
+Version: `pymoo-0.6.2`.
+
+Implementation and variant notes above are part of the benchmark definition; cite the paper and record this version when reporting experiments.

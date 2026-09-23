@@ -2,27 +2,62 @@
 
 # RCM_continuous
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/real_world`
 
-Membership is pending a variable-type audit of the original CEC 2021 real-world constrained suite. Do not treat all RCM problems as continuous.
+39 continuous author-code definitions from RCM2-50, preserving original numbering. RCM5/14 are continuous relaxations of disk counts. Excludes integer/rounded problems 1/6/7/13/15/19/25-29. RCM9 has no effective constraint. RCM50 fixes batch-dependent P(j) to rowwise quadratic loss.
 
-Source status: `membership-pending`. Identifying a source is separate from validating an implementation.
+Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-CEC 2021 real-world constrained multiobjective benchmark; source: PlatEMO RWMOPs.
+Kumar, A., Wu, G., Ali, M. Z., Luo, Q., Mallipeddi, R., Suganthan, P. N. and Das, S. (2021). A Benchmark-Suite of real-World constrained multi-objective optimization problems and some baseline results. Swarm and Evolutionary Computation 67, 100961. DOI: 10.1016/j.swevo.2021.100961.
 
-[Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/RWMOPs/RWMOP1.m)
+[Source / 参考来源](https://github.com/P-N-Suganthan/2021-RW-MOP/blob/1e2e7d74f535a43a9101cf54f8a808fb16475826/CEC2021-RWCMOP.zip)
 
 ## Members / 成员
 
-Member list pending source/version verification.
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [RCM2](RCM2/README.md) | 5 | 2 | 5 | 0 | no |
+| [RCM3](RCM3/README.md) | 3 | 2 | 3 | 0 | no |
+| [RCM4](RCM4/README.md) | 4 | 2 | 4 | 0 | no |
+| [RCM5](RCM5/README.md) | 4 | 2 | 4 | 0 | no |
+| [RCM8](RCM8/README.md) | 7 | 3 | 9 | 0 | no |
+| [RCM9](RCM9/README.md) | 4 | 2 | 0 | 0 | no |
+| [RCM10](RCM10/README.md) | 2 | 2 | 2 | 0 | no |
+| [RCM11](RCM11/README.md) | 3 | 5 | 7 | 0 | no |
+| [RCM12](RCM12/README.md) | 4 | 2 | 1 | 0 | no |
+| [RCM14](RCM14/README.md) | 5 | 2 | 8 | 0 | no |
+| [RCM16](RCM16/README.md) | 2 | 2 | 2 | 0 | no |
+| [RCM17](RCM17/README.md) | 6 | 3 | 9 | 0 | no |
+| [RCM18](RCM18/README.md) | 3 | 2 | 3 | 0 | no |
+| [RCM20](RCM20/README.md) | 4 | 2 | 7 | 0 | no |
+| [RCM21](RCM21/README.md) | 6 | 2 | 4 | 0 | no |
+| [RCM22](RCM22/README.md) | 9 | 2 | 2 | 4 | no |
+| [RCM23](RCM23/README.md) | 6 | 2 | 1 | 4 | no |
+| [RCM24](RCM24/README.md) | 9 | 3 | 0 | 6 | no |
+| [RCM30](RCM30/README.md) | 25 | 2 | 24 | 0 | no |
+| [RCM31](RCM31/README.md) | 25 | 2 | 24 | 0 | no |
+| [RCM32](RCM32/README.md) | 25 | 2 | 24 | 0 | no |
+| [RCM33](RCM33/README.md) | 30 | 2 | 29 | 0 | no |
+| [RCM34](RCM34/README.md) | 30 | 2 | 29 | 0 | no |
+| [RCM35](RCM35/README.md) | 30 | 2 | 29 | 0 | no |
+| [RCM36](RCM36/README.md) | 28 | 2 | 0 | 24 | no |
+| [RCM37](RCM37/README.md) | 28 | 2 | 0 | 24 | no |
+| [RCM38](RCM38/README.md) | 28 | 2 | 0 | 24 | no |
+| [RCM39](RCM39/README.md) | 28 | 3 | 0 | 24 | no |
+| [RCM40](RCM40/README.md) | 34 | 2 | 0 | 26 | no |
+| [RCM41](RCM41/README.md) | 34 | 3 | 0 | 26 | no |
+| [RCM42](RCM42/README.md) | 34 | 2 | 0 | 26 | no |
+| [RCM43](RCM43/README.md) | 34 | 2 | 0 | 26 | no |
+| [RCM44](RCM44/README.md) | 34 | 3 | 0 | 26 | no |
+| [RCM45](RCM45/README.md) | 34 | 3 | 0 | 26 | no |
+| [RCM46](RCM46/README.md) | 34 | 4 | 0 | 26 | no |
+| [RCM47](RCM47/README.md) | 18 | 2 | 0 | 12 | no |
+| [RCM48](RCM48/README.md) | 18 | 2 | 0 | 12 | no |
+| [RCM49](RCM49/README.md) | 18 | 3 | 0 | 12 | no |
+| [RCM50](RCM50/README.md) | 6 | 2 | 0 | 1 | no |
 
 [Full catalogue](../../../README.md)

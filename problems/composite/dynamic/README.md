@@ -4,5 +4,5 @@
 
 [Full catalogue](../../README.md)
 
-- [FDA](FDA/README.md) — **planned**
-- [JY](JY/README.md) — **planned**
+- [FDA](FDA/README.md) — **implemented**
+- [JY](JY/README.md) — **implemented**

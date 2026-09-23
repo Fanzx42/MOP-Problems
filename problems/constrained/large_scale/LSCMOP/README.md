@@ -2,27 +2,35 @@
 
 # LSCMOP
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/large_scale`
 
-The linked source uses LSCM names. Verify the LSCMOP-to-LSCM mapping and scalable group settings before listing members.
+LSCMOP1-12 are the author LSCM1-12. Preserves the aggregate positive constraint violation and numerical cutoffs; its constraint Jacobian is zero in feasible interiors. No implicit dimension rounding.
 
-Source status: `membership-pending`. Identifying a source is separate from validating an implementation.
+Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Qiao et al. (2024). Benchmark problems for large-scale constrained multi-objective optimization with baseline results. DOI: 10.1016/j.swevo.2024.101504.
+Qiao, K., Liang, J., Yu, K., Guo, W., Yue, C., Qu, B. and Suganthan, P. N. (2024). Benchmark problems for large-scale constrained multi-objective optimization with baseline results. Swarm and Evolutionary Computation 86, 101504. DOI: 10.1016/j.swevo.2024.101504.
 
-[Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/LSCM/LSCM1.m)
+[Source / 参考来源](https://github.com/cilabzzu/Codes/blob/141fae5e38e132c230298bf85c825e2effcc5503/LSCM%20and%20IMTCMO-BS/Code--LSCM%20and%20IMTCMO-BS.zip)
 
 ## Members / 成员
 
-Member list pending source/version verification.
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [LSCMOP1](LSCMOP1/README.md) | 100 | 2 | 1 | 0 | no |
+| [LSCMOP2](LSCMOP2/README.md) | 100 | 2 | 1 | 0 | no |
+| [LSCMOP3](LSCMOP3/README.md) | 100 | 2 | 1 | 0 | no |
+| [LSCMOP4](LSCMOP4/README.md) | 100 | 2 | 1 | 0 | no |
+| [LSCMOP5](LSCMOP5/README.md) | 100 | 2 | 1 | 0 | no |
+| [LSCMOP6](LSCMOP6/README.md) | 100 | 2 | 1 | 0 | no |
+| [LSCMOP7](LSCMOP7/README.md) | 100 | 2 | 1 | 0 | no |
+| [LSCMOP8](LSCMOP8/README.md) | 100 | 2 | 1 | 0 | no |
+| [LSCMOP9](LSCMOP9/README.md) | 100 | 2 | 1 | 0 | no |
+| [LSCMOP10](LSCMOP10/README.md) | 100 | 3 | 1 | 0 | no |
+| [LSCMOP11](LSCMOP11/README.md) | 100 | 3 | 1 | 0 | no |
+| [LSCMOP12](LSCMOP12/README.md) | 100 | 3 | 1 | 0 | no |
 
 [Full catalogue](../../../README.md)

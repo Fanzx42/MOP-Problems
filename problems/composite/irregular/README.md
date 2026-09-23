@@ -4,6 +4,6 @@
 
 [Full catalogue](../../README.md)
 
-- [IMOP](IMOP/README.md) — **planned**
-- [MaF](MaF/README.md) — **planned**
-- [ZCAT](ZCAT/README.md) — **planned**
+- [IMOP](IMOP/README.md) — **implemented**
+- [MaF](MaF/README.md) — **implemented**
+- [ZCAT](ZCAT/README.md) — **implemented**

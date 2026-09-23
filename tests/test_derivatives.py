@@ -19,7 +19,7 @@ from mop_problems import (
 def test_all_problem_derivatives_against_independent_differences(name, seed):
     p = get_problem(name)
     x = p.sample(4, seed=seed)
-    if name == "WFG9":
+    if name in ("WFG9", "MaF12", "DASCMaOP9"):
         # Extreme parameter bias can collapse different transformed coordinates
         # to a floating-point tie. Validate regular branches without that loss.
         x = p.xl + (0.35 + 0.3 * (x - p.xl) / (p.xu - p.xl)) * (p.xu - p.xl)
@@ -28,6 +28,33 @@ def test_all_problem_derivatives_against_independent_differences(name, seed):
         # value can exceed 1e12, making position differences pure cancellation.
         # Here independently check all entries at a better-conditioned radius.
         x[:, p.n_obj - 1 :] = 0.5 + 1e-4 * (x[:, p.n_obj - 1 :] - 0.5)
+    if name.startswith("NCTP"):
+        # Rosenbrock tails near one keep the rotated sine resolvable by differences.
+        x[:, 1:] = 1 + 0.01 * (x[:, 1:] - 2.5)
+    if name in ("LSMOP6", "LSMOP7"):
+        coefficient = 1 + np.cos(np.pi * np.arange(p.n_obj, p.n_var + 1) / (2 * p.n_var))
+        x[:, 0] *= 0.8
+        x[:, p.n_obj - 1 :] = (10 * x[:, 0, None] + 0.01 * x[:, p.n_obj - 1 :]) / coefficient
+    if name.startswith("LSCMOP"):
+        # The CEC2006 g6 cubic can dominate other objective terms by 1e6.
+        # Exercise nonstationary but well-conditioned points near its small end.
+        for number, cs, *_ in p._groups:
+            if number == 6:
+                desired = np.array([0.02, 0.02])
+                control = x[:, 0, None]
+                linked = (1 - desired) / 2 if p._config[2] == 1 else np.arccos(desired) / np.pi
+                x[:, cs] = np.mod(linked - control, 0.5)
+    if name == "CF3":
+        x[:, 1:] *= 0.1
+    if name == "MW13":
+        x[:, 1:] = 0.5 + 0.01 * x[:, 1:]
+    if name == "DOC4":
+        # CEC2006 g9 optimum neighbourhood avoids aliasing in objective-space sin.
+        optimum = np.array([2.330499, 1.951372, -0.477541, 4.365726, -0.624487, 1.038131, 1.594227])
+        x[:, 1:] = optimum + 0.001 * x[:, 1:]
+    if name == "DOC5":
+        # Stay away from equality-band abs switches rather than straddle a kink.
+        x[:, 5:8] = [6.4, 6.0, 5.0]
     before = x.copy()
     ev, jac = p.evaluate_with_jacobian(x)
     ordinary = p.evaluate(x)
@@ -38,7 +65,9 @@ def test_all_problem_derivatives_against_independent_differences(name, seed):
         assert not a.flags.writeable
     assert_array_equal(x, before)
     assert jac.regular.all() and not jac.regular.flags.writeable
-    report = check_derivatives(p, x, rtol=3e-4, atol=3e-6, relative_step=5e-7)
+    # DOC5/7's oscillatory constraints require a finer perturbation.
+    step = 1e-8 if name == "DOC5" else 1e-7 if name == "DOC7" else 5e-7
+    report = check_derivatives(p, x, rtol=3e-4, atol=3e-6, relative_step=step)
     assert report.passed, report
     assert report.finite_difference_evaluations == len(x) * (1 + 2 * p.n_var)
     one = p.jacobian(x[0])

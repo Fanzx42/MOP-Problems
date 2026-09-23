@@ -2,27 +2,27 @@
 
 # Eq-DTLZ
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/dtlz_based`
 
-Use the original equality benchmark, including the number of equalities as a parameter.
+EqDTLZ1-4, n_equalities=1 or 2. Returns signed sphere residuals in H; the author supplement encodes abs(H)-1e-4 as inequalities. Feasibility tolerance is selected at evaluation time.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Cuate et al. (2020). Dataset on a Benchmark for Equality Constrained Multi-objective Optimization.
+Cuate, O., Uribe, L., Lara, A. and Schuetze, O. (2020). A benchmark for equality constrained multi-objective optimization. Swarm and Evolutionary Computation 52, 100619. DOI: 10.1016/j.swevo.2019.100619.
 
 [Source / 参考来源](https://doi.org/10.1016/j.dib.2020.105130)
 
 ## Members / 成员
 
-Target members: `Eq-DTLZ1`, `Eq-DTLZ2`, `Eq-DTLZ3`, `Eq-DTLZ4`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [Eq-DTLZ1](Eq-DTLZ1/README.md) | 7 | 3 | 0 | 1 | no |
+| [Eq-DTLZ2](Eq-DTLZ2/README.md) | 12 | 3 | 0 | 1 | no |
+| [Eq-DTLZ3](Eq-DTLZ3/README.md) | 12 | 3 | 0 | 1 | no |
+| [Eq-DTLZ4](Eq-DTLZ4/README.md) | 12 | 3 | 0 | 1 | no |
 
 [Full catalogue](../../../README.md)

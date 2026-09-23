@@ -2,27 +2,32 @@
 
 # DAS-CMaOP
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/difficult`
 
-Keep many-objective variants separate from DAS-CMOP; verify the paper's scalable definition.
+DASCMaOP1-9 use WFG1-9 transformations and Fan et al. equation (8). Difficulty presets 1-12 or (eta,zeta,gamma); default k=2*(m-1) satisfies WFG grouping divisibility.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Fan et al. (2020). Difficulty adjustable and scalable constrained multi-objective test problem toolkit.
+Z. Fan, W. Li, X. Cai, H. Li, C. Wei, Q. Zhang, K. Deb, and E. Goodman. Difficulty adjustable and scalable constrained multi-objective test problem toolkit. Evolutionary Computation, 2020, 28(3): 339-378.
 
-[Source / 参考来源](https://imagelab.stu.edu.cn/upload/files/5.das-cmop.pdf)
+[Source / 参考来源](https://arxiv.org/abs/1612.07603v3)
 
 ## Members / 成员
 
-Target members: `DASCMaOP1`, `DASCMaOP2`, `DASCMaOP3`, `DASCMaOP4`, `DASCMaOP5`, `DASCMaOP6`, `DASCMaOP7`, `DASCMaOP8`, `DASCMaOP9`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [DASCMaOP1](DASCMaOP1/README.md) | 30 | 3 | 7 | 0 | no |
+| [DASCMaOP2](DASCMaOP2/README.md) | 30 | 3 | 7 | 0 | no |
+| [DASCMaOP3](DASCMaOP3/README.md) | 30 | 3 | 7 | 0 | no |
+| [DASCMaOP4](DASCMaOP4/README.md) | 30 | 3 | 7 | 0 | no |
+| [DASCMaOP5](DASCMaOP5/README.md) | 30 | 3 | 7 | 0 | no |
+| [DASCMaOP6](DASCMaOP6/README.md) | 30 | 3 | 7 | 0 | no |
+| [DASCMaOP7](DASCMaOP7/README.md) | 30 | 3 | 7 | 0 | no |
+| [DASCMaOP8](DASCMaOP8/README.md) | 30 | 3 | 7 | 0 | no |
+| [DASCMaOP9](DASCMaOP9/README.md) | 30 | 3 | 7 | 0 | no |
 
 [Full catalogue](../../../README.md)

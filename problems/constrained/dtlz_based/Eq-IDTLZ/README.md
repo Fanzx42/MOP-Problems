@@ -2,27 +2,25 @@
 
 # Eq-IDTLZ
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/dtlz_based`
 
-The original dataset contains Eq-IDTLZ1-2; extensions 3/4 need separate provenance.
+EqIDTLZ1/2 with one or two sphere equalities, using the same signed-H convention as Eq-DTLZ.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Cuate et al. (2020). Dataset on a Benchmark for Equality Constrained Multi-objective Optimization.
+Cuate, O., Uribe, L., Lara, A. and Schuetze, O. (2020). A benchmark for equality constrained multi-objective optimization. Swarm and Evolutionary Computation 52, 100619. DOI: 10.1016/j.swevo.2019.100619.
 
 [Source / 参考来源](https://doi.org/10.1016/j.dib.2020.105130)
 
 ## Members / 成员
 
-Target members: `Eq-IDTLZ1`, `Eq-IDTLZ2`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [Eq-IDTLZ1](Eq-IDTLZ1/README.md) | 7 | 3 | 0 | 1 | no |
+| [Eq-IDTLZ2](Eq-IDTLZ2/README.md) | 12 | 3 | 0 | 1 | no |
 
 [Full catalogue](../../../README.md)

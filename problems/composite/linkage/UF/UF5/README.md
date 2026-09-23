@@ -16,6 +16,7 @@
 - Derivatives: `forward`; smoothness: `piecewise`. [Jacobian contract](../../../../../docs/gradients.md).
 - Derivative notes: Absolute values or min/max branches: no classical derivative at some ties.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Constraint representation: raw G <= 0, H = 0; box derivatives are not included.
 - Notes: Discrete front with N=10 and epsilon=0.1.
 
 ```python
@@ -27,3 +28,14 @@ print(result.F)
 jac = problem.jacobian(problem.sample(1, seed=238))
 print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
+
+### Paper / 论文出处
+
+- Zhang et al. (2009). Multiobjective optimization test instances for the CEC 2009 special session and competition.
+  [Source](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/UF/UF1.m) · citation key: `uf`.
+
+[Reference implementation / 对照实现](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/UF/UF1.m)
+
+Version: `d25e65d1ffba58dbf4d7e1b5259786187d12968a`.
+
+Implementation and variant notes above are part of the benchmark definition; cite the paper and record this version when reporting experiments.

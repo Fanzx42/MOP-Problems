@@ -2,27 +2,29 @@
 
 # DC-DTLZ
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/dtlz_based`
 
-Six variants; preserve decision- and objective-space constraint definitions.
+DC1/2/3-DTLZ1 and DC1/2/3-DTLZ3. Pinned PlatEMO uses a distance coefficient of 10 in the DTLZ3 variants.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Li et al. (2019). Two-archive evolutionary algorithm for constrained multi-objective optimization.
+K. Li, R. Chen, G. Fu, and X. Yao. Two-archive evolutionary algorithm for constrained multi-objective optimization. IEEE Transactions on Evolutionary Computation, 2019, 23(2): 303-315. DOI: 10.1109/TEVC.2018.2855411.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/DTLZ/DC1_DTLZ1.m)
 
 ## Members / 成员
 
-Target members: `DC1-DTLZ1`, `DC1-DTLZ3`, `DC2-DTLZ1`, `DC2-DTLZ3`, `DC3-DTLZ1`, `DC3-DTLZ3`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [DC1-DTLZ1](DC1-DTLZ1/README.md) | 7 | 3 | 1 | 0 | no |
+| [DC1-DTLZ3](DC1-DTLZ3/README.md) | 12 | 3 | 1 | 0 | no |
+| [DC2-DTLZ1](DC2-DTLZ1/README.md) | 7 | 3 | 2 | 0 | no |
+| [DC2-DTLZ3](DC2-DTLZ3/README.md) | 12 | 3 | 2 | 0 | no |
+| [DC3-DTLZ1](DC3-DTLZ1/README.md) | 7 | 3 | 3 | 0 | no |
+| [DC3-DTLZ3](DC3-DTLZ3/README.md) | 12 | 3 | 3 | 0 | no |
 
 [Full catalogue](../../../README.md)

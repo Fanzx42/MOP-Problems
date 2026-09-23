@@ -21,8 +21,8 @@ python scripts/build_catalog.py --check
 python examples/representative_suite.py --samples 2000 --seed 42
 python examples/gradient_comparison.py --starts 12 --seed 42
 python -m build
-python -m twine check dist/mop_problems-0.3.0-py3-none-any.whl dist/mop_problems-0.3.0.tar.gz
-python scripts/check_wheel.py dist/mop_problems-0.3.0-py3-none-any.whl
+python -m twine check dist/mop_problems-0.4.0-py3-none-any.whl dist/mop_problems-0.4.0.tar.gz
+python scripts/check_wheel.py dist/mop_problems-0.4.0-py3-none-any.whl
 ```
 
 ## 同步到已有仓库
@@ -58,7 +58,7 @@ git config --global --add safe.directory C:/Users/89526/PycharmProjects/MOP-Prob
 
 ## 发布范围
 
-0.3.0 有 43 个目录条目、47 个可运行问题，剩余 28 个目录条目待实现。
+0.4.0 的 43 个目录条目全部实现，共 343 个可运行问题；每个问题均附论文和版本信息。
 全部已实现问题提供一阶导数，并内置五类明确文献版本的梯度/近端算法。
 版本信息、CITATION.cff 和项目元数据已经包含实际 GitHub 地址。
 正式创建 Release 时应说明具体问题和变体，并检查

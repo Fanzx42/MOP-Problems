@@ -9,11 +9,13 @@ by problem family, difficulty and constraint type.
 
 [Jacobians and smoothness](docs/gradients.md) · [Gradient algorithms](docs/algorithms.md)
 
-**Version 0.3.0: 43 catalogue entries, 47 implemented problems across 15 entries.**
-The complete requested taxonomy is present. Entries marked **planned** have source
-notes and contribution requirements but no callable implementation. They never
-return placeholder objective values. First derivatives and five first-order
-algorithm families are available; this is still an alpha research library.
+**Version 0.4.0: 343 callable problems across all 43 requested catalogue entries.**
+The remaining 28 planned families now provide 296 implementations, first derivatives,
+paper citations, version notes and independent numerical reference tests.
+`list_suites(status="planned")` is empty. This remains an alpha research library.
+
+[Paper index](docs/problem-references.md) · [New benchmark usage](docs/expanded-benchmarks.md) ·
+[482 reference cases and version differences](docs/expanded-validation.md)
 
 ## Install
 
@@ -55,20 +57,25 @@ with a configurable equality tolerance. A single vector produces a one-row batch
 empty constraint matrices always retain shape `(N, 0)`. Inputs are checked for
 dimension, finite values and bounds. No clipping or objective penalties are applied.
 `sample()` samples the variable box, which does not guarantee constraint feasibility.
+MaF9 additionally rejects its excluded polygons. LSCMOP retains the author's aggregate
+violation constraint; RE retains its published violation objectives.
 
 ## Available now
 
-| Family | Implemented problems | Default dimensions |
-| --- | --- | --- |
-| ZDT | ZDT1, ZDT2, ZDT3, ZDT4, ZDT6 | 2 objectives; 30 or 10 variables |
-| DTLZ | DTLZ1–DTLZ7 | 3 objectives; scalable variables and objectives |
-| Unconstrained classics | SCH, FON, POL | 2 objectives |
-| Constrained classics | BNH, TNK, OSY, SRN | 2 objectives; raw inequality residuals |
-| WFG | WFG1–WFG9 | 3 objectives, 24 variables; scalable partition |
-| UF | UF1–UF10 | 2 or 3 objectives, 30 variables |
-| Multimodal decision sets | Omni-test, SYM-PART, SYM-PART-Rotated | 2 objectives; nine subsets at default dimensions |
-| C-DTLZ | C1-DTLZ1/3, C2-DTLZ2, C3-DTLZ1/4 | 3 objectives, 12 variables; scalable |
-| Engineering | Welded-Beam | 2 objectives, 4 variables, 4 constraints |
+| Family | Callable members |
+| --- | --- |
+| ZDT / DTLZ | ZDT1/2/3/4/6; DTLZ1–7 |
+| Classics | SCH, FON, POL; BNH, TNK, OSY, SRN |
+| Transformations | WFG1–9; IDTLZ1/2; SDTLZ1/2 |
+| Linkage | UF1–10; LZ09_F1–9 |
+| Irregular / many-objective | IMOP1–8; MaF1–15; ZCAT1–20 |
+| Large-scale | LSMOP1–9; LSCMOP1–12 (author names LSCM1–12) |
+| Multimodal | MMF1–8; Omni-test; SYM-PART / SYM-PART-Rotated; CMMOP1–14 |
+| Dynamic | FDA1–5; JY1–8, explicit fixed-time snapshots |
+| Classical constraints | CTP1–8; CF1–10 |
+| DTLZ constraints | Five C-DTLZ variants; six DC-DTLZ variants; Eq-DTLZ1–4; Eq-IDTLZ1/2 |
+| Difficult constraints | MW1–14; LIRCMOP1–14; DASCMOP1–9; DASCMaOP1–9; DOC1–9; NCTP1–18; ZXH_CF1–16 |
+| Engineering | 10 RE; 10 RWA; 6 CRE; Welded-Beam; 39 RCM continuous definitions, including two explicitly labelled disk-count relaxations |
 
 ## Gradient algorithms and comparisons
 
@@ -91,7 +98,7 @@ bb = BBDMO().solve(p, x0)
 print(r.status, r.nfev, r.njev, r.stationarity_bound)
 ```
 
-All 47 benchmarks have forward-mode first derivatives at supported regular points.
+All 343 benchmarks have forward-mode first derivatives at supported regular points.
 Detected kinks and singular derivatives are explicit errors. Built-in methods include
 MGDA/GD, BBDMO, proximal gradient, and TFY's Nesterov-style accelerated gradient and
 accelerated proximal gradient. Objective-specific shifted L1 terms, paired multistarts,
@@ -106,7 +113,7 @@ Stationarity is not a global Pareto-optimality certificate. See the
 ## Reference fronts
 
 Analytical front sampling is available for ZDT1/2/3/4/6, DTLZ1–6, SCH, FON,
-UF1/2/3/4/7/8/10, Omni-test and both implemented SYM-PART variants.
+UF1/2/3/4/7/8/10, IDTLZ1/2, SDTLZ1/2, Omni-test and both implemented SYM-PART variants.
 It is explicitly unsupported for other problems; it never downloads reference data
 or labels arbitrary objective samples as a true Pareto front.
 
@@ -195,6 +202,7 @@ Please cite the **original benchmark paper** when using a problem in research.
 
 Original repository code is under the [MIT license](LICENSE). External papers and
 implementations retain their own terms; linking to them does not relicense them.
-There is no vendored third-party problem code.
+The RE/CRE and RWA adaptations retain their MIT attribution in
+[third-party notices](THIRD_PARTY_NOTICES.md).
 
 To upload this checkout, follow the [GitHub publishing guide](docs/publishing.md).

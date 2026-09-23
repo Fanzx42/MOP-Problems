@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Please cite the original benchmark publications as well as this software."
 type: software
 title: MOP-Problems
-version: 0.3.0
+version: 0.4.0
 abstract: "A Python catalogue and tested implementations of multi-objective optimization benchmark problems."
 authors:
   - name: MOP-Problems contributors

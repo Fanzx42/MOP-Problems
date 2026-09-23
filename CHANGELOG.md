@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0 — 2026-09-23
+
+- Complete all 28 planned families: 296 new benchmarks, 343 callable problems in all 43 catalogue entries.
+- Add per-problem papers, reference-code versions, domain and variant notes, and a generated bibliography index.
+- Add explicit FDA/JY time snapshots, signed Eq-DTLZ/IDTLZ equalities, large-scale, multimodal and real engineering suites.
+- Provide forward Jacobians at regular points; scale finite differences to small engineering variable ranges.
+- Add 482 independent reference cases covering every new problem, domain/parameter checks and reproducible CSV/JSON/plot examples.
+- Preserve source-specific variants explicitly, including the MaF10 continuous transform, LSCM aggregate violation and RCM5/14 continuous relaxations; fix RCM50 batch dependence.
+- Include required MIT notices for RE/CRE and RWA adaptations.
+
 ## 0.3.0 — 2026-09-23
 
 - Add NumPy-only forward Jacobians for all 47 implemented benchmarks, including

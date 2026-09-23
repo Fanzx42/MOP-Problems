@@ -2,11 +2,11 @@
 
 # CF
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/classic`
 
-CEC 2009 CF1-10; do not confuse with the ZXH-CF suite.
+CF1-10, signed constraints from the CEC 2009 reference. CF8-10 have a genuine singular constraint denominator at f3**2=1; no epsilon substitution is made.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
@@ -18,11 +18,17 @@ Zhang et al. (2009). Multiobjective optimization test instances for the CEC 2009
 
 ## Members / 成员
 
-Target members: `CF1`, `CF2`, `CF3`, `CF4`, `CF5`, `CF6`, `CF7`, `CF8`, `CF9`, `CF10`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [CF1](CF1/README.md) | 10 | 2 | 1 | 0 | no |
+| [CF2](CF2/README.md) | 10 | 2 | 1 | 0 | no |
+| [CF3](CF3/README.md) | 10 | 2 | 1 | 0 | no |
+| [CF4](CF4/README.md) | 10 | 2 | 1 | 0 | no |
+| [CF5](CF5/README.md) | 10 | 2 | 1 | 0 | no |
+| [CF6](CF6/README.md) | 10 | 2 | 2 | 0 | no |
+| [CF7](CF7/README.md) | 10 | 2 | 2 | 0 | no |
+| [CF8](CF8/README.md) | 10 | 3 | 1 | 0 | no |
+| [CF9](CF9/README.md) | 10 | 3 | 1 | 0 | no |
+| [CF10](CF10/README.md) | 10 | 3 | 1 | 0 | no |
 
 [Full catalogue](../../../README.md)

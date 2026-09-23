@@ -16,6 +16,7 @@
 - Derivatives: `forward`; smoothness: `smooth`. [Jacobian contract](../../../../docs/gradients.md).
 - Derivative notes: Smooth formula on the decision box; this does not imply convexity.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Constraint representation: raw G <= 0, H = 0; box derivatives are not included.
 - Notes: Default n_var is derived from n_obj and k; see formulas and dimension restrictions.
 
 ```python
@@ -27,3 +28,14 @@ print(result.F)
 jac = problem.jacobian(problem.sample(1, seed=238))
 print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
+
+### Paper / 论文出处
+
+- Deb, Thiele, Laumanns and Zitzler (2002/2005). Scalable multiobjective optimization test problems; expanded chapter DOI: 10.1007/1-84628-137-7_6.
+  [Source](https://doi.org/10.1007/1-84628-137-7_6) · citation key: `dtlz`.
+
+[Reference implementation / 对照实现](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/many/dtlz.py)
+
+Version: `pymoo-0.6.2`.
+
+Implementation and variant notes above are part of the benchmark definition; cite the paper and record this version when reporting experiments.

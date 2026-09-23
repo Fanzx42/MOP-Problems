@@ -2,27 +2,31 @@
 
 # CTP
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/classic`
 
-Validate version-specific distance functions and rotated constraints; record constraint normalization.
+CTP1-8 use signed unnormalized constraints. Default distance is linear; distance="multimodal" selects the alternative distance function. CTP1 supports multiple exponential constraints.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Deb et al. (2001). Constrained test problems for multi-objective evolutionary optimization.
+Deb, K., Pratap, A. and Meyarivan, T. (2001). Constrained Test Problems for Multi-objective Evolutionary Optimization. EMO 2001, LNCS 1993, 284-298. DOI: 10.1007/3-540-44719-9_20.
 
 [Source / 参考来源](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/ctp.py)
 
 ## Members / 成员
 
-Target members: `CTP1`, `CTP2`, `CTP3`, `CTP4`, `CTP5`, `CTP6`, `CTP7`, `CTP8`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [CTP1](CTP1/README.md) | 2 | 2 | 2 | 0 | no |
+| [CTP2](CTP2/README.md) | 2 | 2 | 1 | 0 | no |
+| [CTP3](CTP3/README.md) | 2 | 2 | 1 | 0 | no |
+| [CTP4](CTP4/README.md) | 2 | 2 | 1 | 0 | no |
+| [CTP5](CTP5/README.md) | 2 | 2 | 1 | 0 | no |
+| [CTP6](CTP6/README.md) | 2 | 2 | 1 | 0 | no |
+| [CTP7](CTP7/README.md) | 2 | 2 | 1 | 0 | no |
+| [CTP8](CTP8/README.md) | 2 | 2 | 2 | 0 | no |
 
 [Full catalogue](../../../README.md)

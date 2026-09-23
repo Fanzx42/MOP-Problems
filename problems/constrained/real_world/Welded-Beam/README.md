@@ -12,7 +12,7 @@ Source status: `identified`. Identifying a source is separate from validating an
 
 ## Reference / 来源
 
-Reference implementation: pymoo welded-beam problem.
+Deb, K., Sundar, J., Rao, N. U. B. and Chaudhuri, S. (2006). Reference Point Based Multi-Objective Optimization Using Evolutionary Algorithms. International Journal of Computational Intelligence Research 2(3), 273-286.
 
 [Source / 参考来源](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/welded_beam.py)
 
@@ -32,6 +32,7 @@ Reference implementation: pymoo welded-beam problem.
 - Derivatives: `forward`; smoothness: `smooth`. [Jacobian contract](../../../../docs/gradients.md).
 - Derivative notes: Smooth formula on the decision box; this does not imply convexity.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Constraint representation: raw G <= 0, H = 0; box derivatives are not included.
 - Notes: Four-variable, two-objective, four-constraint pymoo 0.6.2 variant.
 
 ```python
@@ -43,6 +44,17 @@ print(result.F)
 jac = problem.jacobian(problem.sample(1, seed=238))
 print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
+
+### Paper / 论文出处
+
+- Deb, K., Sundar, J., Rao, N. U. B. and Chaudhuri, S. (2006). Reference Point Based Multi-Objective Optimization Using Evolutionary Algorithms. International Journal of Computational Intelligence Research 2(3), 273-286.
+  [Source](https://www.egr.msu.edu/~kdeb/papers/k2005012.pdf) · citation key: `welded_beam`.
+
+[Reference implementation / 对照实现](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/welded_beam.py)
+
+Version: `pymoo-0.6.2`.
+
+Implementation and variant notes above are part of the benchmark definition; cite the paper and record this version when reporting experiments.
 
 
 [Full catalogue](../../../README.md)

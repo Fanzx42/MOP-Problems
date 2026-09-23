@@ -2,27 +2,43 @@
 
 # ZCAT
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/irregular`
 
-Record difficulty, bias and imbalance settings for reproducibility.
+ZCAT1-20 follow pinned jMetalPy (theta denominator n-p, not PlatEMO n). Default n=2*m, m=3; level, bias, imbalance and complicated_pareto_set are explicit constructor parameters.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Zapotecas-Martinez et al. (2023). Challenging test problems for multi- and many-objective optimization. DOI: 10.1016/j.swevo.2023.101350.
+Zapotecas-Martinez, S., Coello Coello, C. A., Aguirre, H. and Tanaka, K. (2023). Challenging test problems for multi- and many-objective optimization. Swarm and Evolutionary Computation 81, 101350. DOI: 10.1016/j.swevo.2023.101350.
 
-[Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/ZCAT/ZCAT1.m)
+[Source / 参考来源](https://github.com/jMetal/jMetalPy/blob/fe3cd718748bea9ae59404fb70bf0e0bfe4167c9/src/jmetal/problem/multiobjective/zcat.py)
 
 ## Members / 成员
 
-Target members: `ZCAT1`, `ZCAT2`, `ZCAT3`, `ZCAT4`, `ZCAT5`, `ZCAT6`, `ZCAT7`, `ZCAT8`, `ZCAT9`, `ZCAT10`, `ZCAT11`, `ZCAT12`, `ZCAT13`, `ZCAT14`, `ZCAT15`, `ZCAT16`, `ZCAT17`, `ZCAT18`, `ZCAT19`, `ZCAT20`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [ZCAT1](ZCAT1/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT2](ZCAT2/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT3](ZCAT3/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT4](ZCAT4/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT5](ZCAT5/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT6](ZCAT6/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT7](ZCAT7/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT8](ZCAT8/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT9](ZCAT9/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT10](ZCAT10/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT11](ZCAT11/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT12](ZCAT12/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT13](ZCAT13/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT14](ZCAT14/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT15](ZCAT15/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT16](ZCAT16/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT17](ZCAT17/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT18](ZCAT18/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT19](ZCAT19/README.md) | 6 | 3 | 0 | 0 | no |
+| [ZCAT20](ZCAT20/README.md) | 6 | 3 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

@@ -2,27 +2,37 @@
 
 # LIR-CMOP
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `constrained/difficult`
 
-Large infeasible regions; maintain raw inequality residuals.
+LIRCMOP1-14 follow pinned PlatEMO, including its LIRCMOP2-4 tail shift and LIRCMOP13/14 radial offset.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Fan et al. (2019). An improved epsilon constraint-handling method in MOEA/D for CMOPs with large infeasible regions.
+Z. Fan, W. Li, X. Cai, H. Huang, Y. Fang, Y. You, J. Mo, C. Wei, and E. Goodman. An improved epsilon constraint-handling method in MOEA/D for CMOPs with large infeasible regions. Soft Computing, 2019, 23: 12491-12510.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/LIR-CMOP/LIRCMOP1.m)
 
 ## Members / 成员
 
-Target members: `LIRCMOP1`, `LIRCMOP2`, `LIRCMOP3`, `LIRCMOP4`, `LIRCMOP5`, `LIRCMOP6`, `LIRCMOP7`, `LIRCMOP8`, `LIRCMOP9`, `LIRCMOP10`, `LIRCMOP11`, `LIRCMOP12`, `LIRCMOP13`, `LIRCMOP14`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [LIRCMOP1](LIRCMOP1/README.md) | 30 | 2 | 2 | 0 | no |
+| [LIRCMOP2](LIRCMOP2/README.md) | 30 | 2 | 2 | 0 | no |
+| [LIRCMOP3](LIRCMOP3/README.md) | 30 | 2 | 3 | 0 | no |
+| [LIRCMOP4](LIRCMOP4/README.md) | 30 | 2 | 3 | 0 | no |
+| [LIRCMOP5](LIRCMOP5/README.md) | 30 | 2 | 2 | 0 | no |
+| [LIRCMOP6](LIRCMOP6/README.md) | 30 | 2 | 2 | 0 | no |
+| [LIRCMOP7](LIRCMOP7/README.md) | 30 | 2 | 3 | 0 | no |
+| [LIRCMOP8](LIRCMOP8/README.md) | 30 | 2 | 3 | 0 | no |
+| [LIRCMOP9](LIRCMOP9/README.md) | 30 | 2 | 2 | 0 | no |
+| [LIRCMOP10](LIRCMOP10/README.md) | 30 | 2 | 2 | 0 | no |
+| [LIRCMOP11](LIRCMOP11/README.md) | 30 | 2 | 2 | 0 | no |
+| [LIRCMOP12](LIRCMOP12/README.md) | 30 | 2 | 2 | 0 | no |
+| [LIRCMOP13](LIRCMOP13/README.md) | 30 | 3 | 2 | 0 | no |
+| [LIRCMOP14](LIRCMOP14/README.md) | 30 | 3 | 3 | 0 | no |
 
 [Full catalogue](../../../README.md)

@@ -5,5 +5,5 @@
 [Full catalogue](../../README.md)
 
 - [WFG](WFG/README.md) — **implemented**
-- [IDTLZ](IDTLZ/README.md) — **planned**
-- [SDTLZ](SDTLZ/README.md) — **planned**
+- [IDTLZ](IDTLZ/README.md) — **implemented**
+- [SDTLZ](SDTLZ/README.md) — **implemented**

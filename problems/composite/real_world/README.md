@@ -4,5 +4,5 @@
 
 [Full catalogue](../../README.md)
 
-- [RE_continuous](RE_continuous/README.md) — **planned**
-- [RWA](RWA/README.md) — **planned**
+- [RE_continuous](RE_continuous/README.md) — **implemented**
+- [RWA](RWA/README.md) — **implemented**

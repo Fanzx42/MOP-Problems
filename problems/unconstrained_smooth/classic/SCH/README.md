@@ -32,6 +32,7 @@ Schaffer (1985). Multiple objective optimization with vector evaluated genetic a
 - Derivatives: `forward`; smoothness: `smooth`. [Jacobian contract](../../../../docs/gradients.md).
 - Derivative notes: Smooth formula on the decision box; this does not imply convexity.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Constraint representation: raw G <= 0, H = 0; box derivatives are not included.
 - Notes: Schaffer N.1.
 
 ```python
@@ -43,6 +44,17 @@ print(result.F)
 jac = problem.jacobian(problem.sample(1, seed=238))
 print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
+
+### Paper / 论文出处
+
+- Schaffer (1985). Multiple objective optimization with vector evaluated genetic algorithms.
+  [Source](https://github.com/MOEAFramework/MOEAFramework/blob/9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5/src/org/moeaframework/problem/misc/Schaffer.java) · citation key: `sch`.
+
+[Reference implementation / 对照实现](https://github.com/MOEAFramework/MOEAFramework/blob/9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5/src/org/moeaframework/problem/misc/Schaffer.java)
+
+Version: `9f2ce5a4e4ae4e0842b4fa51d99be142af54d0e5`.
+
+Implementation and variant notes above are part of the benchmark definition; cite the paper and record this version when reporting experiments.
 
 
 [Full catalogue](../../../README.md)

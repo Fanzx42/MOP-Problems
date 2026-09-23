@@ -8,5 +8,5 @@
 - [TNK](TNK/README.md) — **implemented**
 - [OSY](OSY/README.md) — **implemented**
 - [SRN](SRN/README.md) — **implemented**
-- [CTP](CTP/README.md) — **planned**
-- [CF](CF/README.md) — **planned**
+- [CTP](CTP/README.md) — **implemented**
+- [CF](CF/README.md) — **implemented**

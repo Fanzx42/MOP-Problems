@@ -2,27 +2,33 @@
 
 # RE_continuous
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/real_world`
 
-Membership is pending a variable-type audit. Exclude integer/discrete variables and document any stochastic members; do not silently relax or round variables.
+Ten deterministic, real-variable RE problems; discrete/rounded RE22/23/25/35/36 and stochastic RE91 are excluded. Positive-part violation objectives remain part of F.
 
-Source status: `membership-pending`. Identifying a source is separate from validating an implementation.
+Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Tanabe and Ishibuchi (2020). An easy-to-use real-world multi-objective optimization problem suite.
+Tanabe, R. and Ishibuchi, H. (2020). An easy-to-use real-world multi-objective optimization problem suite. Applied Soft Computing 89, 106078. DOI: 10.1016/j.asoc.2020.106078.
 
-[Source / 参考来源](https://github.com/ryojitanabe/reproblems)
+[Source / 参考来源](https://github.com/ryojitanabe/reproblems/blob/7876b4e465eac381a256e461d1310b8bb2b92846/reproblem_python_ver/reproblem.py)
 
 ## Members / 成员
 
-Member list pending source/version verification.
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [RE21](RE21/README.md) | 4 | 2 | 0 | 0 | no |
+| [RE24](RE24/README.md) | 2 | 2 | 0 | 0 | no |
+| [RE31](RE31/README.md) | 3 | 3 | 0 | 0 | no |
+| [RE32](RE32/README.md) | 4 | 3 | 0 | 0 | no |
+| [RE33](RE33/README.md) | 4 | 3 | 0 | 0 | no |
+| [RE34](RE34/README.md) | 5 | 3 | 0 | 0 | no |
+| [RE37](RE37/README.md) | 4 | 3 | 0 | 0 | no |
+| [RE41](RE41/README.md) | 7 | 4 | 0 | 0 | no |
+| [RE42](RE42/README.md) | 6 | 4 | 0 | 0 | no |
+| [RE61](RE61/README.md) | 3 | 6 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

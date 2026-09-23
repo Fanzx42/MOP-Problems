@@ -2,27 +2,31 @@
 
 # MMF
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/multimodal`
 
-Initial target: original MMF1-8. Later CEC extensions and suffixed variants require a separate versioned member list.
+MMF1-8, fixed two-variable definitions; piecewise transforms and absolute values are retained.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Yue, Qu and Liang (2018). A multi-objective particle swarm optimizer using ring topology for solving multimodal multiobjective problems.
+C. Yue, B. Qu, and J. Liang. A multi-objective particle swarm optimizer using ring topology for solving multimodal multiobjective problems. IEEE Transactions on Evolutionary Computation, 2018, 22(5): 805-817.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/MMF/MMF1.m)
 
 ## Members / 成员
 
-Target members: `MMF1`, `MMF2`, `MMF3`, `MMF4`, `MMF5`, `MMF6`, `MMF7`, `MMF8`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [MMF1](MMF1/README.md) | 2 | 2 | 0 | 0 | no |
+| [MMF2](MMF2/README.md) | 2 | 2 | 0 | 0 | no |
+| [MMF3](MMF3/README.md) | 2 | 2 | 0 | 0 | no |
+| [MMF4](MMF4/README.md) | 2 | 2 | 0 | 0 | no |
+| [MMF5](MMF5/README.md) | 2 | 2 | 0 | 0 | no |
+| [MMF6](MMF6/README.md) | 2 | 2 | 0 | 0 | no |
+| [MMF7](MMF7/README.md) | 2 | 2 | 0 | 0 | no |
+| [MMF8](MMF8/README.md) | 2 | 2 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

@@ -16,6 +16,7 @@
 - Derivatives: `forward`; smoothness: `piecewise_discontinuous`. [Jacobian contract](../../../../../docs/gradients.md).
 - Derivative notes: Quadratics inside each tile; tile changes can be discontinuous.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Constraint representation: raw G <= 0, H = 0; box derivatives are not included.
 - Notes: Nine equivalent Pareto subsets; a=1, b=c=10, box [-100,100]^2.
 
 ```python
@@ -27,3 +28,14 @@ print(result.F)
 jac = problem.jacobian(problem.sample(1, seed=238))
 print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
+
+### Paper / 论文出处
+
+- Rudolph, Naujoks and Preuss (2007). Capabilities of EMOA to Detect and Preserve Equivalent Pareto Subsets. Simple/rotated variants: pymoo 0.6.2.
+  [Source](https://doi.org/10.1007/978-3-540-70928-2_7) · citation key: `sym_part`.
+
+[Reference implementation / 对照实现](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/sympart.py)
+
+Version: `pymoo-0.6.2`.
+
+Implementation and variant notes above are part of the benchmark definition; cite the paper and record this version when reporting experiments.

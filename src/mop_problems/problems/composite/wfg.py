@@ -105,7 +105,7 @@ class _WFG(Problem):
             columns.append(_unit(reduced))
         return np.column_stack(columns)
 
-    def _evaluate(self, X):
+    def _transform(self, X):
         y = X / self.xu
         number, k = self.number, self.k
         if number in (7, 8, 9):
@@ -140,6 +140,11 @@ class _WFG(Problem):
         if number == 3:
             degeneracy[1:] = 0
         positions = np.maximum(distance, degeneracy) * (reduced[:, :-1] - 0.5) + 0.5
+        return positions, distance
+
+    def _evaluate(self, X):
+        positions, distance = self._transform(X)
+        number = self.number
         kind = "convex" if number in (1, 2) else "linear" if number == 3 else "concave"
         h = _shape(positions, kind)
         first = positions[:, 0]

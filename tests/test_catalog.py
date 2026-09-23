@@ -74,7 +74,7 @@ def test_complete_user_taxonomy_and_no_placeholder_registrations():
     assert {s["name"] for s in suites} == EXPECTED_FAMILIES
     assert len({s["id"] for s in suites}) == len(suites)
     assert len({s["path"].lower() for s in suites}) == len(suites)
-    assert len(set(list_problems())) == len(list_problems()) == 47
+    assert len(set(list_problems())) == len(list_problems()) == 343
     for s in suites:
         assert s["status"] in {"implemented", "planned"}
         assert s["source_status"] in {"identified", "pending", "membership-pending"}
@@ -94,10 +94,17 @@ def test_complete_user_taxonomy_and_no_placeholder_registrations():
 def test_lookup_filtering_and_detached_metadata():
     assert get_problem(" zdt-1 ").name == "ZDT1"
     assert get_problem("dtlz_2").name == "DTLZ2"
-    assert list_problems(category="constrained/classic") == ["BNH", "TNK", "OSY", "SRN"]
+    assert list_problems(category="constrained/classic") == [
+        "BNH",
+        "TNK",
+        "OSY",
+        "SRN",
+        *[f"CTP{i}" for i in range(1, 9)],
+        *[f"CF{i}" for i in range(1, 11)],
+    ]
     assert list_problems(suite="WFG") == [f"WFG{i}" for i in range(1, 10)]
-    assert len(list_suites(status="implemented")) == 15
-    assert len(list_suites(status="planned")) == 28
+    assert len(list_suites(status="implemented")) == 43
+    assert list_suites(status="planned") == []
     info = get_problem_info("ZDT1")
     info["name"] = "changed"
     assert get_problem_info("ZDT1")["name"] == "ZDT1"
@@ -113,9 +120,20 @@ def test_catalogue_derivative_metadata_matches_default_instance(name):
 
 
 @pytest.mark.parametrize("name", ["IDTLZ1", "Eq-IDTLZ2", "LSMOP9"])
-def test_known_pending_members_have_useful_errors(name):
-    with pytest.raises(PlannedProblemError, match="not implemented"):
-        get_problem(name)
+def test_formerly_planned_members_are_callable(name):
+    assert get_problem(name).name == name
+
+
+@pytest.mark.parametrize("name", list_problems())
+def test_every_problem_has_paper_and_version_provenance(name):
+    info = get_problem_info(name)
+    assert info["references"]
+    for ref in info["references"]:
+        assert ref["citation"] and ref["key"]
+        assert ref["url"].startswith("https://")
+    reference = info["reference_implementation"]
+    assert reference["url"].startswith("https://")
+    assert reference["version"]
 
 
 def test_invalid_names_filters_and_suite_members():
@@ -161,18 +179,18 @@ def test_cli(capsys):
     assert main(["list", "--suite", "ZDT", "--json"]) == 0
     assert len(json.loads(capsys.readouterr().out)) == 5
     main(["suites", "--status", "planned", "--json"])
-    assert len(json.loads(capsys.readouterr().out)) == 28
+    assert json.loads(capsys.readouterr().out) == []
     main(["info", "BNH"])
     assert json.loads(capsys.readouterr().out)["n_ieq_constr"] == 2
     main(["sample", "DTLZ2", "--n", "2", "--n-obj", "5", "--seed", "1"])
     out = json.loads(capsys.readouterr().out)
     assert len(out["X"][0]) == 14 and len(out["F"][0]) == 5
     main(["list", "--category", "constrained/classic"])
-    assert capsys.readouterr().out.splitlines() == ["BNH", "TNK", "OSY", "SRN"]
+    assert capsys.readouterr().out.splitlines() == list_problems(category="constrained/classic")
     main(["suites", "--status", "implemented"])
     assert "implemented" in capsys.readouterr().out
     with pytest.raises(SystemExit) as e:
-        main(["sample", "IDTLZ1"])
+        main(["sample", "IDTLZ99"])
     assert e.value.code == 2
 
 
@@ -184,4 +202,4 @@ def test_module_cli_from_another_working_directory(tmp_path):
         text=True,
         check=True,
     )
-    assert len(json.loads(result.stdout)) == 47
+    assert len(json.loads(result.stdout)) == 343

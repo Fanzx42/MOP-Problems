@@ -2,27 +2,38 @@
 
 # MaF
 
-**Status / 状态: planned**
+**Status / 状态: implemented**
 
 Category: `composite/irregular`
 
-CEC 2017 MaF1-15; this is a broad many-objective suite, not a claim that every member has an irregular front.
+MaF1-15. MaF10 uses continuous WFG1 without the four-decimal b_flat rounding found in pinned PlatEMO. MaF9 rejects excluded polygons instead of randomly repairing inputs.
 
 Source status: `identified`. Identifying a source is separate from validating an implementation.
 
 ## Reference / 来源
 
-Cheng et al. (2017). A benchmark test suite for evolutionary many-objective optimization.
+R. Cheng, M. Li, Y. Tian, X. Zhang, S. Yang, Y. Jin, and X. Yao. A benchmark test suite for evolutionary many-objective optimization. Complex & Intelligent Systems, 2017, 3(1): 67-81. DOI: 10.1007/s40747-017-0039-7.
 
 [Source / 参考来源](https://github.com/BIMK/PlatEMO/blob/d25e65d1ffba58dbf4d7e1b5259786187d12968a/PlatEMO/Problems/Multi-objective%20optimization/MaF/MaF1.m)
 
 ## Members / 成员
 
-Target members: `MaF1`, `MaF2`, `MaF3`, `MaF4`, `MaF5`, `MaF6`, `MaF7`, `MaF8`, `MaF9`, `MaF10`, `MaF11`, `MaF12`, `MaF13`, `MaF14`, `MaF15`
-
-These are target catalogue entries, **not callable problems**.
-
-Before implementation: verify the original definition/version, variable types and bounds, objective directions, constraints, and reference outputs. Add numerical tests before registering a callable implementation.
-
+| Problem | Default variables | Default objectives | Inequalities | Equalities | Analytical PF sampler |
+| --- | ---: | ---: | ---: | ---: | --- |
+| [MaF1](MaF1/README.md) | 12 | 3 | 0 | 0 | no |
+| [MaF2](MaF2/README.md) | 12 | 3 | 0 | 0 | no |
+| [MaF3](MaF3/README.md) | 12 | 3 | 0 | 0 | no |
+| [MaF4](MaF4/README.md) | 12 | 3 | 0 | 0 | no |
+| [MaF5](MaF5/README.md) | 12 | 3 | 0 | 0 | no |
+| [MaF6](MaF6/README.md) | 12 | 3 | 0 | 0 | no |
+| [MaF7](MaF7/README.md) | 22 | 3 | 0 | 0 | no |
+| [MaF8](MaF8/README.md) | 2 | 10 | 0 | 0 | no |
+| [MaF9](MaF9/README.md) | 2 | 10 | 0 | 0 | no |
+| [MaF10](MaF10/README.md) | 12 | 3 | 0 | 0 | no |
+| [MaF11](MaF11/README.md) | 12 | 3 | 0 | 0 | no |
+| [MaF12](MaF12/README.md) | 12 | 3 | 0 | 0 | no |
+| [MaF13](MaF13/README.md) | 5 | 3 | 0 | 0 | no |
+| [MaF14](MaF14/README.md) | 60 | 3 | 0 | 0 | no |
+| [MaF15](MaF15/README.md) | 60 | 3 | 0 | 0 | no |
 
 [Full catalogue](../../../README.md)

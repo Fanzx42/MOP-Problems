@@ -32,6 +32,7 @@ Tanaka et al. (1995). GA-based decision support system for multicriteria optimiz
 - Derivatives: `forward`; smoothness: `interior`. [Jacobian contract](../../../../docs/gradients.md).
 - Derivative notes: Constraint angle is undefined at the origin; its assigned value is not differentiable.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
+- Constraint representation: raw G <= 0, H = 0; box derivatives are not included.
 - Notes: Origin is infeasible; angle convention is atan2(0,0)=0.
 
 ```python
@@ -43,6 +44,17 @@ print(result.F)
 jac = problem.jacobian(problem.sample(1, seed=238))
 print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
+
+### Paper / 论文出处
+
+- Tanaka et al. (1995). GA-based decision support system for multicriteria optimization.
+  [Source](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/tnk.py) · citation key: `tnk`.
+
+[Reference implementation / 对照实现](https://github.com/anyoptimization/pymoo/blob/0.6.2/pymoo/problems/multi/tnk.py)
+
+Version: `pymoo-0.6.2`.
+
+Implementation and variant notes above are part of the benchmark definition; cite the paper and record this version when reporting experiments.
 
 
 [Full catalogue](../../../README.md)
