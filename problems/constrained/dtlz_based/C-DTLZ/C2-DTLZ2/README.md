@@ -13,6 +13,8 @@
 - Decision bounds: `0.0` to `1.0` (scalar bounds broadcast to all variables).
 - Default parameters: `{"n_var": null, "n_obj": 3, "r": null}`.
 - Properties: static, constraints, scalable.
+- Derivatives: `forward`; smoothness: `piecewise`. [Jacobian contract](../../../../../docs/gradients.md).
+- Derivative notes: Absolute values or min/max branches: no classical derivative at some ties.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
 - Notes: DTLZ2 restricted to a union of balls in objective space.
 
@@ -22,4 +24,6 @@ from mop_problems import get_problem
 problem = get_problem("C2-DTLZ2")
 result = problem.evaluate(problem.sample(4, seed=42))
 print(result.F)
+jac = problem.jacobian(problem.sample(1, seed=238))
+print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```

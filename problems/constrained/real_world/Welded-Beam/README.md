@@ -29,6 +29,8 @@ Reference implementation: pymoo welded-beam problem.
 - Decision bounds: `[0.125, 0.1, 0.1, 0.125]` to `[5.0, 10.0, 10.0, 5.0]` (scalar bounds broadcast to all variables).
 - Default parameters: `{}`.
 - Properties: static, real-world, constraints.
+- Derivatives: `forward`; smoothness: `smooth`. [Jacobian contract](../../../../docs/gradients.md).
+- Derivative notes: Smooth formula on the decision box; this does not imply convexity.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
 - Notes: Four-variable, two-objective, four-constraint pymoo 0.6.2 variant.
 
@@ -38,6 +40,8 @@ from mop_problems import get_problem
 problem = get_problem("Welded-Beam")
 result = problem.evaluate(problem.sample(4, seed=42))
 print(result.F)
+jac = problem.jacobian(problem.sample(1, seed=238))
+print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
 
 

@@ -1,6 +1,6 @@
 # Contributing
 
-Use Python 3.10+ and install `python -m pip install -e ".[dev,reference]"`.
+Use Python 3.10+ and install `python -m pip install -e ".[dev,reference,algorithms]"`.
 Small, independently verifiable changes are easier to review than a large
 unverified port of a benchmark collection.
 
@@ -18,6 +18,8 @@ unverified port of a benchmark collection.
    comparison. Merely comparing batch and scalar paths does not validate a formula.
 5. Update `src/mop_problems/data/catalog.json`, mathematical definitions and sources.
    Register only implementations that pass the checks. Keep planned families honest.
+   Validate dF/dG/dH independently, describe smoothness exceptions, and update the
+   default derivative metadata. Unsupported differentiations must fail explicitly.
 6. Run `python scripts/build_catalog.py`. Do not edit generated problem cards by hand.
 7. Run the checks below and describe the final behavior and evidence in the PR.
 

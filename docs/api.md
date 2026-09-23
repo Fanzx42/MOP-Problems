@@ -130,12 +130,22 @@ evaluation formula does not imply the existence of a verified reference sampler.
 
 ## Extending the library
 
+First derivatives use `problem.jacobian(X)` or `problem.evaluate_with_jacobian(X)`.
+`dF`, `dG`, `dH` have shape `(N, n_functions, n_var)` and retain raw constraint signs.
+Read [the derivative contract](gradients.md) for smoothness and exceptional points,
+and [the algorithm guide](algorithms.md) for the five built-in first-order families.
+
 Subclass `Problem` and implement `_evaluate(X) -> (F, G, H)`. It receives a
 validated batch and must not mutate it. Return `None` for a constraint family only
 when its count is zero. The base class checks all result shapes and finite values.
 See [contribution requirements](../CONTRIBUTING.md) before registration.
 
+The finite NumPy operation subset used by the registered formulas supports forward
+chain rules. A custom problem may override `evaluate_with_jacobian` with its own
+validated `(Evaluation, Jacobian)` implementation; unsupported AD operations fail
+explicitly. Unknown custom smoothness is reported as `unknown`.
+
 Equality result handling is present in the base API and tested with an analytical
-test fixture. **No real equality-constrained benchmark is implemented in 0.2.0.**
+test fixture. **No real equality-constrained benchmark is implemented in 0.3.0.**
 Dynamic suites are also planned: a future dynamic API needs explicit benchmark
 time and reproducible environment parameters; it is not currently provided.

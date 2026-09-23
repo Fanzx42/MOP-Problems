@@ -46,6 +46,25 @@ class Evaluation:
         return self.CV == 0.0
 
 
+class NonDifferentiableError(ValueError):
+    """A formula contains a detected kink, branch boundary or singular derivative."""
+
+
+@dataclass(frozen=True)
+class Jacobian:
+    """Batch derivatives, with variables on the last axis and raw constraint signs.
+
+    ``regular`` is a conservative per-point check of the evaluated chain rules,
+    not a proof of smoothness. It is None for numerical finite differences.
+    """
+
+    dF: FloatArray
+    dG: FloatArray
+    dH: FloatArray
+    method: str = "forward"
+    regular: NDArray[np.bool_] | None = None
+
+
 class Problem(ABC):
     """Base class for vectorized, real-valued, all-minimization benchmarks."""
 
@@ -90,6 +109,10 @@ class Problem(ABC):
         """
         if not np.isscalar(equality_tol) or not np.isfinite(equality_tol) or equality_tol < 0:
             raise ValueError("equality_tol must be a finite nonnegative scalar")
+        x = self._validate_input(X, check_bounds=check_bounds)
+        return self._make_evaluation(x, self._evaluate(x), equality_tol)
+
+    def _validate_input(self, X, *, check_bounds=True):
         raw = np.asarray(X)
         if np.iscomplexobj(raw):
             raise TypeError("X must contain real values")
@@ -105,7 +128,10 @@ class Problem(ABC):
         bound_cv = np.sum(below + above, axis=1)
         if check_bounds and np.any(bound_cv > 0):
             raise ValueError(f"X is outside the decision bounds of {self.name}")
-        F, G, H = self._evaluate(x)
+        return x
+
+    def _make_evaluation(self, x, values, equality_tol):
+        F, G, H = values
         arrays = []
         for label, value, width in (
             ("F", F, self.n_obj),
@@ -123,9 +149,69 @@ class Problem(ABC):
                 raise FloatingPointError(f"{self.name} produced non-finite {label}")
             arrays.append(array)
         f, g, h = arrays
+        bound_cv = np.sum(np.maximum(self.xl - x, 0) + np.maximum(x - self.xu, 0), axis=1)
         cv = bound_cv + np.maximum(g, 0).sum(axis=1)
         cv += np.maximum(np.abs(h) - equality_tol, 0).sum(axis=1)
         return Evaluation(f, g, h, _readonly(cv))
+
+    def jacobian(self, X: ArrayLike, *, check_bounds=True, nondifferentiable="raise") -> Jacobian:
+        """Differentiate the formula by exact forward chain rules, not differences.
+
+        At detected kinks the default raises. Explicit ``nondifferentiable='branch'``
+        returns the selected branch derivatives and regular=False; these need not
+        be classical derivatives or subgradients. Singular derivatives always raise.
+        """
+        return self.evaluate_with_jacobian(
+            X, check_bounds=check_bounds, nondifferentiable=nondifferentiable
+        )[1]
+
+    def evaluate_with_jacobian(
+        self, X: ArrayLike, *, check_bounds=True, nondifferentiable="raise", equality_tol=1e-6
+    ) -> tuple[Evaluation, Jacobian]:
+        """Compute values and first derivatives in one formula traversal."""
+        from ._autodiff import Jet, constant
+
+        if nondifferentiable not in ("raise", "branch"):
+            raise ValueError("nondifferentiable must be 'raise' or 'branch'")
+        if not np.isscalar(equality_tol) or not np.isfinite(equality_tol) or equality_tol < 0:
+            raise ValueError("equality_tol must be a finite nonnegative scalar")
+        x = self._validate_input(X, check_bounds=check_bounds)
+        with np.errstate(divide="ignore", invalid="ignore", over="ignore"):
+            outputs = self._evaluate(Jet.variables(x))
+        values, derivatives = [], []
+        regular = np.ones(len(x), dtype=bool)
+        for value, width in zip(
+            outputs, (self.n_obj, self.n_ieq_constr, self.n_eq_constr), strict=True
+        ):
+            if value is None:
+                if width:
+                    raise RuntimeError(f"{self.name} did not return its declared constraints")
+                value = np.empty((len(x), 0))
+            jet = constant(value, self.n_var)
+            if jet.d.shape != (len(x), width, self.n_var):
+                raise RuntimeError(f"{self.name} produced a malformed derivative")
+            if not np.isfinite(jet.d).all():
+                raise NonDifferentiableError(f"{self.name}: singular/non-finite derivative")
+            regular &= jet.r.all(axis=1)
+            values.append(jet.v)
+            derivatives.append(_readonly(jet.d))
+        if nondifferentiable == "raise" and not regular.all():
+            rows = np.flatnonzero(~regular).tolist()
+            raise NonDifferentiableError(
+                f"{self.name}: detected nonsmooth operation at batch rows {rows}; "
+                "see derivative_info and docs/gradients.md"
+            )
+        regular.setflags(write=False)
+        return self._make_evaluation(x, values, equality_tol), Jacobian(
+            *derivatives, regular=regular
+        )
+
+    @property
+    def derivative_info(self) -> dict:
+        """Smoothness caveats for the actual dimensions and parameters."""
+        from .differentiation import derivative_info
+
+        return derivative_info(self)
 
     @abstractmethod
     def _evaluate(self, X: FloatArray) -> tuple[FloatArray, FloatArray | None, FloatArray | None]:

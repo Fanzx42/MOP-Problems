@@ -94,6 +94,10 @@ def render() -> dict[Path, str]:
                     "(scalar bounds broadcast to all variables).",
                     f"- Default parameters: `{json.dumps(p['parameters'])}`.",
                     f"- Properties: {', '.join(p['properties'])}.",
+                    f"- Derivatives: `{p['derivatives']['method']}`; "
+                    f"smoothness: `{p['derivatives']['smoothness']}`. "
+                    f"[Jacobian contract]({link(details, ROOT / 'docs/gradients.md')}).",
+                    f"- Derivative notes: {p['derivatives']['notes']}",
                     "- All objectives are minimized; constraints use `G <= 0`, `H = 0`.",
                     f"- Notes: {p['notes'] or 'See the common API contract.'}",
                     "",
@@ -103,6 +107,8 @@ def render() -> dict[Path, str]:
                     f'problem = get_problem("{name}")',
                     "result = problem.evaluate(problem.sample(4, seed=42))",
                     "print(result.F)",
+                    "jac = problem.jacobian(problem.sample(1, seed=238))",
+                    "print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above",
                     "```",
                     "",
                 ]

@@ -70,7 +70,37 @@ variants under the same version label.
 NCTP and CMMOP still need original-source verification. Their folders are present
 and explicitly marked pending, with no guessed formulas or source attribution.
 
-## License and citation policy
+## First-order algorithms
+
+- Fliege, J.; Svaiter, B. F. (2000). Steepest descent methods for multicriteria
+  optimization. Mathematical Methods of Operations Research 51, 479–494.
+  [DOI](https://doi.org/10.1007/s001860000043).
+- Désidéri, J.-A. (2012). Multiple-gradient descent algorithm (MGDA) for
+  multiobjective optimization. Comptes Rendus Mathématique 350, 313–318.
+  [Author's site](https://mgda.inria.fr/mgda),
+  [paper](https://www.numdam.org/item/CRMATH_2012__350_5-6_313_0.pdf).
+- Chen, J.; Tang, L.; Yang, X. (2023). A Barzilai-Borwein descent method for
+  multiobjective optimization problems. European Journal of Operational Research
+  311, 196–209. [Publisher](https://www.sciencedirect.com/science/article/pii/S0377221723003028).
+  Implemented equations were checked against the
+  [authors' arXiv:2204.08616v1](https://arxiv.org/abs/2204.08616v1),
+  Eq. (22), Algorithm 5 and its monotone/max/average line searches.
+- Tanabe, H.; Fukuda, E. H.; Yamashita, N. (2019). Proximal gradient methods for
+  multiobjective optimization and their applications. Computational Optimization
+  and Applications 72, 339–361. [DOI](https://doi.org/10.1007/s10589-018-0043-x).
+- Tanabe, H.; Fukuda, E. H.; Yamashita, N. (2023). An accelerated proximal gradient
+  method for multiobjective optimization. Computational Optimization and
+  Applications 86, 421–455. [DOI](https://doi.org/10.1007/s10589-023-00497-w).
+  The implemented minimax model, recurrence and dual follow
+  [arXiv:2202.10994v3](https://arxiv.org/html/2202.10994v3), Sections 3, 4 and 6.
+  The smooth accelerated baseline is its `g_i=0` specialization.
+
+Code is independently implemented from mathematical definitions. Box handling,
+domain restarts, inner solvers and the common stopping diagnostic are documented
+implementation choices in [the algorithm guide](algorithms.md); the source links
+do not imply bit-for-bit reproduction of the authors' software or numerical tables.
+
+## Software license and citation
 
 The MIT license applies to this repository's original code and documentation.
 External libraries, papers and data retain their own licenses. A public source

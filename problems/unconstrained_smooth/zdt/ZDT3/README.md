@@ -13,6 +13,8 @@
 - Decision bounds: `0` to `1` (scalar bounds broadcast to all variables).
 - Default parameters: `{"n_var": 30}`.
 - Properties: disconnected, static.
+- Derivatives: `forward`; smoothness: `interior`. [Jacobian contract](../../../../docs/gradients.md).
+- Derivative notes: Fractional powers/square roots can have singular derivatives at x[0]=0.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
 - Notes: Front endpoints are numerical; disconnected regions must not be joined by a line.
 
@@ -22,4 +24,6 @@ from mop_problems import get_problem
 problem = get_problem("ZDT3")
 result = problem.evaluate(problem.sample(4, seed=42))
 print(result.F)
+jac = problem.jacobian(problem.sample(1, seed=238))
+print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```

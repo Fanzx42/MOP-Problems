@@ -29,6 +29,8 @@ Tanaka et al. (1995). GA-based decision support system for multicriteria optimiz
 - Decision bounds: `0` to `3.141592653589793` (scalar bounds broadcast to all variables).
 - Default parameters: `{}`.
 - Properties: inequality, disconnected.
+- Derivatives: `forward`; smoothness: `interior`. [Jacobian contract](../../../../docs/gradients.md).
+- Derivative notes: Constraint angle is undefined at the origin; its assigned value is not differentiable.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
 - Notes: Origin is infeasible; angle convention is atan2(0,0)=0.
 
@@ -38,6 +40,8 @@ from mop_problems import get_problem
 problem = get_problem("TNK")
 result = problem.evaluate(problem.sample(4, seed=42))
 print(result.F)
+jac = problem.jacobian(problem.sample(1, seed=238))
+print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
 
 

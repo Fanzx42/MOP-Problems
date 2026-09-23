@@ -13,6 +13,8 @@
 - Decision bounds: `-100.0` to `100.0` (scalar bounds broadcast to all variables).
 - Default parameters: `{"angle": 0.7853981633974483}`.
 - Properties: static, multimodal, equivalent-pareto-sets.
+- Derivatives: `forward`; smoothness: `piecewise_discontinuous`. [Jacobian contract](../../../../../docs/gradients.md).
+- Derivative notes: Quadratics inside each tile; tile changes can be discontinuous.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
 - Notes: Nine equivalent Pareto subsets; a=1, b=c=10, box [-100,100]^2.
 
@@ -22,4 +24,6 @@ from mop_problems import get_problem
 problem = get_problem("SYM-PART-Rotated")
 result = problem.evaluate(problem.sample(4, seed=42))
 print(result.F)
+jac = problem.jacobian(problem.sample(1, seed=238))
+print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```

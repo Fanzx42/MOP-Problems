@@ -55,6 +55,8 @@ The source status (`identified`, `pending`, `membership-pending`) is independent
 finding a paper or implementation does not certify its formulas or numerical results.
 
 No runtime entry is generated just because a name appears in a directory.
-No derivatives, Hessians, optimization algorithms, dynamic-time interface or external
-reference-front datasets are claimed by version 0.2.0. The reproducible examples
-generate their analytical reference points locally from documented formulas.
+Version 0.3.0 provides first derivatives and five first-order algorithm families;
+see [derivative caveats](gradients.md) and [algorithm scope](algorithms.md).
+No Hessians, dynamic-time interface or external reference-front datasets are claimed.
+The reproducible examples generate their analytical reference points locally from
+documented formulas. A catalogue category does not certify smoothness or convexity.

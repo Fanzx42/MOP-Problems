@@ -29,6 +29,8 @@ Osyczka and Kundu (1995). A new method to solve generalized multicriteria optimi
 - Decision bounds: `[0, 0, 1, 0, 1, 0]` to `[10, 10, 5, 6, 5, 10]` (scalar bounds broadcast to all variables).
 - Default parameters: `{}`.
 - Properties: inequality.
+- Derivatives: `forward`; smoothness: `smooth`. [Jacobian contract](../../../../docs/gradients.md).
+- Derivative notes: Smooth formula on the decision box; this does not imply convexity.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
 - Notes: See the common API contract.
 
@@ -38,6 +40,8 @@ from mop_problems import get_problem
 problem = get_problem("OSY")
 result = problem.evaluate(problem.sample(4, seed=42))
 print(result.F)
+jac = problem.jacobian(problem.sample(1, seed=238))
+print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
 
 

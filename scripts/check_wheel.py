@@ -1,6 +1,6 @@
 """Build-independent wheel smoke check in a fresh, disposable virtual environment.
 
-Usage: python scripts/check_wheel.py dist/mop_problems-0.2.0-py3-none-any.whl
+Usage: python scripts/check_wheel.py dist/mop_problems-0.3.0-py3-none-any.whl
 The wheel's declared runtime dependencies are installed; no editable checkout is used.
 """
 
@@ -29,9 +29,16 @@ for name in list_problems():
     result = problem.evaluate(problem.sample(8, seed=42))
     assert result.F.shape == (8, problem.n_obj)
     assert np.isfinite(result.F).all()
+    point = problem.sample(1, seed=238)
+    jac = problem.jacobian(point)
+    assert jac.dF.shape == (1, problem.n_obj, problem.n_var)
+    assert np.isfinite(jac.dF).all()
 assert get_problem('BNH').evaluate([1, 1]).feasible[0]
+from mop_problems.algorithms import MGDA
+assert MGDA().solve(get_problem('SCH'), [5]).success
 assert 'pymoo' not in sys.modules
-print('Installed wheel passed: 47 problems, 43 catalogue entries, NumPy-only runtime.')
+assert 'scipy' not in sys.modules
+print('Installed wheel passed: 47 value/Jacobian oracles and two-objective MGDA, NumPy-only.')
 print('Imported from:', location)
 """
 

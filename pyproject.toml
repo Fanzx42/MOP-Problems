@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mop-problems"
-version = "0.2.0"
+version = "0.3.0"
 description = "A documented, reproducible catalogue of multi-objective optimization benchmarks"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -30,6 +30,7 @@ Documentation = "https://github.com/Fanzx42/MOP-Problems/blob/main/README.md"
 dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.11", "build>=1.2", "twine>=6"]
 reference = ["pymoo==0.6.2"]
 plot = ["matplotlib>=3.8"]
+algorithms = ["scipy>=1.10"]
 
 [project.scripts]
 mop-problems = "mop_problems.__main__:main"

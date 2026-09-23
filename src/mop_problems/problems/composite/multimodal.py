@@ -5,6 +5,20 @@ import numpy as np
 from ...core import Problem, integer
 
 
+def _tile(coordinate, first_boundary, width):
+    from ..._autodiff import Jet
+
+    if isinstance(coordinate, Jet):
+        # Clipped outer tiles are locally constant even at redundant ceil
+        # breakpoints, and the central tile is smooth at coordinate=0.
+        value = _tile(coordinate.v, first_boundary, width)
+        at_jump = np.abs(np.abs(coordinate.v) - first_boundary) <= 32 * np.finfo(float).eps
+        return Jet(value, np.zeros_like(coordinate.d), coordinate.r & ~at_jump)
+    return np.clip(
+        np.sign(coordinate) * np.ceil((np.abs(coordinate) - first_boundary) / width), -1, 1
+    )
+
+
 class OmniTest(Problem):
     """Periodic objectives on [0,6]^n, with 3^n equivalent Pareto subsets."""
 
@@ -41,8 +55,8 @@ class SYMPARTRotated(Problem):
     def _evaluate(self, X):
         coordinates = X @ self._inverse_rotation.T
         horizontal, vertical = coordinates.T
-        tile_x = np.clip(np.sign(horizontal) * np.ceil((np.abs(horizontal) - 6) / 12), -1, 1)
-        tile_y = np.clip(np.sign(vertical) * np.ceil((np.abs(vertical) - 5) / 10), -1, 1)
+        tile_x = _tile(horizontal, 6, 12)
+        tile_y = _tile(vertical, 5, 10)
         u, v = horizontal - 10 * tile_x, vertical - 10 * tile_y
         return np.column_stack(((u + 1) ** 2 + v**2, (u - 1) ** 2 + v**2)), None, None
 

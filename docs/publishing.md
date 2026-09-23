@@ -8,7 +8,7 @@
 ```sh
 git clone https://github.com/Fanzx42/MOP-Problems.git
 cd MOP-Problems
-python -m pip install -e ".[dev,reference,plot]"
+python -m pip install -e ".[dev,reference,plot,algorithms]"
 ```
 
 ## 修改后的检查
@@ -19,9 +19,10 @@ python -m ruff check .
 python -m ruff format --check .
 python scripts/build_catalog.py --check
 python examples/representative_suite.py --samples 2000 --seed 42
+python examples/gradient_comparison.py --starts 12 --seed 42
 python -m build
-python -m twine check dist/mop_problems-0.2.0-py3-none-any.whl dist/mop_problems-0.2.0.tar.gz
-python scripts/check_wheel.py dist/mop_problems-0.2.0-py3-none-any.whl
+python -m twine check dist/mop_problems-0.3.0-py3-none-any.whl dist/mop_problems-0.3.0.tar.gz
+python scripts/check_wheel.py dist/mop_problems-0.3.0-py3-none-any.whl
 ```
 
 ## 同步到已有仓库
@@ -57,7 +58,8 @@ git config --global --add safe.directory C:/Users/89526/PycharmProjects/MOP-Prob
 
 ## 发布范围
 
-0.2.0 有 43 个目录条目、47 个可运行问题，剩余 28 个目录条目待实现。
+0.3.0 有 43 个目录条目、47 个可运行问题，剩余 28 个目录条目待实现。
+全部已实现问题提供一阶导数，并内置五类明确文献版本的梯度/近端算法。
 版本信息、CITATION.cff 和项目元数据已经包含实际 GitHub 地址。
 正式创建 Release 时应说明具体问题和变体，并检查
 [GitHub Actions](https://github.com/Fanzx42/MOP-Problems/actions) 的结果。

@@ -13,6 +13,8 @@
 - Decision bounds: `[0.0, 0.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0]` to `[1.0, 1.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]` (scalar bounds broadcast to all variables).
 - Default parameters: `{"n_var": 30}`.
 - Properties: static, linkage.
+- Derivatives: `forward`; smoothness: `smooth`. [Jacobian contract](../../../../../docs/gradients.md).
+- Derivative notes: Smooth formula on the decision box; this does not imply convexity.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
 - Notes: Three objectives with a multimodal residual penalty.
 
@@ -22,4 +24,6 @@ from mop_problems import get_problem
 problem = get_problem("UF10")
 result = problem.evaluate(problem.sample(4, seed=42))
 print(result.F)
+jac = problem.jacobian(problem.sample(1, seed=238))
+print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```

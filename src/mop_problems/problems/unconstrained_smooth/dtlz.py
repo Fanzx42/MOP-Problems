@@ -8,13 +8,14 @@ from mop_problems.core import FloatArray, Problem, integer
 def _spherical(angles: FloatArray) -> FloatArray:
     """Map M-1 angles to the nonnegative part of an M-dimensional unit sphere."""
     n, m_minus_one = angles.shape
-    values = np.empty((n, m_minus_one + 1))
+    values = []
     for i in range(m_minus_one + 1):
         prefix = m_minus_one - i
-        values[:, i] = np.prod(np.cos(angles[:, :prefix]), axis=1)
+        value = np.prod(np.cos(angles[:, :prefix]), axis=1)
         if i:
-            values[:, i] *= np.sin(angles[:, prefix])
-    return values
+            value *= np.sin(angles[:, prefix])
+        values.append(value)
+    return np.column_stack(values)
 
 
 class _DTLZ(Problem):
@@ -41,12 +42,14 @@ class _DTLZ(Problem):
         else:
             g = np.sum((tail - 0.5) ** 2, axis=1)
         if self.number == 1:
-            F = np.empty((len(X), self.n_obj))
+            columns = []
             for i in range(self.n_obj):
                 prefix = self.n_obj - i - 1
-                F[:, i] = 0.5 * (1 + g) * np.prod(positions[:, :prefix], axis=1)
+                value = 0.5 * (1 + g) * np.prod(positions[:, :prefix], axis=1)
                 if i:
-                    F[:, i] *= 1 - positions[:, prefix]
+                    value *= 1 - positions[:, prefix]
+                columns.append(value)
+            F = np.column_stack(columns)
         elif self.number == 7:
             final = (1 + g) * self.n_obj - np.sum(
                 positions * (1 + np.sin(3 * np.pi * positions)), axis=1

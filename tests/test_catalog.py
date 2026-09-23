@@ -107,6 +107,11 @@ def test_lookup_filtering_and_detached_metadata():
     assert get_suite("re-continuous")["name"] == "RE_continuous"
 
 
+@pytest.mark.parametrize("name", list_problems())
+def test_catalogue_derivative_metadata_matches_default_instance(name):
+    assert get_problem_info(name)["derivatives"] == get_problem(name).derivative_info
+
+
 @pytest.mark.parametrize("name", ["IDTLZ1", "Eq-IDTLZ2", "LSMOP9"])
 def test_known_pending_members_have_useful_errors(name):
     with pytest.raises(PlannedProblemError, match="not implemented"):

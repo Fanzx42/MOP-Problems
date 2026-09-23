@@ -13,6 +13,8 @@
 - Decision bounds: `[0, -5, -5, -5, -5, -5, -5, -5, -5, -5]` to `[1, 5, 5, 5, 5, 5, 5, 5, 5, 5]` (scalar bounds broadcast to all variables).
 - Default parameters: `{"n_var": 10}`.
 - Properties: convex, multimodal-distance.
+- Derivatives: `forward`; smoothness: `interior`. [Jacobian contract](../../../../docs/gradients.md).
+- Derivative notes: Fractional powers/square roots can have singular derivatives at x[0]=0.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
 - Notes: Square-root terms may not be differentiable at the box boundary.
 
@@ -22,4 +24,6 @@ from mop_problems import get_problem
 problem = get_problem("ZDT4")
 result = problem.evaluate(problem.sample(4, seed=42))
 print(result.F)
+jac = problem.jacobian(problem.sample(1, seed=238))
+print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```

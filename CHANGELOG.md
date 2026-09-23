@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.3.0 — 2026-09-23
+
+- Add NumPy-only forward Jacobians for all 47 implemented benchmarks, including
+  raw inequality/equality derivatives, fused evaluation, conservative branch checks,
+  explicit finite differences, independent derivative checks and smoothness metadata.
+- Add MGDA/GD, per-objective BBDMO, multiobjective proximal gradient, and the
+  smooth/composite TFY Nesterov-style accelerated methods with objective offsets.
+- Support fixed, Armijo, max/average nonmonotone gradient steps; fixed/model-backtracking
+  proximal steps; box-aware minimax models and distinct shifted weighted L1 penalties.
+- Certify inner solves by primal-dual gaps; unify stationarity diagnostics and record
+  accepted steps, BB scales, value/Jacobian/prox costs, restarts, timings and failures.
+- Add paired multistart experiments, raw NPZ/JSON/CSV exports and scientific plots;
+  document exact paper variants, boundary behavior, nonlinear-constraint limitations,
+  reproducibility and the difference between stationarity and Pareto optimality.
+- Add optional SciPy algorithms dependency, analytical/independent solver tests,
+  derivative-enabled distribution checks and gradient-example CI smoke tests.
+
 ## 0.2.0 — 2026-09-23
 
 - Add 28 benchmarks: WFG1–9, UF1–10, five C-DTLZ variants, Omni-test,

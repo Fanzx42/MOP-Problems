@@ -29,6 +29,8 @@ Deb and Tiwari (2008). Omni-optimizer: A generic evolutionary algorithm for sing
 - Decision bounds: `0.0` to `6.0` (scalar bounds broadcast to all variables).
 - Default parameters: `{"n_var": 2}`.
 - Properties: static, multimodal, equivalent-pareto-sets.
+- Derivatives: `forward`; smoothness: `smooth`. [Jacobian contract](../../../../docs/gradients.md).
+- Derivative notes: Smooth formula on the decision box; this does not imply convexity.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
 - Notes: Periodic objectives on [0,6]^n, with 3^n equivalent Pareto subsets.
 
@@ -38,6 +40,8 @@ from mop_problems import get_problem
 problem = get_problem("Omni-test")
 result = problem.evaluate(problem.sample(4, seed=42))
 print(result.F)
+jac = problem.jacobian(problem.sample(1, seed=238))
+print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
 
 

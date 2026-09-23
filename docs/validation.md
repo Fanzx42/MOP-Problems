@@ -2,6 +2,12 @@
 
 ## Numerical evidence
 
+Version 0.3.0 adds [derivative and algorithm verification](gradient-validation.md):
+independent differences for every benchmark, analytical Jacobian anchors,
+exceptional-point checks, certified minimax/proximal subproblem comparisons,
+BB curvature cases, acceleration recurrence, explicit failure/budget semantics,
+and paired multistart experiments. See the linked record for executed checks.
+
 - Analytical anchors for every implemented problem family, including classic
   objective values and both feasible/infeasible constrained points.
 - DTLZ distance-minimum identities across 2, 3 and 5 objectives.
@@ -63,9 +69,14 @@ is documented in [the experiment guide](experiments.md).
 
 ## Limitations
 
-Version 0.2.0 contains 47 executable problems and 28 planned catalogue entries.
+Version 0.3.0 contains 47 executable problems and 28 planned catalogue entries.
 There are no implemented dynamic or equality-constrained benchmark suites yet,
-no gradient/Hessian API, no optimizer, and no bundled reference-front datasets.
+no Hessian API, and no bundled reference-front datasets. Forward Jacobians and
+five first-order algorithm families are implemented. The algorithms handle boxes
+and explicit proximable convex terms, not general nonlinear G/H constraints;
+their derivative oracles remain available to external constrained methods.
+Piecewise/singular formulas do not acquire smoothness merely because derivatives
+are available on their regular branches. Stationarity is not global optimality.
 Higher-dimensional front samplers are finite seeded samples rather than exact
 uniform meshes. ZDT3 segment limits are numerical approximations. DTLZ5/6 front
 sampling is restricted to M<=3; higher-dimensional g=0 curves can omit tradeoffs.

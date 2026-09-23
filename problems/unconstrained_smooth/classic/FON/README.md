@@ -29,6 +29,8 @@ Fonseca and Fleming (1993). Genetic algorithms for multiobjective optimization: 
 - Decision bounds: `-4` to `4` (scalar bounds broadcast to all variables).
 - Default parameters: `{"n_var": 3}`.
 - Properties: concave.
+- Derivatives: `forward`; smoothness: `smooth`. [Jacobian contract](../../../../docs/gradients.md).
+- Derivative notes: Smooth formula on the decision box; this does not imply convexity.
 - All objectives are minimized; constraints use `G <= 0`, `H = 0`.
 - Notes: Scalable Fonseca-Fleming / MOEA Framework Fonseca2.
 
@@ -38,6 +40,8 @@ from mop_problems import get_problem
 problem = get_problem("FON")
 result = problem.evaluate(problem.sample(4, seed=42))
 print(result.F)
+jac = problem.jacobian(problem.sample(1, seed=238))
+print(jac.dF.shape)  # (1, n_obj, n_var); see smoothness notes above
 ```
 
 

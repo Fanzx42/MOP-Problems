@@ -3,9 +3,12 @@
 [English](README.md) · [完整分类](problems/README.md) · [调用接口](docs/api.md) ·
 [数学公式](docs/formulas.md) · [可复现实验](docs/experiments.md) · [GitHub 上传说明](docs/publishing.md)
 
+[梯度与光滑性](docs/gradients.md) · [内置算法与对比指南](docs/algorithms.md)
+
 这个仓库采用 Python + NumPy，统一管理问题定义、变量边界、约束、参考文献和测试。
-0.2.0 版保留清单中的 **43 个问题族或独立问题条目**，其中 **15 个条目下的 47 个具体问题已经实现**。
+0.3.0 版保留清单中的 **43 个问题族或独立问题条目**，其中 **15 个条目下的 47 个具体问题已经实现**。
 其余条目明确标为 `planned`，有来源和待核验说明，不代表已经可以运行。
+全部 47 个问题已提供一阶导数接口，并内置五类梯度/近端算法作为研究基线。
 
 ## 安装与调用
 
@@ -50,6 +53,45 @@ print(list_suites(status="planned"))  # 查询待实现的问题族
 | 基于 DTLZ 的约束问题 | C1-DTLZ1、C1-DTLZ3、C2-DTLZ2、C3-DTLZ1、C3-DTLZ4 |
 | 工程设计问题 | Welded-Beam（明确采用 pymoo 0.6.2 的双目标、四约束版本） |
 
+## 梯度算法与统一对比
+
+```sh
+python -m pip install -e ".[algorithms,plot]"
+python examples/gradient_comparison.py --starts 12 --seed 42
+```
+
+```python
+from mop_problems import get_problem
+from mop_problems.algorithms import MGDA, BBDMO, multistart
+
+p = get_problem("FON")
+x0 = [0.2, -0.1, 0.3]
+value, jac = p.evaluate_with_jacobian(x0)
+print(jac.dF.shape)  # (1, 2, 3)，每行是一个目标的梯度
+
+gd = MGDA(step_rule="armijo", max_iter=500)
+fixed = MGDA(step_rule="fixed", step_size=0.1)
+result = gd.solve(p, x0)
+print(result.status, result.nfev, result.njev, result.stationarity_bound)
+
+starts = [[0.2, -0.1, 0.3], [-0.4, 0.1, 0.2]]
+gd_runs = multistart(p, gd, starts=starts)
+bb_runs = multistart(p, BBDMO(), starts=starts)
+```
+
+提供 MGDA/GD、BBDMO、多目标 proximal gradient、Nesterov 加速梯度、
+Nesterov 加速 proximal gradient。加速方法明确采用 TFY 多目标版本。
+GD 支持固定步长、Armijo、最大值非单调和平均值非单调线搜索；
+近端方法支持固定步长/模型回溯，以及各目标不同的 L1 权重和中心。
+
+导数采用前向自动微分，不默认使用有限差分。不可微点、奇异点、内层求解失败及预算耗尽
+均有明确状态。输出包含轨迹、函数/导数调用次数、耗时与统一驻点指标。
+默认把变量盒放入子问题；一般非线性约束算法需使用 `dG/dH` 自行接入。
+停止条件通过不等于全局 Pareto 最优。
+详见[完整调用与配置](docs/algorithms.md)、[导数核验及光滑性](docs/gradients.md)。
+
+![共享起点的梯度算法对比](docs/assets/gradient_comparison.png)
+
 所有目标默认最小化；不等式返回 `G ≤ 0`，等式返回 `H = 0`。
 单个解也返回二维目标矩阵，无约束时 `G`、`H` 的形状为 `(N, 0)`。
 接口校验维度、非有限数值和变量边界，不会自动裁剪输入或把约束混入目标值。
@@ -69,7 +111,8 @@ python examples/representative_suite.py --samples 2000 --seed 42
 输出保存在 `outputs/representative/`，添加 `--no-plots` 可只生成数值数据。
 
 详见[实验说明、复现步骤及已运行结果](docs/experiments.md)。图中明确区分采样非支配点、
-解析前沿和不可行点；目前这些是问题特征实验，没有对优化算法做性能排名。
+解析前沿和不可行点；这个脚本仍是问题特征实验。
+优化算法对比使用上面的 `gradient_comparison.py`，两类脚本各有明确的实验用途。
 
 ![多个等价 Pareto 解集及其共同前沿](docs/assets/multimodal_sets.png)
 
@@ -89,7 +132,7 @@ python examples/representative_suite.py --samples 2000 --seed 42
 ## 开发与检查
 
 ```sh
-python -m pip install -e ".[dev,reference]"
+python -m pip install -e ".[dev,reference,algorithms]"
 python -m pytest --cov=mop_problems --cov-report=term-missing
 python -m ruff check .
 python -m ruff format --check .

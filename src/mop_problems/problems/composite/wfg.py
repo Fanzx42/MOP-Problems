@@ -54,22 +54,23 @@ def _nonseparable(y, degree):
 
 def _shape(x, kind):
     n_obj = x.shape[1] + 1
-    h = np.empty((len(x), n_obj))
+    columns = []
     for index in range(n_obj):
         prefix = n_obj - index - 1
         if kind == "concave":
-            h[:, index] = np.sin(np.pi * x[:, :prefix] / 2).prod(axis=1)
+            value = np.sin(np.pi * x[:, :prefix] / 2).prod(axis=1)
             if index:
-                h[:, index] *= np.cos(np.pi * x[:, prefix] / 2)
+                value *= np.cos(np.pi * x[:, prefix] / 2)
         elif kind == "convex":
-            h[:, index] = (1 - np.cos(np.pi * x[:, :prefix] / 2)).prod(axis=1)
+            value = (1 - np.cos(np.pi * x[:, :prefix] / 2)).prod(axis=1)
             if index:
-                h[:, index] *= 1 - np.sin(np.pi * x[:, prefix] / 2)
+                value *= 1 - np.sin(np.pi * x[:, prefix] / 2)
         else:
-            h[:, index] = x[:, :prefix].prod(axis=1)
+            value = x[:, :prefix].prod(axis=1)
             if index:
-                h[:, index] *= 1 - x[:, prefix]
-    return _unit(h)
+                value *= 1 - x[:, prefix]
+        columns.append(value)
+    return _unit(np.column_stack(columns))
 
 
 class _WFG(Problem):

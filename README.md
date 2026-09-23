@@ -7,11 +7,13 @@ by problem family, difficulty and constraint type.
 [API](docs/api.md) · [Formulas](docs/formulas.md) ·
 [Reproducible experiments](docs/experiments.md) · [Contributing](CONTRIBUTING.md)
 
-**Version 0.2.0: 43 catalogue entries, 47 implemented problems across 15 entries.**
+[Jacobians and smoothness](docs/gradients.md) · [Gradient algorithms](docs/algorithms.md)
+
+**Version 0.3.0: 43 catalogue entries, 47 implemented problems across 15 entries.**
 The complete requested taxonomy is present. Entries marked **planned** have source
 notes and contribution requirements but no callable implementation. They never
-return placeholder objective values. This is an alpha problem library, not an
-optimizer or a claim of complete coverage of every suite.
+return placeholder objective values. First derivatives and five first-order
+algorithm families are available; this is still an alpha research library.
 
 ## Install
 
@@ -21,7 +23,8 @@ Python 3.10 or newer is required. From this repository's root:
 python -m pip install -e .
 ```
 
-NumPy is the only runtime dependency. No package has been published to PyPI yet;
+NumPy is the only core dependency. The optional `algorithms` extra adds SciPy for
+three-or-more-objective inner solves. No package has been published to PyPI yet;
 the commands here install this checkout.
 
 ## Quick start
@@ -67,6 +70,41 @@ dimension, finite values and bounds. No clipping or objective penalties are appl
 | C-DTLZ | C1-DTLZ1/3, C2-DTLZ2, C3-DTLZ1/4 | 3 objectives, 12 variables; scalable |
 | Engineering | Welded-Beam | 2 objectives, 4 variables, 4 constraints |
 
+## Gradient algorithms and comparisons
+
+```sh
+python -m pip install -e ".[algorithms,plot]"
+python examples/gradient_comparison.py --starts 12 --seed 42
+```
+
+```python
+from mop_problems import get_problem
+from mop_problems.algorithms import MGDA, BBDMO
+
+p = get_problem("FON")
+x0 = [0.2, -0.1, 0.3]
+value, jac = p.evaluate_with_jacobian(x0)
+print(jac.dF.shape)  # (1, 2, 3); raw dG and dH use the same last-axis convention
+r = MGDA(step_rule="armijo").solve(p, x0)
+fixed = MGDA(step_rule="fixed", step_size=0.1).solve(p, x0)
+bb = BBDMO().solve(p, x0)
+print(r.status, r.nfev, r.njev, r.stationarity_bound)
+```
+
+All 47 benchmarks have forward-mode first derivatives at supported regular points.
+Detected kinks and singular derivatives are explicit errors. Built-in methods include
+MGDA/GD, BBDMO, proximal gradient, and TFY's Nesterov-style accelerated gradient and
+accelerated proximal gradient. Objective-specific shifted L1 terms, paired multistarts,
+histories, cost accounting and CSV/JSON/NPZ exports are provided.
+Methods handle boxes and explicit proximable convex terms; nonlinear `G/H` constraints
+require an external constrained solver using the supplied Jacobians.
+Stationarity is not a global Pareto-optimality certificate. See the
+[usage, formulas and exact variants](docs/algorithms.md) and [derivative caveats](docs/gradients.md).
+
+![Paired gradient baselines](docs/assets/gradient_comparison.png)
+
+## Reference fronts
+
 Analytical front sampling is available for ZDT1/2/3/4/6, DTLZ1–6, SCH, FON,
 UF1/2/3/4/7/8/10, Omni-test and both implemented SYM-PART variants.
 It is explicitly unsupported for other problems; it never downloads reference data
@@ -108,6 +146,8 @@ problems/                       # Browsable taxonomy and problem cards
 src/mop_problems/                # Installable library (src layout)
 ├── core.py                     # Problem and Evaluation contract
 ├── catalog.py                  # Discovery and factory
+├── differentiation.py          # Derivative metadata and independent validation
+├── algorithms/                 # MGDA, BBDMO, PG and accelerated baselines
 ├── data/catalog.json            # Authoritative metadata and status
 └── problems/                   # Actual formula implementations
 tests/                          # Analytical, contract and optional reference tests
@@ -131,7 +171,7 @@ python -m mop_problems suites --status planned
 python -m mop_problems info ZDT1
 python -m mop_problems sample DTLZ2 --n 4 --n-obj 5 --seed 42
 
-python -m pip install -e ".[dev,reference]"
+python -m pip install -e ".[dev,reference,algorithms]"
 python -m pytest --cov=mop_problems --cov-report=term-missing
 python -m ruff check .
 python -m ruff format --check .
