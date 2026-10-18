@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-10-18",
+  "scope": "Literature and modelling catalogue; not callable problem registry",
+  "all_objectives": "minimize",
+  "paper_moo_admm_count": 7,
+  "catalogue_vectorization_count": 5,
+  "current_theory_note": "Separable convex structure is not a certificate of finite-valued full-product-space objective level boundedness; local domains require an extension or independent proof.",
+  "entries": [
+    {
+      "id": "A01",
+      "domain": "residential_battery_dispatch",
+      "title": "Towards multiobjective optimization and control of smart grids",
+      "authors": [
+        "Philipp Sauerteig",
+        "Karl Worthmann"
+      ],
+      "year": 2020,
+      "doi": "10.1002/oca.2532",
+      "url": "https://d-nb.info/1211604306/34",
+      "evidence": "full_text",
+      "loc": "Sections 2.1-2.4 and 3",
+      "kind": "paper_moo_admm",
+      "objectives": [
+        "load_shaping",
+        "flexibility_tube_violation"
+      ],
+      "split": "x=(p_j); z=q; f=(0,0); g=(||q-r||^2/T, ||(ell-q)_+||^2+||(q-u)_+||^2)",
+      "coupling": "[I ... I] x / N - z = 0",
+      "convexity": "convex_with_local_convex_battery_constraints",
+      "limits": "Requires local domains; objectives not level bounded on full product space",
+      "data": "Paper cites Australian load/PV data; not acquired",
+      "priority": 1
+    },
+    {
+      "id": "A02",
+      "domain": "ac_dc_distribution_network",
+      "title": "Decentralized and Multi-Objective Coordinated Optimization of Hybrid AC/DC Flexible Distribution Networks",
+      "authors": [
+        "Xiaoxue Wang",
+        "Liting Gu",
+        "Dong Liang"
+      ],
+      "year": 2021,
+      "doi": "10.3389/fenrg.2021.762423",
+      "url": "https://www.frontiersin.org/journals/energy-research/articles/10.3389/fenrg.2021.762423/full",
+      "evidence": "full_text",
+      "loc": "Objective model; equations 21-23; cone-relaxation section",
+      "kind": "paper_moo_admm",
+      "objectives": [
+        "network_loss",
+        "voltage_deviation",
+        "regulation_cost"
+      ],
+      "split": "x=(regional variables); z=boundary copies; f_i=sum regional costs; g_i=0",
+      "coupling": "E x - R z = 0; R replicates shared boundary values into regional copies",
+      "convexity": "continuous_conic_relaxation_only_conditionally_convex",
+      "limits": "Original AC power flow and discrete equipment require separate treatment; count boundary loss once",
+      "data": "Modified dual IEEE 33-bus case; full machine-readable instance not acquired",
+      "priority": 2
+    },
+    {
+      "id": "A03",
+      "domain": "integrated_energy_park",
+      "title": "Optimal operation of park-level integrated energy system based on multi-agent cooperative game",
+      "authors": [
+        "Kaiwen Xu",
+        "Zeyu Liu",
+        "Weichen Sun"
+      ],
+      "year": 2022,
+      "doi": "10.3389/fenrg.2022.970344",
+      "url": "https://www.frontiersin.org/journals/energy-research/articles/10.3389/fenrg.2022.970344/full",
+      "evidence": "full_text",
+      "loc": "Sections 2-3 and 4.1-4.2",
+      "kind": "paper_moo_admm",
+      "objectives": [
+        "operating_cost",
+        "carbon_emissions"
+      ],
+      "split": "Catalogue grouping: f=(sum costs in Jx,sum emissions in Jx); g analogous on Jz",
+      "coupling": "A x + B z = electric_heat_cooling_demand, for fixed conversion efficiencies",
+      "convexity": "requires_device_constraint_audit",
+      "limits": "Start/stop, exclusivity and nonlinear efficiency may be nonconvex; Shapley allocation is a later step",
+      "data": "Equipment table and typical-day curves; full machine-readable instance not acquired",
+      "priority": 2
+    },
+    {
+      "id": "A04",
+      "domain": "networked_microgrid_dispatch",
+      "title": "Distributed Energy Management for Networked Microgrids Embedded Modern Distribution System Using ADMM Algorithm",
+      "authors": [
+        "Guodong Liu",
+        "Thomas B. Ollis",
+        "Maximiliano F. Ferrari",
+        "Aditya Sundararajan",
+        "Yang Chen"
+      ],
+      "year": 2023,
+      "doi": "10.1109/ACCESS.2023.3316513",
+      "url": "https://www.ornl.gov/publications/distributed-energy-management-for-networked-microgrids-embedded-modern-distribution-system-using-admm-algorithm/",
+      "evidence": "institutional_abstract",
+      "loc": "Abstract",
+      "kind": "paper_moo_admm",
+      "objectives": [
+        "participant_economic_objectives",
+        "network_operation_objectives_to_be_audited"
+      ],
+      "split": "Catalogue candidate only: participants x; DMS z; f_i=sum participant costs; g_i=DMS cost",
+      "coupling": "P x + B z = nodal_demand (template; not a verified transcription)",
+      "convexity": "not_verified",
+      "limits": "Full-text formula and integer/flow constraint audit required; institutional date differs from DOI volume year",
+      "data": "Not acquired",
+      "priority": 3
+    },
+    {
+      "id": "A05",
+      "domain": "gamma_knife_radiosurgery",
+      "title": "A parallel algorithm for generating Pareto-optimal radiosurgery treatment plans",
+      "authors": [
+        "Joakim da Silva",
+        "Daniel Hernández Escobar",
+        "Tor Kjellsson Lindblom",
+        "Håkan Nordström",
+        "Jens Sjölund"
+      ],
+      "year": 2026,
+      "doi": "10.1002/mp.70454",
+      "url": "https://arxiv.org/html/2509.08602v1",
+      "version": "arXiv:2509.08602v1 (2025); journal record 2026",
+      "evidence": "full_text",
+      "loc": "Sections II.A-II.B; Appendix A",
+      "kind": "paper_moo_admm",
+      "objectives": [
+        "target_dose_penalty",
+        "normal_tissue_dose_penalty",
+        "beam_on_time"
+      ],
+      "split": "Catalogue primal template: x=t; z=d; f=(0,0,b(t)); g=(U_T(d),O_N(d),0)",
+      "coupling": "K t - d = 0",
+      "convexity": "convex_LP_for_fixed_geometry_sampling_and_pass",
+      "limits": "Paper solver splits dual LP with copies; generic primal template is not its exact iteration. Resampling and discrete beam selection require separate models",
+      "data": "20 clinical cases reported; dose matrices not acquired",
+      "priority": 2
+    },
+    {
+      "id": "A06",
+      "domain": "urban_traffic_mpc",
+      "title": "Distributed MPC-based Coordination of Traffic Perimeter and Signal Control: A Lexicographic Optimization Approach",
+      "authors": [
+        "Viet Hoang Pham",
+        "Hyo-Sung Ahn"
+      ],
+      "year": 2025,
+      "url": "https://arxiv.org/html/2510.04038v1",
+      "version": "arXiv:2510.04038v1",
+      "evidence": "full_text",
+      "loc": "Sections III.B-III.C, IV; Appendix A",
+      "kind": "paper_moo_admm",
+      "objectives": [
+        "negative_boundary_admitted_flow",
+        "internal_traffic_cost"
+      ],
+      "split": "Catalogue template: x=regional plans; z=boundary flows; f=(-sum inflows,sum regional traffic costs); g=0",
+      "coupling": "E x - R z = 0; R replicates shared boundary flows into subnetwork copies",
+      "convexity": "convex_modified_store_and_forward_model",
+      "limits": "Lexicographic priorities must be retained; paper uses proximal distributed ADMM, not an unrestricted Pareto sweep",
+      "data": "VISSIM/MATLAB simulations; full reproduction package not acquired",
+      "priority": 2
+    },
+    {
+      "id": "A07",
+      "domain": "ipm_motor_design",
+      "title": "Multi-objective surrogate optimization of mixed-variable IPM motor design problem with ADMM-based approach",
+      "authors": [
+        "Tatsuya Asanuma",
+        "Yoshihiro Kanno"
+      ],
+      "year": 2025,
+      "doi": "10.1007/s11081-024-09954-9",
+      "url": "https://link.springer.com/article/10.1007/s11081-024-09954-9",
+      "evidence": "full_text",
+      "loc": "Sections 3.3,3.6; equation 24; data availability",
+      "kind": "paper_moo_admm",
+      "objectives": [
+        "negative_average_torque",
+        "iron_loss"
+      ],
+      "split": "x=continuous design representation; z=selected discrete coordinates; f=(-T_hat(x),L_hat(x)); g=0",
+      "coupling": "S x - z = 0; z in allowed discrete set",
+      "convexity": "mixed_integer_nonconvex_heuristic",
+      "limits": "STOM scalarization and RBF surrogates; torque ripple was future work, not a third demonstrated objective",
+      "data": "Design data available from authors on request; FEA needed",
+      "priority": 3
+    },
+    {
+      "id": "B01",
+      "domain": "cardinality_constrained_portfolio",
+      "title": "Cardinality Constrained Portfolio Optimization via Alternating Direction Method of Multipliers",
+      "authors": [
+        "Zhang-Lei Shi",
+        "Xiao Peng Li",
+        "Chi-Sing Leung",
+        "Hing Cheung So"
+      ],
+      "year": 2024,
+      "doi": "10.1109/TNNLS.2022.3192065",
+      "url": "https://li-x-p.github.io/files/publications/CCPO-ADMM.pdf",
+      "version": "Online 2022; volume 35(2), 2024",
+      "evidence": "full_text",
+      "loc": "Equations 5,12-14",
+      "kind": "catalogue_vectorization",
+      "objectives": [
+        "variance",
+        "negative_expected_return"
+      ],
+      "split": "Catalogue vectorization: f=(x^T Sigma x,-mu^T x); g=0",
+      "coupling": "x-z=0; 1^T x=1 locally; ||z||_0<=k",
+      "convexity": "nonconvex_cardinality_constraint",
+      "limits": "Paper uses a scalar tradeoff and a finite quadratic penalty for budget; hard budget variant is distinct; no automatic long-only assumption",
+      "data": "Real financial datasets reported; time-window data not acquired",
+      "priority": 3
+    },
+    {
+      "id": "B02",
+      "domain": "tv_image_restoration",
+      "title": "Fast Image Recovery Using Variable Splitting and Constrained Optimization",
+      "authors": [
+        "Manya V. Afonso",
+        "José M. Bioucas-Dias",
+        "Mário A. T. Figueiredo"
+      ],
+      "year": 2010,
+      "doi": "10.1109/TIP.2010.2047910",
+      "url": "https://arxiv.org/pdf/0910.4887",
+      "version": "arXiv:0910.4887v1 (2009); journal 2010",
+      "evidence": "full_text",
+      "loc": "Equations 2,5; variable splitting and ADMM",
+      "kind": "catalogue_vectorization",
+      "objectives": [
+        "data_fidelity",
+        "total_variation"
+      ],
+      "split": "f=(||H x-b||^2/2,0); g=(0,||z||_2,1)",
+      "coupling": "D x-z=0",
+      "convexity": "convex_nonsmooth",
+      "limits": "Paper is scalar regularization; derivative boundary/grouping must be fixed; zero block costs fail full-space level boundedness",
+      "data": "Use licensed images with recorded blur/noise/boundaries; no real data bundled",
+      "priority": 1,
+      "fixture": "tv"
+    },
+    {
+      "id": "B03",
+      "domain": "robust_pca",
+      "title": "Robust Principal Component Analysis?",
+      "authors": [
+        "Emmanuel J. Candès",
+        "Xiaodong Li",
+        "Yi Ma",
+        "John Wright"
+      ],
+      "year": 2011,
+      "url": "https://arxiv.org/abs/0912.3599",
+      "version": "Preprint first submitted 2009; journal 2011",
+      "evidence": "full_text",
+      "loc": "Principal component pursuit model; ADMM background in Boyd et al. 2011",
+      "kind": "catalogue_vectorization",
+      "objectives": [
+        "nuclear_norm",
+        "entrywise_l1_norm"
+      ],
+      "split": "x=L; z=S; f=(||L||_*,0); g=(0,||S||_1)",
+      "coupling": "vec(L)+vec(S)=vec(M)",
+      "convexity": "convex_nonsmooth",
+      "limits": "Vector objective is a catalogue extension of scalar PCP; adding dense noise does not justify arbitrary three-block ADMM",
+      "data": "No human image/video data bundled; hand-computable small matrix fixture",
+      "priority": 1,
+      "fixture": "rpca"
+    },
+    {
+      "id": "B04",
+      "domain": "hyperspectral_unmixing",
+      "title": "Total Variation Spatial Regularization for Sparse Hyperspectral Unmixing",
+      "authors": [
+        "Marian-Daniel Iordache",
+        "José M. Bioucas-Dias",
+        "Antonio Plaza"
+      ],
+      "year": 2012,
+      "doi": "10.1109/TGRS.2012.2191590",
+      "url": "https://it.pt/Members/Index/396",
+      "reference_code_url": "https://github.com/ricardoborsoi/MUA_SparseUnmixing/blob/master/sunsal_tv.m",
+      "evidence": "author_bibliography_and_reference_code",
+      "loc": "Author bibliography; SUnSAL-TV reference implementation",
+      "kind": "catalogue_vectorization",
+      "objectives": [
+        "reconstruction_error",
+        "abundance_l1",
+        "spatial_tv"
+      ],
+      "split": "x=vec(U); z=(v,w); f=(||HU-Y||_F^2/2,0,0); g=(0,||v||_1,||w||_1)",
+      "coupling": "[I;D] x-z=0; U>=0 locally",
+      "convexity": "convex_nonsmooth_for_fixed_dictionary",
+      "limits": "Full publisher text not audited; nonnegativity plus sum-to-one makes l1 abundance constant. Joint dictionary estimation is nonconvex",
+      "data": "Dictionary, bands, TV boundary and imagery licensing must be recorded; no real imagery bundled",
+      "priority": 1,
+      "fixture": "unmixing"
+    },
+    {
+      "id": "B05",
+      "domain": "convex_portfolio_turnover",
+      "title": "Multi-Period Trading via Convex Optimization",
+      "authors": [
+        "Stephen Boyd",
+        "Enzo Busseti",
+        "Steven Diamond",
+        "Ronald N. Kahn",
+        "Kwangmoo Koh",
+        "Peter Nystrup",
+        "Jan Speth"
+      ],
+      "year": 2017,
+      "doi": "10.1561/2400000023",
+      "url": "https://web.stanford.edu/~boyd/papers/cvx_portfolio.html",
+      "evidence": "full_text",
+      "loc": "Author page and linked full text; single-period trading model",
+      "kind": "catalogue_vectorization",
+      "objectives": [
+        "variance",
+        "negative_expected_return",
+        "turnover_proxy"
+      ],
+      "split": "Single-period catalogue simplification: f=(x^T Sigma x,-mu^T x,0); g=(0,0,||z||_1)",
+      "coupling": "x-z=h; x>=0 and 1^T x=1 locally",
+      "convexity": "convex_if_covariance_PSD",
+      "limits": "New vectorization/split; excludes full multi-period cash, fees and market-impact accounting; linear objective not coercive",
+      "data": "No market data bundled; explicit synthetic covariance/mean/holdings fixture",
+      "priority": 1,
+      "fixture": "portfolio"
+    }
+  ]
+}

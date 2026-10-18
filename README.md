@@ -9,6 +9,10 @@ by problem family, difficulty and constraint type.
 
 [Jacobians and smoothness](docs/gradients.md) · [Gradient algorithms](docs/algorithms.md)
 
+[ADMM application models and papers](docs/admm-applications.md): 12 research entries
+with explicit objective/constraint splits, source evidence and convexity/data caveats.
+These literature/model cards are separate from the callable benchmark registry.
+
 **Version 0.4.0: 343 callable problems across all 43 requested catalogue entries.**
 The remaining 28 planned families now provide 296 implementations, first derivatives,
 paper citations, version notes and independent numerical reference tests.
