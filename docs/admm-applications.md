@@ -5,7 +5,7 @@
 
 Verified on **2026-10-18**. This research supplement collects **12 application models**
 with a two-block interpretation
-\(F_i(x,z)=f_i(x)+g_i(z)\), \(Ax+Bz=c\), retaining local domains explicitly.
+$F_i(x,z)=f_i(x)+g_i(z)$, $Ax+Bz=c$, retaining local domains explicitly.
 
 The seven A entries explicitly discuss multiple objectives and ADMM in the source.
 The five B entries are **catalogue vectorizations of application loss/tradeoff terms**;
