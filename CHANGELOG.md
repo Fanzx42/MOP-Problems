@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Add a standalone four-objective synthetic Gamma Knife application with explicit
+  dose/time splitting, weighted dual ADMM, multiobjective ADMM and joint MO-ALM.
+- Cache numerical operators and QP objectives; add bounded, finite residual-based
+  penalty adaptation with common-weight KKT and weight-consensus checks.
+- Add optional SciPy/COPT dependencies, runnable examples, independent LP/solver
+  tests, and compact archived measurements and states; no patient data is bundled.
+- Preserve the 343-problem benchmark registry and the NumPy-only core installation.
+
 ## 0.4.0 — 2026-09-23
 
 - Complete all 28 planned families: 296 new benchmarks, 343 callable problems in all 43 catalogue entries.

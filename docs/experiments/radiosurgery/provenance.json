@@ -1,0 +1,64 @@
+{
+  "numerics": {
+    "original_source": "ADMMMOO/results/radiosurgery2026-numerics",
+    "rows": 444,
+    "original_runs_sha256": "330c36e57770174bda3b16c8a19f708684fbfd20a0f58f90a50b68219751e0db",
+    "files": {
+      "manifest.json": "1e15005f21d10be80ae915669658bed8b057736fa60e425ab675353901323bc7",
+      "runs.csv": "6e72619f36818fecbe4c2991c72c9a7b49e37a6090dfb63af3670771cc38f628",
+      "runs.json": "fbe91fd5c0811b2e4c1b73ec5f120a906209376cd1f770bafbcc87ade9592f4f",
+      "states.npz": "9a562b8b3fe94c80b60e874a14184718589af008b2173e24a202bf324780ba8d",
+      "summary.json": "96e2cf8946f04faf0d68ce3487b256bb491a42cd81d4c167a59dd84a200e3c29"
+    }
+  },
+  "three-methods": {
+    "original_source": "ADMMMOO/results/radiosurgery2026-small",
+    "rows": 351,
+    "original_runs_sha256": "e1dfcaf3183679b820d2fa12974fb1356cd48bf7f9f0324d4472c278fc61d7dd",
+    "files": {
+      "manifest.json": "c21ac09ea85194992b1d9255832d84dcc4d4575a706448a73a64cb815146e961",
+      "runs.csv": "a0f44a4c05eaf4f9b84edfee37296300168d5a2238e3c47ca8c1f667360cb02f",
+      "runs.json": "092453185bfab5ac9e871f4d375d6ee69d4fd45f0078737765d04d21510a1850",
+      "states.npz": "03b02c20d5079929278e28eee43d541562311296687e7e626efe4facb73ded99",
+      "summary.json": "6a3c28b32693a7ef4883e18d0c8bf1fc701aebbf8331e5d60626df675b908dd6"
+    }
+  },
+  "implementation_port": {
+    "_engine.py": {
+      "original_path": "applications2026/engine.py",
+      "original_sha256": "b7a1ed57f52f2f34f374769f673370ca8a8af4b0c57d45d07e077ba369ea6380"
+    },
+    "model.py": {
+      "original_path": "radiosurgery2026/model.py",
+      "original_sha256": "9179b697824c80eda7aca716bdc8bc7e7c6673ad9ef590ffc8f4aaeee0f3eebc"
+    },
+    "oracle.py": {
+      "original_path": "radiosurgery2026/oracle.py",
+      "original_sha256": "3fe08886e49b17ccba1bb8ba0d2b195a76b6c5838700321098975f2ffb5d06c6"
+    },
+    "numerics.py": {
+      "original_path": "radiosurgery2026/numerics.py",
+      "original_sha256": "e76e28874e3482ed2bbf1990acd2e2e2fc2c8306111ae4113f6a73b5fdea09ef"
+    },
+    "scalarized.py": {
+      "original_path": "radiosurgery2026/scalarized.py",
+      "original_sha256": "26ade5524a349aeaa2ceacc8e5bfa788dbd50e7efd1f7846ea29231c5c1242d8"
+    }
+  },
+  "note": "Archived timings were measured in the original ADMMMOO workbench. The standalone port uses local imports and formatting changes; its archived terminal states are re-audited here. These timings are not a new measurement of this port.",
+  "published_source_sha256": {
+    "src/mop_problems/applications/__init__.py": "3d9db0c583665db1574d07eb04af34b19b2518fa53a83602741d833b8ea6d18a",
+    "src/mop_problems/applications/radiosurgery/__init__.py": "e6f8e9e5aa75d5f007365c748245d7e363119ad3b0de9189684fa0d752ab5fbd",
+    "src/mop_problems/applications/radiosurgery/_engine.py": "69fb2028660f8956df9970feff721546b1c07c609d0838ba73deb6075bd4f10f",
+    "src/mop_problems/applications/radiosurgery/_io.py": "b6e4252b78a42236b9ff339218f46ea8d0fc4a6f3f32335fde9c3245e0c86086",
+    "src/mop_problems/applications/radiosurgery/_support.py": "55bf6a28c9753b648f5d62882cff52113b9155ca2176beccdc301167ba57c10b",
+    "src/mop_problems/applications/radiosurgery/_types.py": "acf50bd6c90dc4cdd6a2fe842f91ea931862c0d9dfe163a83f0b59583aba11d5",
+    "src/mop_problems/applications/radiosurgery/experiment.py": "946eddd875394255f40e950b8a339e32d0c5f7567eed4fa2bac44685a51b7321",
+    "src/mop_problems/applications/radiosurgery/model.py": "6d3f31fced37375bbe294cc1b710b2450f094de8db4bf18ceeb66779ab599cdc",
+    "src/mop_problems/applications/radiosurgery/numerics.py": "a13ae71e8bab8db22ee4d4f03f1f3100849b6ce29df3eb70ba2eead4fdc03eca",
+    "src/mop_problems/applications/radiosurgery/numerics_bench.py": "61cb5a1c80909a0ddf11ec54768b2113fccfe9e162da7c3ea00ca9c0c9fdf3a7",
+    "src/mop_problems/applications/radiosurgery/oracle.py": "6af6fa47a33a3f818b8adc0d9a7c48bc85c0c4c90427fe1aa769a85656dbecc6",
+    "src/mop_problems/applications/radiosurgery/scalarized.py": "b9f0b728a30be2464834c98e06aceb0df75cb504794020dbbdac316bf139907a"
+  },
+  "text_encoding": "Published text uses UTF-8 and LF. Dataset file hashes cover the normalized published bytes."
+}

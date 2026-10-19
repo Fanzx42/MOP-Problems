@@ -1,0 +1,36 @@
+{
+  "verified_on": "2026-10-19",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "local_pytest_passed": 3285,
+  "coverage_percent": 89,
+  "checks": {
+    "ruff_check": "passed",
+    "ruff_format": "passed",
+    "generated_catalogue": "396 pages checked",
+    "wheel_and_sdist_build": "passed",
+    "twine": "passed",
+    "installed_core_wheel": "343 value/Jacobian checks, two-objective MGDA, no SciPy import",
+    "installed_application_wheel": "converged, independently audited, no ADMMMOO imports"
+  },
+  "archived_state_reaudit": {
+    "numerics": {
+      "rows": 444,
+      "validated": 444,
+      "max_residual": 9.986226746572235e-05,
+      "materially_dominated": 0
+    },
+    "three-methods": {
+      "rows": 351,
+      "validated": 351,
+      "max_residual": 9.998277990488913e-05,
+      "materially_dominated": 123
+    }
+  },
+  "three_method_smoke": {
+    "outputs": 9,
+    "validated": 9,
+    "alm_materially_dominated": 3
+  },
+  "provenance_sha256": "09b93c5c7f2cf3fdfc91eceb53073b77dc3beedb96604b5340fb8f203858891c",
+  "note": "Original archived timings are not re-labelled as standalone-port timings. COPT-dependent tests ran locally with a license; CI skips them when unavailable."
+}

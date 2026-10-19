@@ -1,0 +1,120 @@
+{
+  "contract": {
+    "source_sha256": {
+      "radiosurgery2026/numerics.py": "e76e28874e3482ed2bbf1990acd2e2e2fc2c8306111ae4113f6a73b5fdea09ef",
+      "radiosurgery2026/numerics_bench.py": "b619e2aab578e113716b65079e41da29c381956e1fcb9245ac9a30e8d7720cdb",
+      "radiosurgery2026/oracle.py": "3fe08886e49b17ccba1bb8ba0d2b195a76b6c5838700321098975f2ffb5d06c6",
+      "radiosurgery2026/model.py": "9179b697824c80eda7aca716bdc8bc7e7c6673ad9ef590ffc8f4aaeee0f3eebc",
+      "radiosurgery2026/bench.py": "295d4fcd07f395e518cf9355b90aa1cf0627b01a3f9dad5db139da244ea3dbaf",
+      "applications2026/engine.py": "b7a1ed57f52f2f34f374769f673370ca8a8af4b0c57d45d07e077ba369ea6380",
+      "applications2026/models.py": "c4456b749fc469fd94bf5a357a78d087e3faa53a5044e7132fa1719c8d42070d",
+      "applications2026/perspective.py": "fd32ca43dd61799eaffdff68b27692546ba5672d5c715e24cc3097a97c2ae11c",
+      "applications2026/run.py": "5dd8217f0e84256874dc916ac67f347cc5724947baf616d1ec82d061d28f6f86",
+      "consensus2026/copt_inner.py": "ea3044c05cb9a111ab28a68eb1b0f52f9d8e594e567f7944cc60aa38b1f6e96e",
+      "admmmoo/solvers.py": "905717974b660d11344ecd34b32738d0ed284628b68b86d3dfc3fe21c5474929",
+      "tests/test_radiosurgery_numerics.py": "02a4a929cdc49e03a76e234905263defd8fd044b289b42bdbcf4d7613723fc17"
+    },
+    "methods": [
+      "legacy-fixed-0.3",
+      "numeric-fixed-0.3",
+      "numeric-fixed-1",
+      "numeric-adaptive-1"
+    ],
+    "validation_seed": 101,
+    "test_seeds": [
+      202,
+      303
+    ],
+    "starts": [
+      0,
+      1
+    ],
+    "weights": [
+      [
+        0.45454545454545453,
+        0.45454545454545453,
+        0.045454545454545456,
+        0.045454545454545456
+      ],
+      [
+        0.3225806451612903,
+        0.3225806451612903,
+        0.03225806451612903,
+        0.3225806451612903
+      ],
+      [
+        0.08264462809917356,
+        0.08264462809917356,
+        0.008264462809917356,
+        0.8264462809917356
+      ],
+      [
+        0.3225806451612903,
+        0.3225806451612903,
+        0.3225806451612903,
+        0.03225806451612903
+      ],
+      [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      [
+        0.07692307692307693,
+        0.07692307692307693,
+        0.07692307692307693,
+        0.7692307692307693
+      ],
+      [
+        0.08264462809917356,
+        0.08264462809917356,
+        0.8264462809917356,
+        0.008264462809917356
+      ],
+      [
+        0.07692307692307693,
+        0.07692307692307693,
+        0.7692307692307693,
+        0.07692307692307693
+      ],
+      [
+        0.045454545454545456,
+        0.045454545454545456,
+        0.45454545454545453,
+        0.45454545454545453
+      ]
+    ],
+    "repeats": 3,
+    "tolerance": 0.0001,
+    "inner_tolerance": 2e-06,
+    "solver_tolerance": 1e-09,
+    "dose_dual_tolerance": 1e-12,
+    "balance": {
+      "interval": 10,
+      "ratio": 10.0,
+      "factor": 2.0,
+      "minimum": 0.0001,
+      "maximum": 10000.0,
+      "until": 200
+    },
+    "eta": 1.0,
+    "kappa": 1.0,
+    "initial_penalties": {
+      "legacy-fixed-0.3": 0.3,
+      "numeric-fixed-0.3": 0.3,
+      "numeric-fixed-1": 1.0,
+      "numeric-adaptive-1": 1.0
+    },
+    "selection": "Legacy rho=.3 was selected on seed 101 in the preceding study; rho=1 and balance constants are prescribed defaults, no test tuning.",
+    "timing": "One CPU thread; solver time includes construction/checks and excludes independent post-run LP/KKT/dominance audits. All nine weights run sequentially.",
+    "data": "One-isocenter synthetic Gaussian dose map, not clinical data.",
+    "references": [
+      "https://stanford.edu/~boyd/papers/pdf/admm_distr_stats.pdf",
+      "https://arxiv.org/abs/1704.06209"
+    ]
+  },
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "platform": "Windows-11-10.0.26200-SP0"
+}

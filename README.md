@@ -13,6 +13,11 @@ by problem family, difficulty and constraint type.
 with explicit objective/constraint splits, source evidence and convexity/data caveats.
 These literature/model cards are separate from the callable benchmark registry.
 
+[Runnable Gamma Knife example](docs/radiosurgery.md): a synthetic four-objective
+application with paper-style scalarized ADMM, MO-ADMM, MO-ALM, cached numerical
+updates and adaptive penalties. It uses the optional `radiosurgery` extra and a
+COPT license, and remains outside the 343-problem benchmark registry.
+
 **Version 0.4.0: 343 callable problems across all 43 requested catalogue entries.**
 The remaining 28 planned families now provide 296 implementations, first derivatives,
 paper citations, version notes and independent numerical reference tests.

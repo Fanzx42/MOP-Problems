@@ -1,0 +1,120 @@
+{
+  "contract": {
+    "sources": {
+      "radiosurgery2026/__init__.py": "e4602d14cc727a9f41be8eedef615a72416fa7baf2e461e2b6f310faf0d7f2d3",
+      "radiosurgery2026/model.py": "9179b697824c80eda7aca716bdc8bc7e7c6673ad9ef590ffc8f4aaeee0f3eebc",
+      "radiosurgery2026/oracle.py": "3fe08886e49b17ccba1bb8ba0d2b195a76b6c5838700321098975f2ffb5d06c6",
+      "radiosurgery2026/scalarized.py": "26ade5524a349aeaa2ceacc8e5bfa788dbd50e7efd1f7846ea29231c5c1242d8",
+      "radiosurgery2026/bench.py": "295d4fcd07f395e518cf9355b90aa1cf0627b01a3f9dad5db139da244ea3dbaf",
+      "tests/test_radiosurgery.py": "9a8b8775046b70bd999f629429c23f0b685acb2622ef8c0f805dba121d949a5a",
+      "applications2026/engine.py": "b7a1ed57f52f2f34f374769f673370ca8a8af4b0c57d45d07e077ba369ea6380",
+      "applications2026/models.py": "c4456b749fc469fd94bf5a357a78d087e3faa53a5044e7132fa1719c8d42070d",
+      "applications2026/perspective.py": "fd32ca43dd61799eaffdff68b27692546ba5672d5c715e24cc3097a97c2ae11c",
+      "applications2026/run.py": "5dd8217f0e84256874dc916ac67f347cc5724947baf616d1ec82d061d28f6f86",
+      "admmmoo/solvers.py": "905717974b660d11344ecd34b32738d0ed284628b68b86d3dfc3fe21c5474929",
+      "consensus2026/copt_inner.py": "ea3044c05cb9a111ab28a68eb1b0f52f9d8e594e567f7944cc60aa38b1f6e96e"
+    },
+    "data": "Synthetic Gaussian dose maps; not patient data; fixed one-pass optimization",
+    "paper": "https://doi.org/10.1002/mp.70454",
+    "implementation_reference": "arXiv:2509.08602v1 Appendix A and equations (4),(6),(7)",
+    "objectives": [
+      "target surface+interior underdose",
+      "ring overdose",
+      "low-dose spill",
+      "max-sector beam-on time"
+    ],
+    "validation_seed": 101,
+    "test_seeds": [
+      202,
+      303
+    ],
+    "isocenters": 1,
+    "sectors": 8,
+    "collimators": 3,
+    "starts": [
+      0,
+      1
+    ],
+    "weights": [
+      [
+        0.45454545454545453,
+        0.45454545454545453,
+        0.045454545454545456,
+        0.045454545454545456
+      ],
+      [
+        0.3225806451612903,
+        0.3225806451612903,
+        0.03225806451612903,
+        0.3225806451612903
+      ],
+      [
+        0.08264462809917356,
+        0.08264462809917356,
+        0.008264462809917356,
+        0.8264462809917356
+      ],
+      [
+        0.3225806451612903,
+        0.3225806451612903,
+        0.3225806451612903,
+        0.03225806451612903
+      ],
+      [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      [
+        0.07692307692307693,
+        0.07692307692307693,
+        0.07692307692307693,
+        0.7692307692307693
+      ],
+      [
+        0.08264462809917356,
+        0.08264462809917356,
+        0.8264462809917356,
+        0.008264462809917356
+      ],
+      [
+        0.07692307692307693,
+        0.07692307692307693,
+        0.7692307692307693,
+        0.07692307692307693
+      ],
+      [
+        0.045454545454545456,
+        0.045454545454545456,
+        0.45454545454545453,
+        0.45454545454545453
+      ]
+    ],
+    "validation_weight_indices": [
+      0,
+      4,
+      8
+    ],
+    "penalty_grid": [
+      0.3,
+      1.0,
+      3.0
+    ],
+    "tolerance": 0.0001,
+    "seconds_limit": 30.0,
+    "repeats": 3,
+    "eta": 1.0,
+    "kappa": 1.0,
+    "alm_proximal": 1.0,
+    "subproblem_tolerance": 2e-06,
+    "common_audit": "fresh projected KKT, simplex consensus, feasible physical recovery, independent HiGHS supporting LP",
+    "dominance": "min sum of all four objectives subject to each <= recovered objectives + 1e-9; material gap > 1e-3",
+    "scalarized": "9 fixed positive weights, batched CPU dual graph ADMM; row equilibration; adaptive accuracy stop",
+    "preferences": "MO methods adapt weights: same initial weights do NOT imply same final preference",
+    "timing": "includes solver setup, factorization and algorithm checks; excludes post-run independent audit; CPU one thread"
+  },
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "numpy": "2.5.4"
+}

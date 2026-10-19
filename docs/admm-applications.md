@@ -32,6 +32,11 @@ These are literature/model cards, **not registered callable problems**. The exis
 343-problem count and generated benchmark catalogue remain unchanged.
 No clinical, image, hyperspectral or financial dataset is redistributed.
 
+A05 now also has a [runnable four-objective synthetic application](radiosurgery.md),
+including source-specific weighted ADMM, MO-ADMM/MO-ALM comparisons and numerical
+implementation/penalty ablations. It is an optional application module outside
+the benchmark registry and does not redistribute clinical dose matrices.
+
 A separable convex model does not by itself satisfy an adaptive-weight theorem
 requiring every objective to have bounded sublevel sets on the full product space.
 Zero block costs, linear return terms and hard local domains need separate analysis.
