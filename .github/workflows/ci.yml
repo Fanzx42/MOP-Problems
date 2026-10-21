@@ -71,6 +71,7 @@ jobs:
       - run: python examples/gradient_comparison.py --starts 3 --max-iter 60 --seed 42
       - run: python examples/gradient_comparison.py --problem DTLZ2 --starts 3 --max-iter 60 --seed 42 --output outputs/gradient_dtlz2
       - run: python examples/expanded_benchmarks.py --samples 128 --seed 42
+      - run: python examples/unified_algorithms.py
       - uses: actions/upload-artifact@v4
         with:
           name: representative-experiment-smoke

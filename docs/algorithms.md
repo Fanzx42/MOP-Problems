@@ -1,19 +1,21 @@
 # 一阶多目标算法 / First-order baselines
 
-0.3.0 内置 MGDA/GD、BBDMO、多目标近端梯度，以及光滑和复合两种加速方法。
-这些是可复现的研究基线；每个算法的名字对应下表的明确版本。
+本页说明原有 MGDA/GD、BBDMO、PG 和 TFY 五类基线。
+新增 CG、FW/away/pairwise、ALM、ADMM 及 AMG-QP 完整递推，见
+[确定性多目标算法统一说明](unified-algorithms.zh-CN.md)。
+下表中的历史加速算法现以 `tfy` / `tfy_proximal` 显式命名，`nesterov*` 已改为 AMG-QP。
 
 | 调用名 | 类 | 定义与实现选择 |
 | --- | --- | --- |
 | `mgda` / `gd` | `MGDA` / `GD` | 最小范数梯度组合，也称多目标最速下降 |
 | `bbdmo` | `BBDMO` | Chen–Tang–Yang 的逐目标 BB 缩放，Eq. (22)、Algorithm 5；不是给 MGDA 统一乘一个 BB 步长 |
 | `proximal_gradient` / `pg` | `ProximalGradient` | Tanabe–Fukuda–Yamashita 多目标近端梯度 |
-| `nesterov` / `nag` | `NesterovAcceleratedGradient` | TFY 加速近端算法中 `g_i=0` 的光滑特例 |
-| `nesterov_proximal` / `apg` | `NesterovAcceleratedProximalGradient` | TFY 加速近端梯度 Algorithm 2，保留目标差值项 |
+| `tfy` | `TFYAcceleratedGradient` | TFY 加速近端算法中 `g_i=0` 的光滑特例 |
+| `tfy_proximal` | `TFYAcceleratedProximalGradient` | TFY 加速近端梯度 Algorithm 2，保留目标差值项 |
 
 算法出处及固定版本见[算法参考文献](references.md#first-order-algorithms)。
-Nesterov 形式存在不同的多目标推广，本库上述两个名称均指 TFY 版本，
-不是所有同名论文算法的集合，也不是对任意加速方法的统称。
+Nesterov 形式存在不同的多目标推广；本页的 NAG/APG 讨论均指保留的 TFY 版本。
+AMG-QP 的递推、固定 L 和复合扩展在统一说明中单独给出。
 
 ## 安装与最小使用
 
@@ -38,7 +40,7 @@ print(r.x, r.fun, r.status, r.stationarity_bound)
 print(r.nfev, r.njev, r.elapsed_seconds)
 
 bb = BBDMO(bb_min=1e-3, bb_max=1e3).solve(p, x0)
-nag = minimize(p, x0, algorithm="nesterov", step_rule="backtracking")
+nag = minimize(p, x0, algorithm="tfy", step_rule="backtracking")
 print(list_algorithms())
 ```
 
@@ -109,12 +111,12 @@ PG/NAG/APG 支持 `fixed` 与 `backtracking`。后者逐步减小 `t`，直到�
 
 ```python
 from mop_problems import get_problem
-from mop_problems.algorithms import L1, ProximalGradient, NesterovAcceleratedProximalGradient
+from mop_problems.algorithms import L1, ProximalGradient, TFYAcceleratedProximalGradient
 
 p = get_problem("FON", n_var=3)
 reg = L1(coefficients=[0.1, 0.2], centres=[0.0, 0.5])
 pg = ProximalGradient(regularizer=reg)
-apg = NesterovAcceleratedProximalGradient(regularizer=reg)
+apg = TFYAcceleratedProximalGradient(regularizer=reg)
 r = apg.solve(p, [0.2, -0.1, 0.3])
 print(r.fun)  # f_i(x) + g_i(x)
 print(r.smooth_fun)  # 原问题 f_i(x)
@@ -149,12 +151,12 @@ MGDA/BBDMO 中初始步长为 `a` 时，模型是
 
 五类基线直接支持变量盒和显式近端凸项，**不直接求解带非线性 `G/H` 的问题**。
 对 BNH、TNK、C-DTLZ、Welded-Beam 等传入 `.solve()` 会明确报错；
-这些问题的 `dF/dG/dH` 可用于你自己的约束梯度、SQP、增广拉格朗日等方法。
+这些问题可使用新增的 `AugmentedLagrangian`，或通过 `dF/dG/dH` 接入其他约束算法。
 算法不会忽略约束、偷偷加入罚项，或在梯度奇异时改用差分继续运行。
 
 ## 统一停止、精度和成本
 
-所有算法在接受点使用同一个未进行 BB 缩放的单位步长近端模型 `p_1(x)`，
+本页五类基线在接受点使用同一个未进行 BB 缩放的单位步长近端模型 `p_1(x)`，
 报告 `stationarity=||p_1(x)-x||_inf`。
 内层解有对偶间隙 `gap` 时，停止依据保守上界
 `stationarity_bound = stationarity + sqrt(2*gap)`，不是实际步长的大小。

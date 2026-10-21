@@ -23,9 +23,9 @@ from mop_problems.algorithms import (
     BBDMO,
     L1,
     MGDA,
-    NesterovAcceleratedGradient,
-    NesterovAcceleratedProximalGradient,
     ProximalGradient,
+    TFYAcceleratedGradient,
+    TFYAcceleratedProximalGradient,
     multistart,
     nondominated_mask,
 )
@@ -104,8 +104,8 @@ def run(output, *, problem_name="JOS1", starts=12, seed=42, max_iter=300, plots=
         "MGDA-Armijo": MGDA(**common),
         "BBDMO": BBDMO(**common),
         "PG": ProximalGradient(**common),
-        "NAG": NesterovAcceleratedGradient(**common),
-        "APG": NesterovAcceleratedProximalGradient(**common),
+        "NAG": TFYAcceleratedGradient(**common),
+        "APG": TFYAcceleratedProximalGradient(**common),
     }
     # Different objective-specific centres/weights make this a real proximal test.
     reg = L1(
@@ -119,7 +119,7 @@ def run(output, *, problem_name="JOS1", starts=12, seed=42, max_iter=300, plots=
         reg = L1(coefficients=[0.05, 0.1, 0.15], centres=[0.0, 0.3, 0.7])
     composite_methods = {
         "PG-L1": ProximalGradient(regularizer=reg, **common),
-        "APG-L1": NesterovAcceleratedProximalGradient(regularizer=reg, **common),
+        "APG-L1": TFYAcceleratedProximalGradient(regularizer=reg, **common),
     }
     summary, configurations = [], {}
     for case, methods in (("smooth", smooth_methods), ("composite_l1", composite_methods)):

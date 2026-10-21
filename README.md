@@ -7,7 +7,7 @@ by problem family, difficulty and constraint type.
 [API](docs/api.md) · [Formulas](docs/formulas.md) ·
 [Reproducible experiments](docs/experiments.md) · [Contributing](CONTRIBUTING.md)
 
-[Jacobians and smoothness](docs/gradients.md) · [Gradient algorithms](docs/algorithms.md)
+[Jacobians and smoothness](docs/gradients.md) · [Gradient algorithms](docs/unified-algorithms.zh-CN.md)
 
 [ADMM application models and papers](docs/admm-applications.md): 12 research entries
 with explicit objective/constraint splits, source evidence and convexity/data caveats.
@@ -109,13 +109,16 @@ print(r.status, r.nfev, r.njev, r.stationarity_bound)
 
 All 343 benchmarks have forward-mode first derivatives at supported regular points.
 Detected kinks and singular derivatives are explicit errors. Built-in methods include
-MGDA/GD, BBDMO, proximal gradient, and TFY's Nesterov-style accelerated gradient and
-accelerated proximal gradient. Objective-specific shifted L1 terms, paired multistarts,
-histories, cost accounting and CSV/JSON/NPZ exports are provided.
-Methods handle boxes and explicit proximable convex terms; nonlinear `G/H` constraints
-require an external constrained solver using the supplied Jacobians.
+MGDA/GD, BBDMO, conjugate gradient, proximal gradient, FW/away/pairwise variants,
+PHR augmented Lagrangian, and two-block multiobjective ADMM with adaptive penalties.
+`nesterov` uses the full AMG-QP recurrence; `nesterov_proximal` is its explicit composite
+extension. The previous TFY methods remain available as `tfy` and `tfy_proximal`.
+ALM handles general `G/H`; ADMM requires an explicit smooth `SplitProblem`.
+Objective-specific L1 terms, histories, cost accounting and paired multistarts are provided.
 Stationarity is not a global Pareto-optimality certificate. See the
-[usage, formulas and exact variants](docs/algorithms.md) and [derivative caveats](docs/gradients.md).
+[unified usage, formulas and exact variants](docs/unified-algorithms.zh-CN.md),
+[legacy baseline details](docs/algorithms.md) and [derivative caveats](docs/gradients.md).
+Run `python examples/unified_algorithms.py` for a small example of each family.
 
 ![Paired gradient baselines](docs/assets/gradient_comparison.png)
 
@@ -163,7 +166,7 @@ src/mop_problems/                # Installable library (src layout)
 ├── core.py                     # Problem and Evaluation contract
 ├── catalog.py                  # Discovery and factory
 ├── differentiation.py          # Derivative metadata and independent validation
-├── algorithms/                 # MGDA, BBDMO, PG and accelerated baselines
+├── algorithms/                 # Deterministic gradient, FW, AMG, ALM and ADMM methods
 ├── data/catalog.json            # Authoritative metadata and status
 └── problems/                   # Actual formula implementations
 tests/                          # Analytical, contract and optional reference tests

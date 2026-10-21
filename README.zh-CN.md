@@ -3,7 +3,7 @@
 [English](README.md) · [完整分类](problems/README.md) · [调用接口](docs/api.md) ·
 [数学公式](docs/formulas.md) · [可复现实验](docs/experiments.md) · [GitHub 上传说明](docs/publishing.md)
 
-[梯度与光滑性](docs/gradients.md) · [内置算法与对比指南](docs/algorithms.md)
+[梯度与光滑性](docs/gradients.md) · [确定性算法统一说明](docs/unified-algorithms.zh-CN.md)
 
 [有实际背景的多目标 ADMM 应用专题](docs/admm-applications.zh-CN.md)：新增 12 个文献/模型条目，
 逐项列出目标分离、耦合等式、凸性条件、数据可用性及来源核验程度；另附四个小型分离结构数值检查。
@@ -94,16 +94,19 @@ gd_runs = multistart(p, gd, starts=starts)
 bb_runs = multistart(p, BBDMO(), starts=starts)
 ```
 
-提供 MGDA/GD、BBDMO、多目标 proximal gradient、Nesterov 加速梯度、
-Nesterov 加速 proximal gradient。加速方法明确采用 TFY 多目标版本。
+提供 MGDA/GD、BBDMO、共轭梯度、近端梯度、FW/away/pairwise、PHR-ALM 和自适应罚参数 ADMM。
+`nesterov` 使用 AMG-QP 完整递推，`nesterov_proximal` 是其明确给出的复合扩展；
+原 TFY 方法保留为 `tfy` / `tfy_proximal`。
 GD 支持固定步长、Armijo、最大值非单调和平均值非单调线搜索；
 近端方法支持固定步长/模型回溯，以及各目标不同的 L1 权重和中心。
 
 导数采用前向自动微分，不默认使用有限差分。不可微点、奇异点、内层求解失败及预算耗尽
 均有明确状态。输出包含轨迹、函数/导数调用次数、耗时与统一驻点指标。
-默认把变量盒放入子问题；一般非线性约束算法需使用 `dG/dH` 自行接入。
+ALM 支持一般 `G/H`，ADMM 需要显式光滑两块 `SplitProblem`；各算法的盒约束默认值见统一说明。
 停止条件通过不等于全局 Pareto 最优。
-详见[完整调用与配置](docs/algorithms.md)、[导数核验及光滑性](docs/gradients.md)。
+详见[统一形式、公式与配置](docs/unified-algorithms.zh-CN.md)、
+[原基线细节](docs/algorithms.md)、[导数核验及光滑性](docs/gradients.md)。
+运行 `python examples/unified_algorithms.py` 可查看所有类别的小型示例。
 
 ![共享起点的梯度算法对比](docs/assets/gradient_comparison.png)
 

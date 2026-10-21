@@ -2,19 +2,28 @@
 
 import numpy as np
 
+from .accelerated import (
+    AMGOptions,
+    NesterovAcceleratedGradient,
+    NesterovAcceleratedProximalGradient,
+)
+from .augmented import ALMOptions, AugmentedLagrangian
+from .conditional import AwayStepFrankWolfe, FrankWolfe, FWOptions, PairwiseFrankWolfe, Polytope
+from .conjugate import CGOptions, ConjugateGradient
 from .first_order import (
     BBDMO,
     GD,
     MGDA,
     FirstOrderMethod,
     Iteration,
-    NesterovAcceleratedGradient,
-    NesterovAcceleratedProximalGradient,
     OptimizeResult,
     ProximalGradient,
     SolverOptions,
+    TFYAcceleratedGradient,
+    TFYAcceleratedProximalGradient,
 )
 from .proximal import L1
+from .splitting import ADMMOptions, MultiobjectiveADMM, SplitProblem
 
 _METHODS = {
     "mgda": MGDA,
@@ -22,8 +31,28 @@ _METHODS = {
     "proximal_gradient": ProximalGradient,
     "nesterov": NesterovAcceleratedGradient,
     "nesterov_proximal": NesterovAcceleratedProximalGradient,
+    "conjugate_gradient": ConjugateGradient,
+    "frank_wolfe": FrankWolfe,
+    "away_frank_wolfe": AwayStepFrankWolfe,
+    "pairwise_frank_wolfe": PairwiseFrankWolfe,
+    "alm": AugmentedLagrangian,
+    "admm": MultiobjectiveADMM,
+    "tfy": TFYAcceleratedGradient,
+    "tfy_proximal": TFYAcceleratedProximalGradient,
 }
-_ALIASES = {"gd": "mgda", "pg": "proximal_gradient", "nag": "nesterov", "apg": "nesterov_proximal"}
+_ALIASES = {
+    "gd": "mgda",
+    "steepest_descent": "mgda",
+    "pg": "proximal_gradient",
+    "nag": "nesterov",
+    "amg_qp": "nesterov",
+    "apg": "nesterov_proximal",
+    "amg_proximal": "nesterov_proximal",
+    "cg": "conjugate_gradient",
+    "fw": "frank_wolfe",
+    "away_fw": "away_frank_wolfe",
+    "pairwise_fw": "pairwise_frank_wolfe",
+}
 
 
 def list_algorithms():
@@ -66,17 +95,32 @@ def nondominated_mask(F):
 
 
 __all__ = [
+    "ADMMOptions",
+    "ALMOptions",
+    "AMGOptions",
+    "AugmentedLagrangian",
+    "AwayStepFrankWolfe",
     "BBDMO",
+    "CGOptions",
+    "ConjugateGradient",
+    "FWOptions",
+    "FrankWolfe",
     "GD",
     "L1",
     "MGDA",
+    "MultiobjectiveADMM",
     "FirstOrderMethod",
     "Iteration",
     "NesterovAcceleratedGradient",
     "NesterovAcceleratedProximalGradient",
     "OptimizeResult",
+    "PairwiseFrankWolfe",
+    "Polytope",
     "ProximalGradient",
     "SolverOptions",
+    "SplitProblem",
+    "TFYAcceleratedGradient",
+    "TFYAcceleratedProximalGradient",
     "get_algorithm",
     "list_algorithms",
     "minimize",

@@ -4,7 +4,7 @@ import json
 import re
 import subprocess
 import sys
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 
 import pytest
 
@@ -164,9 +164,15 @@ def test_local_document_links_resolve():
     for page in pages:
         text = page.read_text(encoding="utf-8")
         for destination in re.findall(r"\]\(([^)]+)\)", text):
+            # CommonMark uses <...> around destinations containing spaces.
+            destination = destination.removeprefix("<").removesuffix(">")
             if "://" in destination or destination.startswith("#"):
                 continue
             path, _, anchor = destination.partition("#")
+            if PureWindowsPath(path).is_absolute():
+                # Source inventories link to external, machine-local checkouts.
+                # They are not dependencies of this repository's documentation.
+                continue
             target = (page.parent / path).resolve()
             assert target.exists(), f"{page}: missing {destination}"
             if anchor and target.suffix == ".md":

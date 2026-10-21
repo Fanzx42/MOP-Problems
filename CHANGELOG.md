@@ -9,6 +9,16 @@
 - Add optional SciPy/COPT dependencies, runnable examples, independent LP/solver
   tests, and compact archived measurements and states; no patient data is bundled.
 - Preserve the 343-problem benchmark registry and the NumPy-only core installation.
+- Unify deterministic multiobjective CG (classic beta rules, Wolfe searches and restarts),
+  FW/convex-hull away/pairwise methods, PHR-ALM, and smooth two-block weight-consensus ADMM.
+- Add ALM progress-based penalty increases and ADMM primal/dual residual balancing,
+  explicit inner accuracy checks, constraint/KKT diagnostics and shared result accounting.
+- Change `nesterov` / `nesterov_proximal` to the complete local AMG-QP recurrence and its
+  explicitly documented composite extension; retain the previous TFY implementations as
+  `tfy` / `tfy_proximal` and the `TFYAccelerated*` classes. Existing TFY experiments now
+  select those classes explicitly. Fixed `L` is required for the AMG recurrence.
+- Add the `L`/`lipschitz` step-size interface, local source inventory, Chinese unified
+  mathematical specification, runnable family examples and independent numerical checks.
 
 ## 0.4.0 — 2026-09-23
 

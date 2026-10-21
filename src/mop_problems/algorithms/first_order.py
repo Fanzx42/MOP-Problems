@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from time import perf_counter
 
 import numpy as np
@@ -33,8 +33,20 @@ class SolverOptions:
     subproblem_tol: float = 1e-12
     subproblem_max_iter: int = 500
     store_history: bool = True
+    lipschitz: float | None = None
 
     def __post_init__(self):
+        if self.lipschitz is not None:
+            if (
+                isinstance(self.lipschitz, (bool, np.bool_))
+                or not np.isscalar(self.lipschitz)
+                or not np.isfinite(self.lipschitz)
+                or self.lipschitz <= 0
+            ):
+                raise ValueError("lipschitz must be finite and positive")
+            if self.step_size != 1.0 and not np.isclose(self.step_size, 1 / self.lipschitz):
+                raise ValueError("Specify step_size or lipschitz, not conflicting values")
+            object.__setattr__(self, "step_size", 1 / self.lipschitz)
         for name in ("step_size", "tol", "min_step", "bb_min", "bb_max", "subproblem_tol"):
             value = getattr(self, name)
             if isinstance(value, (bool, np.bool_)) or not np.isscalar(value):
@@ -60,6 +72,10 @@ class SolverOptions:
             "nonmonotone",
             "nonmonotone_average",
             "backtracking",
+            "wolfe",
+            "strong_wolfe",
+            "diminishing",
+            "adaptive",
         ):
             raise ValueError("unknown step_rule")
         for name in ("domain_restart", "store_history"):
@@ -79,6 +95,7 @@ class Iteration:
     njev: int
     subproblem_gap: float | None
     bb_scales: tuple[float, ...]
+    diagnostics: dict = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -103,6 +120,7 @@ class OptimizeResult:
     algorithm: str
     options: dict
     history: tuple[Iteration, ...]
+    diagnostics: dict = field(default_factory=dict)
 
 
 class _BudgetReached(RuntimeError):
@@ -133,6 +151,10 @@ class FirstOrderMethod:
     proximal = False
 
     def __init__(self, *, regularizer=None, **options):
+        if "L" in options:
+            if "lipschitz" in options:
+                raise ValueError("Specify only one of L and lipschitz")
+            options["lipschitz"] = options.pop("L")
         self.options = SolverOptions(**options)
         if regularizer is not None and not self.proximal:
             raise ValueError("Use ProximalGradient or NesterovAcceleratedProximalGradient for g_i")
@@ -420,16 +442,16 @@ class ProximalGradient(FirstOrderMethod):
     proximal = True
 
 
-class NesterovAcceleratedGradient(FirstOrderMethod):
+class TFYAcceleratedGradient(FirstOrderMethod):
     """TFY (2023) accelerated minimax method with g_i=0 (not naive extrapolated MGDA)."""
 
-    name = "nesterov"
+    name = "tfy"
     accelerated = True
 
 
-class NesterovAcceleratedProximalGradient(FirstOrderMethod):
+class TFYAcceleratedProximalGradient(FirstOrderMethod):
     """TFY (2023) Algorithm 2, including f_i(y)-F_i(x) in every subproblem."""
 
-    name = "nesterov_proximal"
+    name = "tfy_proximal"
     proximal = True
     accelerated = True

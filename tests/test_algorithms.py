@@ -10,11 +10,10 @@ from mop_problems.algorithms import (
     GD,
     L1,
     MGDA,
-    NesterovAcceleratedProximalGradient,
     ProximalGradient,
     SolverOptions,
+    TFYAcceleratedProximalGradient,
     get_algorithm,
-    list_algorithms,
     minimize,
     multistart,
     nondominated_mask,
@@ -75,7 +74,7 @@ def test_box_is_inside_subproblem_and_changes_optimal_weights():
     assert_allclose(result.weights, [1, 0], atol=1e-9)
 
 
-@pytest.mark.parametrize("name", list_algorithms())
+@pytest.mark.parametrize("name", ["mgda", "bbdmo", "proximal_gradient", "tfy", "tfy_proximal"])
 def test_all_baselines_stationarity_and_nontrivial_common_descent(name):
     p = Quadratics()
     x0 = np.array([3.0, -2.0])
@@ -148,7 +147,7 @@ def test_l1_prox_against_independent_scalar_minimization():
     assert_array_equal(zero.prox(v, 1, [0.5, 0.5], [-2, -2], [2, 2]), [-2, 1.7])
 
 
-@pytest.mark.parametrize("method", [ProximalGradient, NesterovAcceleratedProximalGradient])
+@pytest.mark.parametrize("method", [ProximalGradient, TFYAcceleratedProximalGradient])
 def test_proximal_objectives_include_distinct_penalties(method):
     p = Quadratics()
     reg = L1([0.3, 0.7], [0, 0.5])
@@ -186,7 +185,7 @@ def test_accelerated_model_includes_objective_difference_offsets():
 def test_nesterov_recurrence_matches_independent_two_step_derivation():
     p = Quadratics(scales=(1, 3))
     step = 0.05
-    r = minimize(p, [4, -2], algorithm="nesterov", step_rule="fixed", step_size=step, max_iter=3)
+    r = minimize(p, [4, -2], algorithm="tfy", step_rule="fixed", step_size=step, max_iter=3)
     x, y, t = np.array([4.0, -2]), np.array([4.0, -2]), 1.0
     for k in range(3):
         J = np.stack((2 * (y - 1), 6 * (y + 1)))
@@ -319,7 +318,7 @@ def test_projected_stationarity_and_explicit_unbounded_extension():
 
 
 def test_acceleration_restarts_at_domain_boundary():
-    method = get_algorithm("nag", step_rule="fixed", step_size=2, max_iter=5)
+    method = get_algorithm("tfy", step_rule="fixed", step_size=2, max_iter=5)
     r = method.solve(Quadratics(lower=-1, upper=1), [0.9, -0.9])
     assert r.domain_restarts > 0
     assert all(np.all(np.abs(h.x) <= 1) for h in r.history)
@@ -331,7 +330,7 @@ def test_three_objective_shifted_l1_inner_accuracy_regression():
     p = get_problem("DTLZ2", n_var=8, n_obj=3)
     reg = L1([0.05, 0.1, 0.15], [0.0, 0.3, 0.7])
     x = p.sample(1, seed=42)[0]
-    for method in (ProximalGradient, NesterovAcceleratedProximalGradient):
+    for method in (ProximalGradient, TFYAcceleratedProximalGradient):
         result = method(regularizer=reg, max_iter=150).solve(p, x)
         assert result.success, result.message
         assert result.stationarity_bound <= 1e-5
